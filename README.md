@@ -30,16 +30,23 @@ Ctrl+Shift+P (en Mac: Cmd+Shift+P) → escribe «Git: Clone» → Clone from Git
 Si VS Code pregunta «¿Confías en los autores de los archivos de esta carpeta?», responde **Sí, confío**.
 Comprueba que en el panel de la izquierda ves `AGENTS.md`, `fichas/` y `metodo/`.
 
+Una sola vez, dile a Git quién eres (menú Terminal → New Terminal), con el mismo correo de GitHub:
+```
+git config --global user.name "Tu Nombre"
+git config --global user.email "tu-correo@ejemplo.com"
+```
+
 ## 3 · Activa tu IA (elige UNA)
 
 ### En el Reto usamos · Claude Code (de pago)
-Necesitas una suscripción de pago de Claude (Pro o superior). La instalación está en el
-video de Claude Code del Día 1. Puedes usarlo en la terminal (escribe `claude` dentro de esta
-carpeta) o con la extensión de VS Code:
+Necesitas una suscripción de pago de Claude (Pro o superior). Lo usamos con la extensión
+de VS Code, que ya trae Claude Code adentro (video 5 del Día 1):
 ```
 Ctrl+Shift+X (Extensiones) → busca «Claude Code» (de Anthropic) → Install
-   └─ icono de chispa (Spark), arriba a la derecha → Sign in
+   └─ abre un archivo → icono de chispa, arriba a la derecha → Sign in
 ```
+Abajo del cuadro de texto está el modo de permisos: esta semana elige **Manual**, para que
+te muestre cada cambio y cada comando antes de hacerlo.
 Claude Code lee solo `CLAUDE.md` (que remite a `AGENTS.md`), los agentes y las skills.
 
 ### Opción gratis · GitHub Copilot (plan Copilot Free)
