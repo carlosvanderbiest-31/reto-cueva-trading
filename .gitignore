@@ -1,0 +1,16 @@
+# Tus datos de precios son tuyos: no se suben
+datos/*.csv
+datos/*.xlsx
+# Claves y contraseñas: nunca
+.env
+.env.*
+# Archivos que genera el sistema o MetaTrader
+*.ex5
+*.ex4
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+Thumbs.db
+.claude/settings.local.json
+dist/
