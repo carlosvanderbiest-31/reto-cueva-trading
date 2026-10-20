@@ -13,6 +13,12 @@ Haz el test de la guía de niveles del Día 1 y apunta tus dos números.
 
 Lo que hoy me frena para subir un escalón en sistemático:
 
+## Mi idea para el Reto
+
+Una frase, tuya: qué activo, qué pasa y qué crees que hace el precio después. Mañana se convierte en hipótesis.
+
+> 
+
 ## Día 1 · Intro y Fast Start
 - [ ] Mi copia privada de este repositorio creada en GitHub
 - [ ] Abierta en VS Code
@@ -20,7 +26,11 @@ Lo que hoy me frena para subir un escalón en sistemático:
 - [ ] MetaTrader 5 instalado con una cuenta demo
 - [ ] Primer uso hecho (`/primer-uso`)
 - [ ] Leí la guía de niveles y el Criterio TIS
-- [ ] Mis niveles escritos arriba y en el grupo
+- [ ] Mis niveles escritos arriba
+- [ ] Mi primera orden al Director con la ficha de ejemplo
+- [ ] El ejercicio «¿Pasa o no pasa?» del Criterio TIS
+- [ ] Mi idea para el Reto escrita arriba
+- [ ] Misión 1 entregada en el buzón «Entrega Misión 1»
 
 ## Día 2 · Pensando en datos
 - [ ] Mi CSV en `datos/`

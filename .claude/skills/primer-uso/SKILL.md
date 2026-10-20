@@ -31,7 +31,7 @@ Español latino, frases cortas, máximo 200 palabras por mensaje. UNA pregunta p
    sí «Claude Code (o mi IA) funcionando» y «Primer uso hecho». Si GitHub está conectado,
    marca también «Mi copia privada…».
 6. CIERRA con: su siguiente escalón en sistemático (una frase, de la guía de niveles), que
-   escriba sus dos números en el grupo, y propón guardar en GitHub con el mensaje
+   puede compartir sus dos números en el chat de la comunidad, y propón guardar en GitHub con el mensaje
    «Día 1: primer uso». Guarda solo si dice que sí.
 
 Prohibido: inventar resultados de mercado, dar señales, prometer rentabilidad, cambiar
