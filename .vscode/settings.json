@@ -1,3 +1,4 @@
 {
-  "chat.useAgentsMdFile": true
+  "chat.useAgentsMdFile": true,
+  "chat.useClaudeMdFile": false
 }
