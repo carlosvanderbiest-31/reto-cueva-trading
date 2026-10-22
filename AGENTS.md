@@ -48,6 +48,7 @@ sigue sus pasos tú mismo y nómbralo («uso el manual del agente reglas»).
 Esta carpeta es mi repositorio del Reto Cueva de Trading. Cada cosa va en su sitio:
 - fichas/      → una FICHA por idea: fichas/<activo>_<idea_corta>.md
 - datos/       → mis CSV de precios (no se suben a GitHub)
+- activos/     → una ficha técnica por activo: costes, horario y línea base (Día 2)
 - herramientas/ → páginas que se abren con doble clic (Día 1: auditor-tis.html)
 - codigo/      → el código del backtest (Día 3)
 - resultados/  → curvas de equity y reportes (Día 3)

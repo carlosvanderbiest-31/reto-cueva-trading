@@ -97,6 +97,7 @@ mi-cueva-tis/
 ├─ MI_RETO.md        ← tu progreso: niveles y entregables de cada día
 ├─ fichas/           ← una FICHA por idea (hay un ejemplo de NAS100)
 ├─ datos/            ← tus CSV de precios (no se suben a GitHub · lee LEEME.md)
+├─ activos/          ← Día 2 · una ficha técnica por activo: costes, horario y línea base
 ├─ codigo/           ← Día 3 · el código del backtest
 ├─ resultados/       ← Día 3 · curvas de equity y reportes
 ├─ robots/           ← Día 4 · tu robot para MetaTrader 5
@@ -111,7 +112,7 @@ mi-cueva-tis/
 | Día | Tema | Dónde trabajas | Entregable |
 |---|---|---|---|
 | 1 · dom 25 | Intro y Fast Start | Toda la cueva · `herramientas/` | Cueva lista + auditoría de tu historial + 3 hipótesis |
-| 2 · lun 26 | Pensando en datos | `datos/` · `fichas/` | Primera hipótesis + guía de análisis de datos |
+| 2 · lun 26 | Pensando en datos | `datos/` · `activos/` · `fichas/` | Hipótesis pre-registrada + ficha técnica + fase 02 |
 | 3 · mar 27 | Backtesting y código | `codigo/` · `resultados/` | Skills para programar + primera curva de equity |
 | 4 · mié 28 | Tu primer sistema automatizado | `robots/` | Estrategia automatizada y probada en MetaTrader 5 |
 | 5 · jue 29 | La visión de portafolio | `portafolio/` | Segunda estrategia + mini portafolio |

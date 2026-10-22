@@ -52,8 +52,24 @@ Pídele estas tres cosas y anota en una línea qué te respondió y si respetó 
 - [ ] Misión 1 entregada en el buzón «Entrega Misión 1»
 
 ## Día 2 · Pensando en datos
-- [ ] Mi CSV en `datos/`
-- [ ] Mi primera hipótesis en `fichas/`
+**Nivel 1 · Tu hipótesis, sellada**
+- [ ] Mi hipótesis sellada en la lección «Tu hipótesis», con su pre-registro
+- [ ] Mi ficha en `fichas/`, con el pre-registro y el veredicto de la fase 01
+- [ ] Guardado en GitHub
+
+**Nivel 2 · Contrástala con los datos**
+- [ ] El CSV de mi activo en `datos/`
+- [ ] La ficha técnica de mi activo en `activos/`
+- [ ] Mi predicción medida frente a mi línea base
+- [ ] Fase 02 con su veredicto en mi ficha
+- [ ] Guardado en GitHub
+
+**Nivel 3 · Busca su huella**
+- [ ] El segundo juego de datos en `datos/`
+- [ ] La huella medida y anotada en la fase 02
+- [ ] Guardado en GitHub
+
+- [ ] Misión 2 entregada en el buzón «Entrega Misión 2»
 
 ## Día 3 · Backtesting y código
 - [ ] Mi backtest en `codigo/`
