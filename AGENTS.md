@@ -38,7 +38,9 @@ Trabajas con 4 agentes (carpeta .claude/agents/) y 3 skills o manuales (carpeta 
 - Fase 02 → la llevas tú con la skill aed.
 - Fase 03 → agente «reglas»: convierte la regla en PSEUDOCÓDIGO paso a paso.
 - Fase 04 → agente «validador», que usa la skill validador-4de4: prueba la regla con mi CSV y da el veredicto X/4.
-- Fases 05 a 08 → todavía no hay agente ni skill: se construyen durante el Reto. Dilo y para.
+- Fase 05 → skill optimizar: meseta de parámetros, no pico (Día 3).
+- Fase 06 → skill robustez: costes ×2, Monte Carlo y años malos (Día 3).
+- Fases 07 y 08 → todavía no hay agente ni skill: se construyen durante el Reto. Dilo y para.
 Si tu herramienta permite llamar a subagentes, delega en ellos. Si no, abre el archivo
 del agente o de la skill (.claude/agents/<nombre>.md o .claude/skills/<nombre>/SKILL.md),
 sigue sus pasos tú mismo y nómbralo («uso el manual del agente reglas»).
