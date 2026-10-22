@@ -3,6 +3,24 @@
 La cueva no tiene datos de mercado propios. Sin un CSV tuyo, la fase 02 (AED) y la
 fase 04 (Backtest) quedan PENDIENTE: es lo correcto, no un error.
 
+## ¿De dónde saco los datos? Fuentes gratis
+
+Cualquier CSV de precios sirve: la ficha técnica del Día 2 y tu Director leen los formatos
+más comunes. Estas fuentes no piden pago (algunas piden una cuenta gratis):
+
+| Fuente | Sirve para | Cómo |
+|---|---|---|
+| **Tu MetaTrader 5** | Lo que opera tu bróker: índices, divisas, oro, cripto | Ver → Símbolos → elige el símbolo → pestaña Barras → elige temporalidad y fechas → Solicitar → Exportar barras |
+| **Yahoo Finance** | Acciones, ETF, índices y cripto, en diario | Busca el ticker → Historical Data → periodo Max → Download. Si pide iniciar sesión, la cuenta es gratis |
+| **Stooq** (stooq.com) | Índices, acciones, ETF, divisas, materias primas y cripto | Diario con muchos años; 1 hora y 5 minutos solo con las últimas velas. Pide un captcha para descargar |
+| **Dukascopy** (dukascopy.com → Historical data export) | Divisas, oro, índices y materias primas, también intradía | Elige instrumento, temporalidad y fechas → descarga en CSV. Puede pedir registrarte gratis |
+| **TradingView** | Casi todo | Según tu plan, exportar puede pedir una suscripción de pago. Pasos abajo |
+
+**Qué elegir:**
+- Para la fase 02 con AED CLUES: **velas diarias**, con todos los años que puedas (5 o más).
+- Si tu idea es por hora o por sesión: 1 hora o 15 minutos de **tu MetaTrader** o de **Dukascopy**.
+- El Día 3 aprendes a bajarlos con Python, sin depender de ninguna página.
+
 ## Cómo exportar el CSV desde TradingView
 1. Abre TradingView en la computadora (en el celular no se puede exportar).
 2. Abre el gráfico del activo (por ejemplo NAS100) y elige la temporalidad (por ejemplo 15 min).
@@ -13,8 +31,8 @@ fase 04 (Backtest) quedan PENDIENTE: es lo correcto, no un error.
    «Exportar datos del gráfico…» → formato de hora ISO → Exportar.
 6. Guarda el archivo en esta carpeta con un nombre claro: `NAS100_15m.csv`.
 
-Ojo: la exportación puede requerir un plan de pago de TradingView, y los planes
-gratuitos cargan menos historial. Para años de datos, usa diario o 1 hora.
+Ojo: según tu plan, exportar desde TradingView puede pedir una suscripción de pago, y los
+planes gratuitos cargan menos historial. Si no puedes exportar, usa una de las fuentes de arriba.
 
 ## Formato del CSV
 El CSV tal cual sale de TradingView, sin abrirlo ni guardarlo en Excel (Excel cambia
