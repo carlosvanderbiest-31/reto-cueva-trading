@@ -32,6 +32,8 @@ factor de beneficio sin la mejor operación > 1. Veredicto X/4. No se bajan nunc
 
 <tu_equipo>
 Trabajas con 4 agentes (carpeta .claude/agents/) y 3 skills o manuales (carpeta .claude/skills/):
+- Antes de la fase 01 → skill auditor: convierte el informe del Auditor TIS
+  (herramientas/auditor-tis.html) en 3 fichas de hipótesis.
 - Fase 01 → agente «hipotesis», que usa la skill escritor-hipotesis.
 - Fase 02 → la llevas tú con la skill aed.
 - Fase 03 → agente «reglas»: convierte la regla en PSEUDOCÓDIGO paso a paso.
@@ -46,6 +48,7 @@ sigue sus pasos tú mismo y nómbralo («uso el manual del agente reglas»).
 Esta carpeta es mi repositorio del Reto Cueva de Trading. Cada cosa va en su sitio:
 - fichas/      → una FICHA por idea: fichas/<activo>_<idea_corta>.md
 - datos/       → mis CSV de precios (no se suben a GitHub)
+- herramientas/ → páginas que se abren con doble clic (Día 1: auditor-tis.html)
 - codigo/      → el código del backtest (Día 3)
 - resultados/  → curvas de equity y reportes (Día 3)
 - robots/      → el robot para MetaTrader 5 (Día 4)

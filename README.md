@@ -1,7 +1,7 @@
 # Reto Cueva de Trading · tu repositorio base
 
 Este es tu repositorio para los 5 días del Reto. Aquí vive tu **Cueva TIS**: un **Director**
-que conoce el método TIS, **4 agentes** y **3 skills** (manuales de trabajo) que llevan cada
+que conoce el método TIS, **4 agentes**, **skills** (manuales de trabajo) y **herramientas** que llevan cada
 idea de trading por las fases del método y la dejan escrita en una **FICHA**.
 
 Lo abres en VS Code, trabajas con tu IA dentro de esta carpeta y lo guardas en tu GitHub.
@@ -82,6 +82,14 @@ y qué le falta para pasar la fase 04.
 Qué esperar: empieza con «Fase XX · nombre · agente o skill», no inventa cifras (la fase 02
 del ejemplo está PENDIENTE porque no hay CSV) y te dice qué falta.
 
+## 5 · Audita tu historial (Misión 1)
+
+1. Abre `herramientas/auditor-tis.html` con doble clic. Se abre en tu navegador, sin internet.
+2. Suelta ahí el informe de tu cuenta de MetaTrader 5 (HTML o Excel). Si no tienes, usa el ejemplo.
+   Paso a paso en `herramientas/LEEME.md`.
+3. Pulsa **Copiar para el Director**, vuelve a Claude Code, escribe `/auditor` y pega el informe.
+   El Director guarda 3 fichas de hipótesis en `fichas/` y te pregunta cuál trabajar en el Reto.
+
 ## Lo que hay en tu cueva
 
 ```
@@ -93,6 +101,7 @@ mi-cueva-tis/
 ├─ resultados/       ← Día 3 · curvas de equity y reportes
 ├─ robots/           ← Día 4 · tu robot para MetaTrader 5
 ├─ portafolio/       ← Día 5 · tus estrategias combinadas
+├─ herramientas/     ← páginas con doble clic · Día 1: el Auditor TIS
 ├─ metodo/           ← el método TIS y el Criterio TIS (METODO.md), la plantilla de ficha
 └─ AGENTS.md, CLAUDE.md, .claude/, .vscode/  ← el cerebro de tu cueva: no los muevas
 ```
@@ -101,7 +110,7 @@ mi-cueva-tis/
 
 | Día | Tema | Dónde trabajas | Entregable |
 |---|---|---|---|
-| 1 · dom 25 | Intro y Fast Start | Toda la cueva | Repositorio listo + guía de niveles + Criterio TIS |
+| 1 · dom 25 | Intro y Fast Start | Toda la cueva · `herramientas/` | Cueva lista + auditoría de tu historial + 3 hipótesis |
 | 2 · lun 26 | Pensando en datos | `datos/` · `fichas/` | Primera hipótesis + guía de análisis de datos |
 | 3 · mar 27 | Backtesting y código | `codigo/` · `resultados/` | Skills para programar + primera curva de equity |
 | 4 · mié 28 | Tu primer sistema automatizado | `robots/` | Estrategia automatizada y probada en MetaTrader 5 |

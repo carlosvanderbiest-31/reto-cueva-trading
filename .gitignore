@@ -1,6 +1,11 @@
 # Tus datos de precios son tuyos: no se suben
 datos/*.csv
 datos/*.xlsx
+datos/*.html
+datos/*.htm
+# Informes originales de MetaTrader, estén donde estén
+ReportHistory*
+ReportTester*
 # Claves y contraseñas: nunca
 .env
 .env.*

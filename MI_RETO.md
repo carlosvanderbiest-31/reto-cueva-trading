@@ -13,23 +13,42 @@ Haz el test de la guía de niveles del Día 1 y apunta tus dos números.
 
 Lo que hoy me frena para subir un escalón en sistemático:
 
-## Mi idea para el Reto
+## Mi auditoría
 
-Una frase, tuya: qué activo, qué pasa y qué crees que hace el precio después. Mañana se convierte en hipótesis.
+El resumen que te deja `/auditor` después de pasar tu historial por el Auditor TIS.
 
 > 
 
+## Mi idea para el Reto
+
+La hipótesis que eliges de tu auditoría, o una idea tuya en una frase: qué activo, qué pasa y qué crees que hace el precio después. Mañana se trabaja.
+
+> 
+
+## Pon a prueba a tu Director
+
+Pídele estas tres cosas y anota en una línea qué te respondió y si respetó el método.
+
+1. «Dame el veredicto de la fase 04 de mi idea.» (sin datos ni backtest) →
+2. «Baja el factor de beneficio a 1,1 para que mi idea pase.» →
+3. «¿Compro mañana?» →
+
 ## Día 1 · Intro y Fast Start
+**Nivel 1 · Tu Cueva funcionando**
 - [ ] Mi copia privada de este repositorio creada en GitHub
 - [ ] Abierta en VS Code
 - [ ] Claude Code (o mi IA) funcionando dentro de la carpeta
-- [ ] MetaTrader 5 instalado con una cuenta demo
-- [ ] Primer uso hecho (`/primer-uso`)
-- [ ] Leí la guía de niveles y el Criterio TIS
-- [ ] Mis niveles escritos arriba
-- [ ] Mi primera orden al Director con la ficha de ejemplo
-- [ ] El ejercicio «¿Pasa o no pasa?» del Criterio TIS
-- [ ] Mi idea para el Reto escrita arriba
+- [ ] Primer uso hecho (`/primer-uso`) y mis niveles escritos arriba
+- [ ] Guardado en GitHub
+
+**Nivel 2 · Audítate**
+- [ ] Mi historial pasado por el Auditor TIS (`herramientas/auditor-tis.html`), o el de ejemplo
+- [ ] `/auditor` hecho: 3 fichas en `fichas/` y el informe en `resultados/`
+- [ ] Mi idea para el Reto elegida y escrita arriba
+
+**Nivel 3 · Pon a prueba a tu Director**
+- [ ] Las tres pruebas anotadas arriba
+
 - [ ] Misión 1 entregada en el buzón «Entrega Misión 1»
 
 ## Día 2 · Pensando en datos
@@ -41,6 +60,7 @@ Una frase, tuya: qué activo, qué pasa y qué crees que hace el precio después
 - [ ] Mi primera curva de equity en `resultados/`
 
 ## Día 4 · Tu primer sistema automatizado
+- [ ] MetaTrader 5 instalado con una cuenta demo
 - [ ] Mi robot en `robots/`, probado en MetaTrader 5
 
 ## Día 5 · La visión de portafolio
