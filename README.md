@@ -1,7 +1,7 @@
 # Reto Cueva de Trading · tu repositorio base
 
 Este es tu repositorio para los 5 días del Reto. Aquí vive tu **Cueva TIS**: un **Director**
-que conoce el método TIS, **4 agentes**, **skills** (manuales de trabajo) y **herramientas** que llevan cada
+que conoce el método TIS, **6 agentes**, **skills** (manuales de trabajo) y **herramientas** que llevan cada
 idea de trading por las fases del método y la dejan escrita en una **FICHA**.
 
 Lo abres en VS Code, trabajas con tu IA dentro de esta carpeta y lo guardas en tu GitHub.
@@ -95,12 +95,13 @@ del ejemplo está PENDIENTE porque no hay CSV) y te dice qué falta.
 ```
 mi-cueva-tis/
 ├─ MI_RETO.md        ← tu progreso: niveles y entregables de cada día
+├─ MI_PLAN.md        ← Día 3 · tu plan de trader (lo crea el agente objetivos)
 ├─ fichas/           ← una FICHA por idea (hay un ejemplo de NAS100)
 ├─ datos/            ← tus CSV de precios (no se suben a GitHub · lee LEEME.md)
 ├─ activos/          ← Día 2 · una ficha técnica por activo: costes, horario y línea base
 ├─ codigo/           ← Día 3 · el código del backtest
 ├─ resultados/       ← Día 3 · curvas de equity y reportes
-├─ robots/           ← Día 4 · tu robot para MetaTrader 5
+├─ robots/           ← Día 3 · tu estrategia en código para tu plataforma
 ├─ portafolio/       ← Día 5 · tus estrategias combinadas
 ├─ herramientas/     ← páginas con doble clic · Día 1: el Auditor TIS
 ├─ metodo/           ← el método TIS y el Criterio TIS (METODO.md), la plantilla de ficha

@@ -19,3 +19,5 @@ __pycache__/
 Thumbs.db
 .claude/settings.local.json
 dist/
+*.eld
+*.pla

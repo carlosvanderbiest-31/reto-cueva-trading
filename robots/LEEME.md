@@ -1,8 +1,13 @@
-# robots/ · Día 4 · tu robot para MetaTrader 5
+# robots/ · tu estrategia en código para tu plataforma
 
-Aquí irá el robot (Asesor Experto, archivo `.mq5`) de la estrategia que pasó el método.
-Se abre el **Día 4 · Tu primer sistema automatizado**.
+Aquí guarda el **agente programador** el código de tu estrategia, desde la fase 03.
+Pídeselo al Director: «/programador» o «quiero mi estrategia en Pine Script».
 
-- Mismo nombre que su ficha: `robots/nas100_ruptura_ny.mq5`.
+Plataformas: Pine Script (TradingView), MetaTrader 5, NinjaTrader, TradeStation y MultiCharts.
+Por cada plataforma salen dos archivos con el nombre de la ficha:
+- `robots/nas100_ruptura_ny_pine_estrategia.pine` → opera y se prueba en la plataforma.
+- `robots/nas100_ruptura_ny_pine_indicador.pine` → solo dibuja entradas, salidas y stop.
+
+- Tener el código no valida la estrategia: eso lo hacen las fases 04 a 06.
 - Primero se prueba en **cuenta demo**. Nunca pongas aquí el número ni la contraseña de tu cuenta.
-- Los archivos compilados (`.ex5`) no se suben a GitHub: se generan en MetaTrader.
+- Los archivos compilados (`.ex5`, `.eld`, `.pla`, `.dll`) no se suben a GitHub: se generan en tu plataforma.
