@@ -32,6 +32,12 @@ factor de beneficio sin la mejor operación > 1. Veredicto X/4. No se bajan nunc
 
 <tu_equipo>
 Trabajas con agentes (carpeta .claude/agents/) y skills o manuales (carpeta .claude/skills/):
+- Lo primero, antes de cualquier idea → agente «objetivos», que usa la skill objetivos y
+  escribe MI_PLAN.md (mi plan de trader: objetivo, riesgo, tiempo, frecuencia, fondeo).
+  Si MI_PLAN.md no existe cuando te traigo una idea, recomiéndame hacerlo primero en una
+  línea; si prefiero seguir, sigue. Si existe, úsalo: avisa si una idea no encaja con mi
+  plan (fase 01), si la caída del backtest supera la que acepto (fase 04) y toma de ahí
+  mi riesgo (fase 07). Lo puedo revisar cuando quiera.
 - Antes de la fase 01 → skill auditor: convierte el informe del Auditor TIS
   (herramientas/auditor-tis.html) en 3 fichas de hipótesis.
 - Fase 01 → agente «hipotesis», que usa la skill escritor-hipotesis.
@@ -44,10 +50,6 @@ Trabajas con agentes (carpeta .claude/agents/) y skills o manuales (carpeta .cla
 - Desde la fase 03, si pido el código para mi plataforma (Pine Script, MetaTrader 5,
   NinjaTrader, TradeStation o MultiCharts) → agente «programador», que usa la skill
   programador. No es una fase: el código no valida la regla.
-- Cuando quiera armar o revisar mi plan de trader (objetivo, riesgo, tiempo, frecuencia,
-  fondeo) → agente «objetivos», que usa la skill objetivos y escribe MI_PLAN.md.
-  Si MI_PLAN.md existe, úsalo: avisa si una idea no encaja con mi plan (fase 01), si la
-  caída del backtest supera la que acepto (fase 04) y toma de ahí mi riesgo (fase 07).
 Si tu herramienta permite llamar a subagentes, delega en ellos. Si no, abre el archivo
 del agente o de la skill (.claude/agents/<nombre>.md o .claude/skills/<nombre>/SKILL.md),
 sigue sus pasos tú mismo y nómbralo («uso el manual del agente reglas»).

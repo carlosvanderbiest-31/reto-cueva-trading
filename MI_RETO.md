@@ -72,12 +72,14 @@ Pídele estas tres cosas y anota en una línea qué te respondió y si respetó 
 - [ ] Misión 2 entregada en el buzón «Entrega Misión 2»
 
 ## Día 3 · Backtesting y código
+- [ ] Mi plan de trader en `MI_PLAN.md` (`/objetivos`; mejor si lo haces antes de tu primera idea)
 - [ ] Mi backtest en `codigo/`
 - [ ] Mi primera curva de equity en `resultados/`
+- [ ] Mi estrategia en código para mi plataforma en `robots/` (`/programador`): estrategia + indicador
 
 ## Día 4 · Tu primer sistema automatizado
-- [ ] MetaTrader 5 instalado con una cuenta demo
-- [ ] Mi robot en `robots/`, probado en MetaTrader 5
+- [ ] Mi plataforma instalada con una cuenta demo (MetaTrader 5, TradingView, NinjaTrader, TradeStation o MultiCharts)
+- [ ] Mi código de `robots/` compilado y probado en mi plataforma, en demo
 
 ## Día 5 · La visión de portafolio
 - [ ] Mi segunda estrategia en `fichas/`

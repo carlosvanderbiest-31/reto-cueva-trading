@@ -95,7 +95,7 @@ del ejemplo está PENDIENTE porque no hay CSV) y te dice qué falta.
 ```
 mi-cueva-tis/
 ├─ MI_RETO.md        ← tu progreso: niveles y entregables de cada día
-├─ MI_PLAN.md        ← Día 3 · tu plan de trader (lo crea el agente objetivos)
+├─ MI_PLAN.md        ← tu plan de trader: hazlo primero, antes de tu primera idea (agente objetivos)
 ├─ fichas/           ← una FICHA por idea (hay un ejemplo de NAS100)
 ├─ datos/            ← tus CSV de precios (no se suben a GitHub · lee LEEME.md)
 ├─ activos/          ← Día 2 · una ficha técnica por activo: costes, horario y línea base
