@@ -2,7 +2,9 @@
 name: validador-4de4
 description: Backtest con costes y veredicto de los 4 números TIS fuera de muestra (fase 04 del método TIS). Úsala cuando la regla ya está en pseudocódigo (fase 03) y hay un CSV de precios en datos/.
 ---
-Entrada: el pseudocódigo de la fase 03 y un CSV de precios en datos/.
+Entrada: el pseudocódigo de la fase 03 y un CSV de precios en datos/. Si existe su informe de calidad
+(resultados/<archivo>_calidad.md), léelo: con NO APTA, no hagas el backtest y propone /datos; con
+APTA CON AVISOS, copia los avisos en el bloque de la fase 04.
 1. La regla se prueba EXACTAMENTE como está escrita. Si algo es ambiguo, pregunta.
 2. Backtest con costes realistas para el activo (di cuáles usas y por qué).
 3. 70 % de datos más antiguos = dentro de muestra; 30 % más recientes = fuera de muestra.

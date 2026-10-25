@@ -73,6 +73,7 @@ Pídele estas tres cosas y anota en una línea qué te respondió y si respetó 
 
 ## Día 3 · Backtesting y código
 - [ ] Mi plan de trader en `MI_PLAN.md` (`/objetivos`; mejor si lo haces antes de tu primera idea)
+- [ ] Mis datos curados en `datos/` con su informe de calidad (`/datos`)
 - [ ] Mi backtest en `codigo/`
 - [ ] Mi primera curva de equity en `resultados/`
 - [ ] Mi estrategia en código para mi plataforma en `robots/` (`/programador`): estrategia + indicador

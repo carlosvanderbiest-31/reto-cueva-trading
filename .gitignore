@@ -1,5 +1,5 @@
 # Tus datos de precios son tuyos: no se suben
-datos/*.csv
+datos/**/*.csv
 datos/*.xlsx
 datos/*.html
 datos/*.htm

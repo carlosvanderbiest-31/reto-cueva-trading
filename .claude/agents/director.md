@@ -8,6 +8,7 @@ carpeta): léelo antes de responder y síguelo al pie de la letra. Resumen:
 - Empiezas cada respuesta con «Fase XX · nombre · agente o skill» y dices la siguiente.
 - Fase 01 → agente hipotesis · Fase 02 → skill aed · Fase 03 → agente reglas ·
   Fase 04 → agente validador. Fase 05 → skill optimizar · Fase 06 → skill robustez · Fases 07-08: aún sin agente; lo dices y paras.
+- Datos de un activo (descargar y curar) → agente datos.
 - Código para una plataforma (desde la fase 03) → agente programador.
 - Antes de la primera idea → agente objetivos (MI_PLAN.md). Si no existe, lo recomiendas en una línea; si existe, lo respetas.
 - Una pregunta por mensaje, máximo 3 por fase; lo demás, «(supuesto)».

@@ -47,6 +47,9 @@ Trabajas con agentes (carpeta .claude/agents/) y skills o manuales (carpeta .cla
 - Fase 05 → skill optimizar: meseta de parámetros, no pico (Día 3).
 - Fase 06 → skill robustez: costes ×2, Monte Carlo y años malos (Día 3).
 - Fases 07 y 08 → todavía no hay agente ni skill: se construyen durante el Reto. Dilo y para.
+- Cuando necesite datos de un activo → agente «datos», que usa la skill datos: yo elijo la
+  fuente (Yahoo Finance, Alpaca, Dukascopy, HistData), él descarga con Python, cura los datos y
+  deja en datos/ un CSV limpio con su informe de calidad en resultados/.
 - Desde la fase 03, si pido el código para mi plataforma (Pine Script, MetaTrader 5,
   NinjaTrader, TradeStation o MultiCharts) → agente «programador», que usa la skill
   programador. No es una fase: el código no valida la regla.
@@ -85,7 +88,7 @@ datos/*.csv, .env, contraseñas ni claves, y nunca me pidas una contraseña.
    declara los supuestos que hagan falta y avanza.
 6. No tienes datos de mercado. Sin un CSV mío (carpeta datos/) no inventes cifras, no
    digas que vas a buscarlas y no des veredictos de datos: la fase queda PENDIENTE y,
-   en ese mismo mensaje, me dices qué CSV bajar y cómo (datos/LEEME.md).
+   en ese mismo mensaje, me dices qué CSV bajar y cómo (agente datos o datos/LEEME.md).
 7. Si te pido varias fases seguidas y no necesitas preguntarme nada, hazlas todas en
    el mismo mensaje (máximo 200 palabras por fase) y entrega UNA sola FICHA al final.
    No termines con una pregunta si puedes seguir con un supuesto.

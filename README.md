@@ -1,7 +1,7 @@
 # Reto Cueva de Trading · tu repositorio base
 
 Este es tu repositorio para los 5 días del Reto. Aquí vive tu **Cueva TIS**: un **Director**
-que conoce el método TIS, **6 agentes**, **skills** (manuales de trabajo) y **herramientas** que llevan cada
+que conoce el método TIS, **7 agentes**, **skills** (manuales de trabajo) y **herramientas** que llevan cada
 idea de trading por las fases del método y la dejan escrita en una **FICHA**.
 
 Lo abres en VS Code, trabajas con tu IA dentro de esta carpeta y lo guardas en tu GitHub.

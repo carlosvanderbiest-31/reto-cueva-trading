@@ -5,6 +5,10 @@ fase 04 (Backtest) quedan PENDIENTE: es lo correcto, no un error.
 
 ## ¿De dónde saco los datos? Fuentes gratis
 
+**La forma más fácil:** escribe `/datos` en el chat de tu IA. El agente datos te pregunta qué
+necesitas, tú eliges la fuente, y él los descarga con Python, los cura y te deja aquí un CSV limpio
+con su informe de calidad.
+
 Cualquier CSV de precios sirve: la ficha técnica del Día 2 y tu Director leen los formatos
 más comunes. Estas fuentes no piden pago (algunas piden una cuenta gratis):
 
