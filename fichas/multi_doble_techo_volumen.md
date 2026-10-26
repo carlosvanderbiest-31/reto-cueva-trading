@@ -16,7 +16,15 @@ Qué se hizo: Se convirtió la regla en pseudocódigo paso a paso sin ninguna am
 Resultado: Pseudocódigo completo con 4 estados (BUSCANDO_M1, BUSCANDO_M2, ESPERANDO_RUPTURA, DENTRO), orden de salidas definido, ventana de entrada acotada a 10 velas y manejo del 50/50 de salida.
 Supuestos: (1) 4H. (2) Pivote 5v×5v, detección con lag de 5 velas. (3) M1 sin filtro de volumen mínimo. (4) M2 volumen <70% M1. (5) Retroceso mínimo 1.5%. (6) Entrada en ruptura del low de M2. (7) Stop 1% sobre el máximo M1/M2. (8) Objetivo parcial 50% al 1:1. (9) Objetivo final en SWING_LOW. (10) Ventana de 10 velas para la entrada. (11) Stop tiene prioridad si colisiona con objetivo en la misma vela. (12) Máximo 1 operación abierta.
 Veredicto: APRUEBA
-Siguiente paso: Fase 04 · Backtest — subir CSV de 4H (BTC/USDT o NQ, mínimo 3 años) a datos/ y correr el pseudocódigo con costes reales.
+Siguiente paso: DESCARTADA antes de Fase 04.
+
+## Fase 04 · Backtest · MOTOR
+Agente / skill: backtest Python sobre BTCUSDT 4H y 1H + ETHUSDT, SOLUSDT, XRPUSDT, BCHUSDT 1H
+Qué se hizo: Backtest en 4H (BTC) y 1H (5 activos). Split 70/30: OOS desde dic 2025.
+Resultado: 4H-BTC: 10 trades totales, 0 OOS. 1H-5 activos: 41 trades totales, 0 OOS. El patrón no se formó en el período dic 2025 - oct 2026. Señal demasiado rara para ser validable con este split.
+Supuestos: Pivote 5 velas cada lado. Volumen M2 < 70% M1. Retroceso mínimo 1.5%. Ventana entrada 10 velas.
+Veredicto: NO APRUEBA — insuficientes operaciones en OOS (0/30 requeridas).
+Siguiente paso: Hipótesis descartada. Pasar a H3.
 
 ```
 DATOS: velas de [activo elegido] en temporalidad 4H (supuesto).
