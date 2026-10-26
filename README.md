@@ -1,113 +1,146 @@
-# mi-cueva-tis · Monta tu cueva
+# Reto Cueva de Trading · tu repositorio base
 
-> **Lo más fácil: haz doble clic en `EMPEZAR`** (Windows: `EMPEZAR.bat` · Mac: `EMPEZAR.command`).
-> Se abre la guía visual (`GUIA.html`) y, si ya tienes VS Code, también tu cueva.
-> Este archivo es la misma guía en texto, por si la prefieres.
+Este es tu repositorio para los 5 días del Reto. Aquí vive tu **Cueva TIS**: un **Director**
+que conoce el método TIS, **7 agentes**, **skills** (manuales de trabajo) y **herramientas** que llevan cada
+idea de trading por las fases del método y la dejan escrita en una **FICHA**.
 
-**Hoy montas tu cueva**: un repositorio base con las fases del método TIS y los 4 agentes.
-Lo abres en VS Code y tu IA trabaja con un **Director** que conoce el método TIS, **4 agentes** y **3 skills** (manuales de trabajo).
-Le das una idea de trading y la pasa por las fases del método, guardándote una **FICHA**.
+Lo abres en VS Code, trabajas con tu IA dentro de esta carpeta y lo guardas en tu GitHub.
 
 > La cueva no opera, no da señales y no promete rentabilidad. Ordena tu trabajo para que
 > cada idea pase por el método. Tú pones el criterio y decides.
 
 ---
 
-## Antes de nada · descomprime
-Clic derecho en `mi-cueva-tis.zip` → **Extraer todo…** (en Mac, doble clic). Trabaja siempre
-en la carpeta descomprimida, no dentro del ZIP. Ponla donde la encuentres fácil (Documentos).
+## 1 · Crea tu copia (una sola vez)
 
-## Lo que ves en la carpeta
-```
-mi-cueva-tis/
-├─ EMPEZAR.bat / EMPEZAR.command  ← doble clic aquí (Windows / Mac)
-├─ GUIA.html                      ← la guía paso a paso
-├─ fichas/                        ← aquí se guardan TUS FICHAS (hay un ejemplo de NAS100)
-├─ datos/                         ← aquí pondrás tus CSV de precios (lee LEEME.md)
-├─ metodo/                        ← el método (METODO.md), la plantilla de ficha y una prueba
-└─ AGENTS.md, CLAUDE.md, .claude/, .vscode/  ← NO LOS TOQUES: son el cerebro de tu cueva
-```
-`AGENTS.md` es el Director; `.claude/` guarda los 4 agentes y las 3 skills; `.vscode/` le dice
-a Copilot que lea al Director. Tienen que quedarse donde están.
+Este repositorio es una **plantilla**: no lo editas aquí, haces tu propia copia privada.
 
-## Paso 1 · Abre la carpeta en VS Code
-Si no tienes VS Code, bájalo gratis de https://code.visualstudio.com/download
+1. Inicia sesión en GitHub (si no tienes cuenta, el video de GitHub del Día 1 la crea contigo).
+2. Arriba a la derecha de esta página: **Use this template** → **Create a new repository**.
+3. Nombre: `mi-cueva-tis` (o el que quieras) · Visibilidad: **Private** → **Create repository**.
+
+Tu copia es **privada**: ahí van a estar tus estrategias.
+
+## 2 · Ábrela en VS Code
+
+**Antes, instala Git** (una sola vez). GitHub es la web; Git es el programa que usa VS Code
+para bajar tu copia. Sin Git, no te aparece «Git: Clone».
+- **Windows:** git-scm.com/downloads → Windows → abre el archivo → **Next** en todo → **Install**.
+- **Mac:** abre la Terminal, escribe `git --version` y acepta instalar.
+- Cierra VS Code por completo y vuelve a abrirlo.
+- ¿Ya lo tienes? En VS Code, icono de las ramitas (Control de código fuente): si ves
+  «Download Git», te falta.
+
+Conecta tu cuenta: abajo a la izquierda, icono de la personita (Cuentas) → **Iniciar sesión con
+GitHub** → **Authorize** en el navegador → vuelve a VS Code.
+
 ```
-Archivo → Abrir carpeta…   (en inglés: File → Open Folder…)
-   └─ elige la carpeta mi-cueva-tis (la que tiene EMPEZAR y AGENTS.md) → Seleccionar carpeta
+Ctrl+Shift+P (en Mac: Cmd+Shift+P) → escribe «clon» → Git: Clone (o Git: Clonar) → Clone from GitHub
+   └─ elige tu repositorio mi-cueva-tis → elige una carpeta (Documentos) → Open / Abrir
 ```
 Si VS Code pregunta «¿Confías en los autores de los archivos de esta carpeta?», responde **Sí, confío**.
+Comprueba que en el panel de la izquierda ves `AGENTS.md`, `fichas/` y `metodo/`.
 
-## Paso 2 · Activa tu IA (elige UNA opción)
-
-### Opción GRATIS · GitHub Copilot (plan Copilot Free)
-Copilot ya viene dentro de VS Code. Solo necesitas una cuenta de GitHub (gratis).
+Una sola vez, dile a Git quién eres (menú Terminal → New Terminal), con el mismo correo de GitHub:
 ```
-Barra de abajo (Status Bar) → icono de Copilot → «Use AI Features»
-   └─ inicia sesión con tu cuenta de GitHub y elige el plan Copilot Free
+git config --global user.name "Tu Nombre"
+git config --global user.email "tu-correo@ejemplo.com"
 ```
-Abre el chat: **Ctrl+Alt+I** (en Mac: Ctrl+Cmd+I) → botón **+** para un chat nuevo.
-- En el selector de agente elige **Agent** (o directamente **director**). Con «Agent» la IA
-  puede crear y editar archivos (tu ficha).
-- **Modelo**: en el plan gratis es **«Auto»** (Copilot lo elige solo).
-- Copilot lee `AGENTS.md` solo, al empezar cada chat.
-- Cuando la IA pida permiso para crear o editar un archivo, revísalo y acepta.
-- El plan gratis tiene un límite mensual de uso: si se agota, espera al mes siguiente o usa otra opción.
 
-### Opción DE PAGO · extensión Claude Code
-Necesitas una suscripción de pago de Claude (Pro, Max, Team o Enterprise) o una cuenta de Claude Console.
+## 3 · Activa tu IA (elige UNA)
+
+### En el Reto usamos · Claude Code (de pago)
+Necesitas una suscripción de pago de Claude (Pro o superior). Lo usamos con la extensión
+de VS Code, que ya trae Claude Code adentro (video 5 del Día 1):
 ```
 Ctrl+Shift+X (Extensiones) → busca «Claude Code» (de Anthropic) → Install
-   └─ abre un archivo cualquiera → icono de chispa (Spark), arriba a la derecha → Sign in
+   └─ abre un archivo → icono de chispa, arriba a la derecha → Sign in
 ```
-Claude Code lee `CLAUDE.md` (que remite a `AGENTS.md`), los agentes y las skills solo.
+Abajo del cuadro de texto está el modo de permisos: esta semana elige **Manual**, para que
+te muestre cada cambio y cada comando antes de hacerlo.
+Claude Code lee solo `CLAUDE.md` (que remite a `AGENTS.md`), los agentes y las skills.
+
+### Opción gratis · GitHub Copilot (plan Copilot Free)
+Copilot ya viene dentro de VS Code. Solo necesitas tu cuenta de GitHub.
+```
+Barra de abajo → icono de Copilot → «Use AI Features» → inicia sesión → plan Copilot Free
+```
+Abre el chat (**Ctrl+Alt+I**, en Mac Ctrl+Cmd+I), elige **Agent** para que pueda crear archivos.
+Copilot lee `AGENTS.md` solo. El plan gratis tiene un límite mensual de uso.
 
 ### Alternativa · DeepSeek con la extensión Cline (pagas solo lo que usas)
-Necesitas una clave de API de DeepSeek (platform.deepseek.com). La clave es como una
-contraseña: no la pegues en ningún archivo de esta carpeta ni la compartas en el grupo.
 ```
-Ctrl+Shift+X → busca «Cline» → Install
-   └─ panel de Cline → ⚙️ → API Provider: DeepSeek → pega tu clave → elige el modelo
+Ctrl+Shift+X → busca «Cline» → Install → ⚙️ → API Provider: DeepSeek → pega tu clave
 ```
+Tu clave de API es como una contraseña: no la pegues en ningún archivo ni en el grupo.
 Con Cline, empieza tu primer mensaje con: «Lee AGENTS.md y actúa como el Director.»
 
-## Paso 3 · Tu primer chat con tu cueva
-Escribe esto en el chat, cambiando la idea por la tuya (la del Reto 1):
+## 4 · Primer uso
+
+**Con Claude Code** escribe: `/primer-uso`
+Revisa que todo esté en su sitio, te explica tu cueva, anota tus niveles en `MI_RETO.md`
+y comprueba que tu repositorio está conectado a GitHub.
+
+**Con Copilot o Cline** escribe:
 ```
-Director, esta es mi idea: [PEGA AQUÍ TU IDEA DEL RETO 1]
-Pásala por las fases 01 a 03 y guarda la ficha en fichas/
+Lee AGENTS.md y explícame en 5 líneas qué hay en esta carpeta y para qué sirve.
 ```
-Qué esperar:
-1. Cada respuesta empieza con «Fase XX · nombre · agente o skill».
-2. Te hace **una pregunta cada vez** (máximo 3 por fase). Responde corto.
-3. Fase 02 sale **PENDIENTE** si no tienes CSV: es lo correcto. Te dice qué bajar (`datos/LEEME.md`).
-4. Fase 03 te devuelve la regla en **pseudocódigo**: pasos numerados, sin código de ninguna plataforma.
-5. Guarda la ficha en `fichas/`. Compárala con `fichas/EJEMPLO_nas100_apertura_ny.md`.
+Y después, para ver al Director trabajar con el Criterio TIS:
+```
+Director, abre fichas/EJEMPLO_nas100_apertura_ny.md y dime en qué fase está esta idea
+y qué le falta para pasar la fase 04.
+```
+Qué esperar: empieza con «Fase XX · nombre · agente o skill», no inventa cifras (la fase 02
+del ejemplo está PENDIENTE porque no hay CSV) y te dice qué falta.
 
-¿Quieres ver una conversación completa antes? Abre `metodo/pruebas/primer_chat.md`.
+## 5 · Audita tu historial (Misión 1)
 
-## Paso 4 · Mira tu ficha y entrégala
-- Abre tu ficha en la carpeta `fichas/` (panel de la izquierda de VS Code).
-- Haz una **captura** y entrégala en el grupo de **MEGA CUEVA** → **3 coins**.
-- Compártela en redes etiquetando a **@mariellangsaez** → **+2 coins**.
+1. Abre `herramientas/auditor-tis.html` con doble clic. Se abre en tu navegador, sin internet.
+2. Suelta ahí el informe de tu cuenta de MetaTrader 5 (HTML o Excel). Si no tienes, usa el ejemplo.
+   Paso a paso en `herramientas/LEEME.md`.
+3. Pulsa **Copiar para el Director**, vuelve a Claude Code, escribe `/auditor` y pega el informe.
+   El Director guarda 3 fichas de hipótesis en `fichas/` y te pregunta cuál trabajar en el Reto.
 
-## ¿Prefieres tu chat? (Claude, ChatGPT o DeepSeek en el navegador)
-Camino rápido, sin VS Code: abre `GUIA.html`, sección «¿Prefieres tu chat?», copia el Director
-y las skills, pégalos en un chat nuevo y después pega tu orden. La IA no podrá guardar archivos:
-te dará la ficha en el chat y tú la guardas en `fichas/`.
+## Lo que hay en tu cueva
 
-## Y después
-- **Fase 04**: con tu CSV en `datos/`, pide «Director, pasa a la fase 04». El agente **validador**
-  prueba la regla con tus datos y te da el veredicto X/4. El tester de la Cueva lo verás en directo.
-- **Haz tuya la cueva**: cambia `metodo/METODO.md` a tu manera. La cueva obedece lo que esté escrito.
+```
+mi-cueva-tis/
+├─ MI_RETO.md        ← tu progreso: niveles y entregables de cada día
+├─ MI_PLAN.md        ← tu plan de trader: hazlo primero, antes de tu primera idea (agente objetivos)
+├─ fichas/           ← una FICHA por idea (hay un ejemplo de NAS100)
+├─ datos/            ← tus CSV de precios (no se suben a GitHub · lee LEEME.md)
+├─ activos/          ← Día 2 · una ficha técnica por activo: costes, horario y línea base
+├─ codigo/           ← Día 3 · el código del backtest
+├─ resultados/       ← Día 3 · curvas de equity y reportes
+├─ robots/           ← Día 3 · tu estrategia en código para tu plataforma
+├─ portafolio/       ← Día 5 · tus estrategias combinadas
+├─ herramientas/     ← páginas con doble clic · Día 1: el Auditor TIS
+├─ metodo/           ← el método TIS y el Criterio TIS (METODO.md), la plantilla de ficha
+└─ AGENTS.md, CLAUDE.md, .claude/, .vscode/  ← el cerebro de tu cueva: no los muevas
+```
+
+## Tu semana en la cueva
+
+| Día | Tema | Dónde trabajas | Entregable |
+|---|---|---|---|
+| 1 · dom 25 | Intro y Fast Start | Toda la cueva · `herramientas/` | Cueva lista + auditoría de tu historial + 3 hipótesis |
+| 2 · lun 26 | Pensando en datos | `datos/` · `activos/` · `fichas/` | Hipótesis pre-registrada + ficha técnica + fase 02 |
+| 3 · mar 27 | Backtesting y código | `codigo/` · `resultados/` | Skills para programar + primera curva de equity |
+| 4 · mié 28 | Tu primer sistema automatizado | `robots/` | Estrategia automatizada y probada en MetaTrader 5 |
+| 5 · jue 29 | La visión de portafolio | `portafolio/` | Segunda estrategia + mini portafolio |
+
+## Guarda tu trabajo en GitHub
+
+Cada vez que termines algo, dile a tu IA:
+```
+Guarda los cambios en GitHub con un mensaje que diga qué hicimos.
+```
+Si algo se daña: «Muéstrame las últimas versiones y vuelve a la de ayer.»
+Nunca se suben tus CSV, tu `.env`, contraseñas ni claves (ya están en `.gitignore`).
 
 ## Si algo no va
-- **Windows dice «Windows protegió tu PC»** → «Más información» → «Ejecutar de todas formas».
-  **Mac dice que no se puede abrir** → clic derecho en `EMPEZAR.command` → Abrir (o Ajustes del
-  Sistema → Privacidad y seguridad → «Abrir igualmente»). Si no, abre `GUIA.html` con doble clic.
-- **No veo los agentes** → abriste la carpeta equivocada: abre la que tiene `EMPEZAR` y `AGENTS.md`
-  (a veces queda `mi-cueva-tis` dentro de otra `mi-cueva-tis`).
+- **No veo los agentes** → abriste otra carpeta: abre la que tiene `AGENTS.md`.
 - **La IA no actúa como Director** → escribe «Lee AGENTS.md y actúa como el Director».
-- **No guarda la ficha** → comprueba que en el chat está elegido **Agent** (no «Ask»).
-- **Copilot no responde o dice que se acabó el límite** → revisa que iniciaste sesión con GitHub
-  (icono de Copilot abajo); si se agotó el plan gratis, usa «¿Prefieres tu chat?».
+- **No guarda la ficha** → en Copilot, elige **Agent** (no «Ask»); en Claude Code, acepta el permiso.
+- **`/primer-uso` no aparece** → abre Claude Code desde esta carpeta, no desde otra.
+- **Otra cosa** → captura de pantalla al grupo del Reto. Te ayudamos.

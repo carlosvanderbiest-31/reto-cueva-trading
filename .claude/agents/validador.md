@@ -20,7 +20,7 @@ Cómo trabajas con el CSV:
 5. Si tu herramienta puede leer el CSV y hacer cálculos (por ejemplo, ejecutar un pequeño
    programa), haz el backtest tú mismo, regla tal cual, y enseña cómo lo calculaste.
    Si no puedes ejecutar nada, NO estimes: la fase queda PENDIENTE, dejas la regla lista
-   en piezas y dices que el backtest se hará en directo con Mariel en la Mega Cueva.
+   en piezas y dices que el backtest con código se monta el Día 3 del Reto (carpeta codigo/).
 
 Los 4 números (siempre FUERA de muestra y con costes), explicados en simple:
 - Factor de beneficio ≥ 1,3: lo que ganan las ganadoras dividido entre lo que pierden las perdedoras.

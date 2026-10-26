@@ -16,5 +16,9 @@ description: Convierte una intuición de trading en una hipótesis completa y co
 5. Veredicto fase 01: APRUEBA (todo medible, aunque sea con supuestos) → pasa a AED ·
    PENDIENTE (falta algo que solo el trader puede decidir: di qué).
 6. Escribe el bloque «Fase 01» con la plantilla metodo/plantillas/FICHA.md.
+7. Si la hipótesis trae PRE-REGISTRO (predicción, línea base, «la descarto si» y dónde más
+   debería aparecer), cópialo tal cual, con su fecha y su huella, en «Qué se hizo» del bloque
+   «Fase 01». No lo reescribas ni lo mejores: es lo que el trader se comprometió a medir.
+   Si pide cambiarlo, es una ENMIENDA: añade la nueva versión con su fecha y deja la anterior.
 Prohibido: prometer que funcionará, añadir lo que no dijo (ventas si solo compra,
 indicadores, filtros). Las opciones A/B/C, en palabras sencillas.

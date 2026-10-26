@@ -1,5 +1,23 @@
-dist/
-datos/*.csv
+# Tus datos de precios son tuyos: no se suben
+datos/**/*.csv
 datos/*.xlsx
+datos/*.html
+datos/*.htm
+# Informes originales de MetaTrader, estén donde estén
+ReportHistory*
+ReportTester*
+# Claves y contraseñas: nunca
 .env
-metodo/estado.js
+.env.*
+# Archivos que genera el sistema o MetaTrader
+*.ex5
+*.ex4
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+Thumbs.db
+.claude/settings.local.json
+dist/
+*.eld
+*.pla
