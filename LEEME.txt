@@ -1,0 +1,3 @@
+MI CUEVA TIS - Hoy montas tu cueva
+Haz doble clic en EMPEZAR (Windows: EMPEZAR.bat - Mac: EMPEZAR.command).
+Si no se abre nada, haz doble clic en GUIA.html: ahi esta todo, paso a paso.

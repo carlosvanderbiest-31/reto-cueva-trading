@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monta tu cueva</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script src="metodo/estado.js" onerror="void 0"></script>
+<style>
+:root{
+  --bg:#0a0806; --bg2:#14100b; --bg3:#1d1710; --line:#2e251a;
+  --crema:#ede4d3; --crema2:#b9ad99; --tenue:#7d7262;
+  --ambar:#d9a441; --ambar2:#f0c46a; --verde:#2ecc6a; --rojo:#e0664f;
+  --vsc:#1e1e1e; --vsc2:#252526; --vsc3:#333; --vscazul:#007acc;
+  --sans:'Archivo',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Consolas,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--crema);font-family:var(--sans);font-size:17px;line-height:1.55}
+a{color:var(--ambar2)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+header{padding:28px 0 10px}
+.marca{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.08em;font-size:13px;color:var(--ambar)}
+.marca .sello{width:34px;height:34px;border-radius:8px;background:var(--ambar);color:var(--bg);display:grid;place-items:center;font-size:12px;letter-spacing:0}
+h1{font-size:clamp(28px,4vw,44px);line-height:1.1;margin:14px 0 6px;font-weight:800}
+h1 em{font-style:normal;color:var(--ambar)}
+.sub{color:var(--crema2);margin:0 0 16px;max-width:760px}
+.aviso{border-radius:12px;padding:12px 16px;margin:10px 0 4px;font-size:15px;display:none}
+.aviso.ver{display:block}
+.aviso.ok{background:rgba(46,204,106,.09);border:1px solid rgba(46,204,106,.35)}
+.aviso.no{background:rgba(217,164,65,.1);border:1px solid rgba(217,164,65,.45)}
+/* progreso */
+.progreso{position:sticky;top:0;z-index:5;background:linear-gradient(var(--bg) 80%,transparent);padding:14px 0 18px}
+.prog-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:14px;color:var(--crema2)}
+.prog-top b{color:var(--crema);font-size:16px}
+.barra{height:8px;background:var(--bg3);border-radius:99px;margin:8px 0 12px;overflow:hidden}
+.barra i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ambar),var(--verde));transition:width .4s}
+.pills{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.pill{background:var(--bg2);border:1px solid var(--line);color:var(--crema2);border-radius:10px;padding:8px 10px;font:600 13px var(--sans);text-align:left;cursor:pointer;display:flex;gap:8px;align-items:center;min-width:0}
+.pill span.n{flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:var(--bg3);font-size:12px}
+.pill span.t{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pill.activo{border-color:var(--ambar);color:var(--crema)}
+.pill.activo span.n{background:var(--ambar);color:var(--bg)}
+.pill.hecho span.n{background:var(--verde);color:var(--bg)}
+/* paso */
+.paso{display:none;background:var(--bg2);border:1px solid var(--line);border-radius:18px;padding:28px;grid-template-columns:1fr 1.05fr;gap:32px;align-items:start}
+.paso.activo{display:grid}
+.paso h2{margin:0 0 4px;font-size:28px;line-height:1.15}
+.etq{font:600 12px var(--mono);color:var(--ambar);letter-spacing:.1em;text-transform:uppercase}
+.paso ol{padding-left:22px;margin:14px 0}
+.paso li{margin:0 0 10px}
+.nota{font-size:14.5px;color:var(--crema2);border-left:3px solid var(--ambar);padding:6px 12px;margin:12px 0;background:rgba(217,164,65,.05)}
+kbd{font:600 13px var(--mono);background:var(--bg3);border:1px solid #4a3c2a;border-bottom-width:3px;border-radius:6px;padding:1px 7px;color:var(--crema);white-space:nowrap}
+.opciones{display:grid;gap:10px;margin:14px 0}
+.opcion{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--bg)}
+.opcion.top{border-color:var(--verde)}
+.opcion>b{display:block}
+.opcion .tag{font:600 11px var(--mono);padding:2px 7px;border-radius:99px;margin-right:6px}
+.tag.g{background:var(--verde);color:var(--bg)} .tag.p{background:var(--bg3);color:var(--crema2)}
+.opcion small{color:var(--crema2);font-size:14px}
+.acciones{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+button{font-family:var(--sans)}
+.btn{border:0;border-radius:10px;padding:12px 18px;font-weight:800;font-size:16px;cursor:pointer}
+.btn.hecho{background:var(--verde);color:#06210f}
+.btn.hecho.ya{background:var(--bg3);color:var(--verde);border:1px solid var(--verde)}
+.btn.sec{background:transparent;color:var(--crema2);border:1px solid var(--line)}
+.btn.copiar{background:var(--ambar);color:var(--bg)}
+.btn.copiar.ok{background:var(--verde)}
+.btn:focus-visible,.pill:focus-visible{outline:3px solid var(--ambar2);outline-offset:2px}
+textarea{width:100%;min-height:96px;background:var(--bg);color:var(--crema);border:1px solid #4a3c2a;border-radius:10px;padding:10px 12px;font:15px/1.45 var(--sans);resize:vertical}
+textarea:focus{outline:2px solid var(--ambar);border-color:transparent}
+.orden{font:14px/1.5 var(--mono);background:var(--bg);border:1px dashed var(--ambar);border-radius:10px;padding:12px 14px;white-space:pre-wrap;margin:10px 0;color:var(--crema)}
+.orden mark{background:rgba(217,164,65,.22);color:var(--ambar2);border-radius:4px;padding:0 3px}
+.coins{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.coin{display:flex;align-items:center;gap:8px;background:var(--bg);border:1px solid var(--line);border-radius:99px;padding:6px 14px 6px 6px;font-weight:600;font-size:15px}
+.coin i{font-style:normal;width:28px;height:28px;border-radius:50%;background:var(--ambar);color:var(--bg);display:grid;place-items:center;font-weight:800;font-size:13px}
+.final{display:none;margin-top:16px;border:1px solid var(--verde);background:rgba(46,204,106,.08);border-radius:12px;padding:14px 16px}
+.final.ver{display:block}
+/* mockups VS Code */
+.mock{background:var(--vsc);border-radius:12px;overflow:hidden;border:1px solid #3c3c3c;box-shadow:0 20px 50px rgba(0,0,0,.5);font:13px/1.4 'Segoe UI',system-ui,sans-serif;color:#ccc;position:relative}
+.mock .tit{background:#323233;padding:7px 12px;display:flex;align-items:center;gap:6px;font-size:12px;color:#aaa}
+.mock .tit i{width:11px;height:11px;border-radius:50%;background:#555;display:inline-block}
+.mock .tit i:nth-child(1){background:#ff5f57}.mock .tit i:nth-child(2){background:#febc2e}.mock .tit i:nth-child(3){background:#28c840}
+.mock .tit span{margin:0 auto}
+.mock .cuerpo{display:flex;min-height:300px}
+.mock .act{width:40px;background:#333;display:flex;flex-direction:column;align-items:center;gap:14px;padding-top:12px}
+.mock .act b{width:18px;height:18px;border:2px solid #858585;border-radius:3px;display:block}
+.mock .act b.on{border-color:#fff}
+.mock .exp{width:205px;background:var(--vsc2);padding:8px 0;font-size:12.5px}
+.mock .exp .h{padding:2px 12px 8px;font-size:11px;letter-spacing:.06em;color:#bbb}
+.mock .f{padding:2px 12px;white-space:nowrap}
+.mock .f.d::before{content:'▸ ';color:#888}
+.mock .f.o::before{content:'▾ ';color:#888}
+.mock .f.s{padding-left:28px}
+.mock .f.tenue{color:#7a7a7a}
+.mock .f.brillo{background:#04395e;color:#fff;outline:1px solid #007fd4}
+.mock .f.dorado{color:var(--ambar2)}
+.mock .ed{flex:1;padding:14px;font:12.5px/1.6 var(--mono);color:#d4d4d4;min-width:0}
+.mock .ed .c{color:#6a9955}
+.mock .ed .k{color:#569cd6}
+.mock .ed .y{color:#dcdcaa}
+.mock .sb{background:var(--vscazul);color:#fff;font-size:11.5px;padding:3px 10px;display:flex;justify-content:space-between;align-items:center}
+.mock .sb .cop{background:rgba(255,255,255,.18);border-radius:4px;padding:1px 8px;outline:2px solid var(--ambar2);outline-offset:1px}
+.mock .chat{width:260px;background:var(--vsc2);border-left:1px solid #3c3c3c;display:flex;flex-direction:column}
+.mock .chat .ch{padding:8px 12px;font-size:11px;letter-spacing:.06em;color:#bbb;border-bottom:1px solid #3c3c3c}
+.mock .chat .msgs{flex:1;padding:10px;display:flex;flex-direction:column;gap:8px;font-size:12px}
+.mock .bub{background:#2d2d2d;border-radius:8px;padding:8px 10px}
+.mock .bub.yo{background:#0e3a5c;align-self:flex-end;max-width:92%}
+.mock .bub .fase{color:var(--ambar2);font-weight:700}
+.mock .caja{margin:8px;border:1px solid #555;border-radius:8px;padding:8px;background:#1e1e1e}
+.mock .caja .ph{color:#888;font-size:12px;margin-bottom:8px}
+.mock .sel{display:inline-block;border:1px solid #555;border-radius:5px;padding:1px 8px;font-size:11.5px;margin-right:6px;background:#2d2d2d}
+.mock .sel.hl{outline:2px solid var(--ambar2);outline-offset:1px;color:#fff}
+.mock .dlg{position:absolute;right:14px;top:50%;transform:translateY(-50%);width:56%;background:#252526;border:1px solid #454545;border-radius:10px;padding:16px;box-shadow:0 12px 40px rgba(0,0,0,.6);font-size:13px}
+.mock .dlg b{display:block;color:#fff;margin-bottom:6px;font-size:14px}
+.mock .dlg .bs{display:flex;gap:8px;margin-top:12px;justify-content:flex-end}
+.mock .dlg .bs span{padding:5px 12px;border-radius:4px;background:#3a3d41;font-size:12px}
+.mock .dlg .bs span.si{background:var(--vscazul);color:#fff;outline:2px solid var(--ambar2);outline-offset:2px}
+.globo{position:absolute;background:var(--ambar);color:var(--bg);font:800 12.5px var(--sans);padding:6px 10px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,.5);white-space:nowrap;z-index:2}
+.pie-mock{font-size:13.5px;color:var(--tenue);margin-top:10px;text-align:center}
+/* secciones extra */
+section.extra{margin:46px 0 0;scroll-margin-top:150px}
+section.extra>h2{font-size:26px;margin:0 0 4px}
+section.extra>p.sub{margin-bottom:18px}
+.tarjetas{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.tarjeta{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:18px}
+.tarjeta .num{font:800 13px var(--mono);color:var(--ambar)}
+.tarjeta h3{margin:4px 0 6px;font-size:18px}
+.tarjeta p{margin:0 0 12px;color:var(--crema2);font-size:15px}
+details{background:var(--bg2);border:1px solid var(--line);border-radius:12px;margin:0 0 10px;padding:0 16px}
+summary{cursor:pointer;padding:14px 0;font-weight:600;list-style:none;display:flex;gap:10px;align-items:baseline}
+summary::-webkit-details-marker{display:none}
+summary::before{content:'+';color:var(--ambar);font:800 18px var(--mono);width:14px}
+details[open] summary::before{content:'–'}
+details p{margin:0 0 14px;color:var(--crema2)}
+.arbol{font:14px/1.7 var(--mono);background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:16px 18px;white-space:pre;overflow-x:auto}
+.arbol .a{color:var(--ambar2)} .arbol .v{color:var(--verde)} .arbol .t{color:var(--tenue)}
+footer{margin:50px 0 40px;color:var(--tenue);font-size:13.5px;border-top:1px solid var(--line);padding-top:16px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(80px);background:var(--verde);color:#06210f;font-weight:800;padding:10px 18px;border-radius:99px;transition:transform .25s;z-index:20}
+.toast.ver{transform:translateX(-50%) translateY(0)}
+.solo-mac{display:none} body.mac .solo-mac{display:inline} body.mac .solo-win{display:none}
+@media (max-width:900px){
+  .paso{grid-template-columns:1fr;padding:20px}
+  .tarjetas{grid-template-columns:1fr}
+  .pill span.t{display:none}
+  .mock .exp{width:150px}.mock .chat{width:200px}
+}
+@media (max-width:560px){ .wrap{padding:0 16px} .mock .exp{display:none} .mock .act{display:none} }
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="marca"><div class="sello">TIS</div>TRADE IT SIMPLE · MEGA CUEVA</div>
+  <h1>Monta tu cueva <em>en 4 pasos</em></h1>
+  <p class="sub"><b>Hoy montas tu cueva</b>: un repositorio base con las fases del método TIS y los 4 agentes. Sigue los pasos en orden. Cuando termines cada uno, pulsa <b>Hecho ✓</b>: la página recuerda por dónde vas. No necesitas saber programar.</p>
+  <div class="aviso ok" id="avisoOk">✅ <b>VS Code ya se está abriendo con tu cueva.</b> Si no lo ves, búscalo en la barra de tareas<span class="solo-mac"> o en el Dock</span>.</div>
+  <div class="aviso no" id="avisoNo">⚠️ <b>No encontramos VS Code en tu computadora.</b> Te abrimos la página oficial para descargarlo (es gratis). Instálalo y luego vuelve a hacer doble clic en <b>EMPEZAR</b>. Si no se abrió la página: <a href="https://code.visualstudio.com/download" target="_blank" rel="noopener">code.visualstudio.com/download</a></div>
+</header>
+
+<div class="progreso" id="progreso">
+  <div class="prog-top"><b id="progTxt">Paso 1 de 4</b><span id="progHechos">0 de 4 hechos</span></div>
+  <div class="barra"><i id="progBarra"></i></div>
+  <div class="pills" id="pills">
+    <button class="pill" data-ir="1"><span class="n">1</span><span class="t">Abre la carpeta</span></button>
+    <button class="pill" data-ir="2"><span class="n">2</span><span class="t">Activa tu IA</span></button>
+    <button class="pill" data-ir="3"><span class="n">3</span><span class="t">Tu primer chat</span></button>
+    <button class="pill" data-ir="4"><span class="n">4</span><span class="t">Tu ficha y entrega</span></button>
+  </div>
+</div>
+
+<main>
+<!-- PASO 1 -->
+<article class="paso" data-paso="1" id="paso1">
+  <div>
+    <div class="etq">Paso 1 de 4</div>
+    <h2>Abre la carpeta en VS Code</h2>
+    <p>VS Code es el programa donde vive tu cueva. Es <b>gratis</b>.</p>
+    <ol>
+      <li>¿No lo tienes? Descárgalo de <a href="https://code.visualstudio.com/download" target="_blank" rel="noopener">code.visualstudio.com/download</a>, instálalo con las opciones que vienen marcadas y vuelve a hacer doble clic en <b>EMPEZAR</b>.</li>
+      <li>Si VS Code no se abrió solo: <b>Archivo → Abrir carpeta…</b> <span class="t">(File → Open Folder…)</span> y elige la carpeta <b>mi-cueva-tis</b>, la que tiene <b>EMPEZAR</b> y <b>AGENTS.md</b>.</li>
+      <li>Si pregunta <i>«¿Confías en los autores de los archivos de esta carpeta?»</i>, pulsa <b>Sí, confío</b>.</li>
+      <li>A la izquierda verás las carpetas <b>fichas</b>, <b>datos</b> y <b>metodo</b>. ¡Listo!</li>
+    </ol>
+    <p class="nota">Archivos como <b>AGENTS.md</b>, <b>CLAUDE.md</b> y las carpetas <b>.claude</b> y <b>.vscode</b>: <b>no los toques</b>, son el cerebro de tu cueva.</p>
+    <div class="acciones"><button class="btn hecho" data-hecho="1">Hecho ✓</button></div>
+  </div>
+  <div>
+    <div class="mock" aria-label="Ilustración: VS Code con la carpeta mi-cueva-tis abierta">
+      <div class="tit"><i></i><i></i><i></i><span>mi-cueva-tis — Visual Studio Code</span></div>
+      <div class="cuerpo">
+        <div class="act"><b class="on"></b><b></b><b></b></div>
+        <div class="exp">
+          <div class="h">EXPLORADOR · MI-CUEVA-TIS</div>
+          <div class="f d tenue">.claude</div>
+          <div class="f d tenue">.vscode</div>
+          <div class="f d dorado">datos</div>
+          <div class="f d dorado">fichas</div>
+          <div class="f d dorado">metodo</div>
+          <div class="f tenue">AGENTS.md</div>
+          <div class="f tenue">CLAUDE.md</div>
+          <div class="f">EMPEZAR.bat</div>
+          <div class="f">GUIA.html</div>
+          <div class="f">LEEME.txt</div>
+        </div>
+        <div class="ed"><span class="c"># Bienvenido a tu cueva TIS</span></div>
+      </div>
+      <div class="sb"><span>mi-cueva-tis</span><span>Español</span></div>
+      <div class="dlg">
+        <b>¿Confías en los autores de los archivos de esta carpeta?</b>
+        La carpeta solo trae texto: el Director, sus agentes y tus fichas.
+        <div class="bs"><span>No, no confío</span><span class="si">Sí, confío</span></div>
+      </div>
+    </div>
+    <div class="pie-mock">Así se ve VS Code con tu cueva abierta. Pulsa «Sí, confío».</div>
+  </div>
+</article>
+
+<!-- PASO 2 -->
+<article class="paso" data-paso="2" id="paso2">
+  <div>
+    <div class="etq">Paso 2 de 4</div>
+    <h2>Activa tu IA</h2>
+    <div class="opciones">
+      <div class="opcion top"><b><span class="tag g">GRATIS</span>GitHub Copilot <span style="font-weight:400;color:var(--crema2)">· recomendado para empezar</span></b>
+        <ol style="margin:8px 0 0">
+          <li>En la <b>barra azul de abajo</b>, pulsa el icono de Copilot → <b>«Use AI Features»</b>.</li>
+          <li>Inicia sesión con tu cuenta de <b>GitHub</b> (si no tienes, créala gratis) y elige el plan <b>Copilot Free</b>.</li>
+          <li>Abre el chat: <span class="solo-win"><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>I</kbd></span><span class="solo-mac"><kbd>Cmd</kbd>+<kbd>Ctrl</kbd>+<kbd>I</kbd></span> <small>(Windows: Ctrl+Alt+I · Mac: Cmd+Ctrl+I)</small>.</li>
+          <li>Arriba del cuadro de texto elige el modo <b>Agent</b> (o el agente <b>director</b>). El modelo, en el plan gratis, es <b>«Auto»</b>: déjalo así.</li>
+        </ol>
+      </div>
+      <div class="opcion"><b><span class="tag p">DE PAGO</span>Claude Code</b><small>Extensiones (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd>) → busca «Claude Code» (de Anthropic) → Install → icono de chispa arriba a la derecha → Sign in. Necesitas un plan de pago de Claude.</small></div>
+      <div class="opcion"><b><span class="tag p">ALTERNATIVA</span>DeepSeek con la extensión Cline</b><small>Extensiones → «Cline» → Install → ⚙️ → API Provider: DeepSeek → pega tu clave (pagas solo lo que usas). Tu clave es como una contraseña: no la compartas. Primer mensaje: «Lee AGENTS.md y actúa como el Director».</small></div>
+    </div>
+    <p class="nota">Cuando la IA pida permiso para crear o editar un archivo, revísalo y acepta: así guarda tu ficha.</p>
+    <div class="acciones"><button class="btn sec" data-ir="1">← Anterior</button><button class="btn hecho" data-hecho="2">Hecho ✓</button></div>
+  </div>
+  <div>
+    <div class="mock" aria-label="Ilustración: activar Copilot y abrir el chat en modo Agent">
+      <div class="tit"><i></i><i></i><i></i><span>mi-cueva-tis — Visual Studio Code</span></div>
+      <div class="cuerpo">
+        <div class="act"><b class="on"></b><b></b><b></b></div>
+        <div class="exp">
+          <div class="h">EXPLORADOR · MI-CUEVA-TIS</div>
+          <div class="f d tenue">.claude</div>
+          <div class="f d dorado">datos</div>
+          <div class="f d dorado">fichas</div>
+          <div class="f d dorado">metodo</div>
+          <div class="f tenue">AGENTS.md</div>
+        </div>
+        <div class="chat">
+          <div class="ch">CHAT</div>
+          <div class="msgs">
+            <div class="bub">Pregunta lo que quieras o dale una tarea a tu cueva.</div>
+          </div>
+          <div class="caja">
+            <div class="ph">Escribe aquí tu orden…</div>
+            <span class="sel hl">Agent ▾</span><span class="sel hl">Auto ▾</span>
+          </div>
+        </div>
+      </div>
+      <div class="sb"><span>mi-cueva-tis</span><span class="cop">✦ Use AI Features</span></div>
+      <div class="globo" style="left:52px;bottom:30px">① Pulsa «Use AI Features» →</div>
+      <div class="globo" style="right:24px;top:150px">② Modo «Agent» · modelo «Auto» ↓</div>
+    </div>
+    <div class="pie-mock">El chat se abre a la derecha. <span class="solo-win">Atajo: Ctrl+Alt+I</span><span class="solo-mac">Atajo: Cmd+Ctrl+I</span></div>
+  </div>
+</article>
+
+<!-- PASO 3 -->
+<article class="paso" data-paso="3" id="paso3">
+  <div>
+    <div class="etq">Paso 3 de 4</div>
+    <h2>Tu primer chat con tu cueva</h2>
+    <ol>
+      <li>Escribe aquí abajo <b>tu idea del Reto 1</b> (qué compras o vendes, cuándo entras, cuándo sales, tu stop y el horario):</li>
+    </ol>
+    <textarea id="idea" placeholder="Ejemplo: Compro NAS100 cuando en las 2 primeras velas de 15 min tras la apertura de Nueva York rompe el máximo de la sesión anterior… Salgo si pierde el nivel o al cierre. Stop: mínimo de la vela del retesteo."></textarea>
+    <ol start="2">
+      <li>Pulsa <b>COPIAR</b>: tu orden queda lista.</li>
+      <li>Pégala en el chat de VS Code (<kbd>Ctrl</kbd>+<kbd>V</kbd> · Mac <kbd>Cmd</kbd>+<kbd>V</kbd>) y pulsa <kbd>Enter</kbd>.</li>
+    </ol>
+    <div class="orden" id="ordenTxt"></div>
+    <div class="acciones" style="margin-top:6px"><button class="btn copiar" id="copiarOrden">COPIAR mi orden</button></div>
+    <p class="nota">Qué esperar: cada respuesta empieza con «Fase XX · …». Te hará <b>una pregunta cada vez</b>: responde corto. La fase 02 sale <b>PENDIENTE</b> si no tienes datos: es lo correcto. La fase 03 te da tu regla en pasos numerados.</p>
+    <div class="acciones"><button class="btn sec" data-ir="2">← Anterior</button><button class="btn hecho" data-hecho="3">Hecho ✓</button></div>
+  </div>
+  <div>
+    <div class="mock" aria-label="Ilustración: la orden pegada en el chat y la respuesta del Director">
+      <div class="tit"><i></i><i></i><i></i><span>mi-cueva-tis — Visual Studio Code</span></div>
+      <div class="cuerpo">
+        <div class="act"><b class="on"></b><b></b><b></b></div>
+        <div class="ed" style="color:#888">AGENTS.md · El DIRECTOR de tu cueva TIS<br><br><span class="c">&lt;director&gt;</span><br>&nbsp;&nbsp;Eres el DIRECTOR de mi cueva…</div>
+        <div class="chat" style="width:300px">
+          <div class="ch">CHAT · Agent</div>
+          <div class="msgs">
+            <div class="bub yo">Director, esta es mi idea: Compro NAS100 cuando… Pásala por las fases 01 a 03 y guarda la ficha en fichas/</div>
+            <div class="bub"><span class="fase">Fase 01 · Hipótesis · skill escritor-hipotesis</span><br>Tu regla ya es concreta: declaro los supuestos y avanzo…</div>
+            <div class="bub"><span class="fase">Fase 02 · AED · PENDIENTE</span><br>Sin CSV no hay cifras. Baja esto…</div>
+            <div class="bub"><span class="fase">Fase 03 · Reglas · agente reglas</span><br>1. NIVEL = máximo de ayer…</div>
+          </div>
+        </div>
+      </div>
+      <div class="sb"><span>mi-cueva-tis</span><span>✦ Copilot</span></div>
+    </div>
+    <div class="pie-mock">Así responde el Director: fase por fase, sin inventar cifras.</div>
+  </div>
+</article>
+
+<!-- PASO 4 -->
+<article class="paso" data-paso="4" id="paso4">
+  <div>
+    <div class="etq">Paso 4 de 4</div>
+    <h2>Mira tu ficha y entrégala</h2>
+    <ol>
+      <li>En el panel de la izquierda de VS Code abre la carpeta <b>fichas</b>. Ahí está tu ficha nueva (un archivo <b>.md</b> con el nombre de tu idea).</li>
+      <li>Ábrela con un clic y revísala: arriba tu regla, debajo un bloque por cada fase con su veredicto.</li>
+      <li>Haz una <b>captura de pantalla</b> <small>(Windows: <kbd>Win</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd> · Mac: <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>4</kbd>)</small>.</li>
+      <li>Entrégala en el grupo de <b>MEGA CUEVA</b> y compártela en redes etiquetando a <b>@mariellangsaez</b>.</li>
+    </ol>
+    <div class="coins"><div class="coin"><i>+3</i>Captura en el grupo MEGA CUEVA</div><div class="coin"><i>+2</i>Compartir en redes con @mariellangsaez</div></div>
+    <p class="nota">¿No aparece la ficha? Pídele al chat: «Guarda la ficha en fichas/». Si usas un chat del navegador, la ficha te llega en el chat: haz la captura ahí.</p>
+    <div class="acciones"><button class="btn sec" data-ir="3">← Anterior</button><button class="btn hecho" data-hecho="4">Hecho ✓</button></div>
+    <div class="final" id="final">🎉 <b>¡Tu cueva está funcionando!</b> Ya tienes tu primera ficha. El backtest (fase 04) y el tester los verás en directo con Mariel en la Mega Cueva.</div>
+  </div>
+  <div>
+    <div class="mock" aria-label="Ilustración: la ficha guardada en la carpeta fichas">
+      <div class="tit"><i></i><i></i><i></i><span>nas100_ruptura_retesteo_ny.md — mi-cueva-tis</span></div>
+      <div class="cuerpo">
+        <div class="act"><b class="on"></b><b></b><b></b></div>
+        <div class="exp">
+          <div class="h">EXPLORADOR · MI-CUEVA-TIS</div>
+          <div class="f d tenue">.claude</div>
+          <div class="f d">datos</div>
+          <div class="f o dorado">fichas</div>
+          <div class="f s tenue">EJEMPLO_nas100_apert…</div>
+          <div class="f s brillo">nas100_ruptura_retes…</div>
+          <div class="f d">metodo</div>
+        </div>
+        <div class="ed">
+          <span class="k"># FICHA · NAS100 ruptura y retesteo</span><br>
+          <span class="y">Regla:</span> Compro NAS100 cuando…<br>
+          <span class="y">Por qué funcionaría:</span> la apertura…<br><br>
+          <span class="k">## Fase 01 · Hipótesis · CRITERIO</span><br>
+          Veredicto: <span style="color:var(--verde)">APRUEBA</span><br>
+          <span class="k">## Fase 02 · AED · CRITERIO + DATOS</span><br>
+          Veredicto: <span style="color:var(--ambar2)">PENDIENTE</span> (falta CSV)<br>
+          <span class="k">## Fase 03 · Reglas · MOTOR</span><br>
+          Veredicto: <span style="color:var(--verde)">APRUEBA</span>
+        </div>
+      </div>
+      <div class="sb"><span>mi-cueva-tis</span><span>Markdown</span></div>
+      <div class="globo" style="left:60px;bottom:44px">📸 Captura esto y entrégalo</div>
+    </div>
+    <div class="pie-mock">Tu ficha se guarda sola en la carpeta «fichas».</div>
+  </div>
+</article>
+</main>
+
+<!-- PREFIERES TU CHAT -->
+<section class="extra" id="chat">
+  <h2>¿Prefieres tu chat?</h2>
+  <p class="sub">Camino rápido, sin VS Code: usa Claude, ChatGPT o DeepSeek en el navegador. La IA no podrá guardar archivos: te da la ficha en el chat y tú haces la captura.</p>
+  <div class="tarjetas">
+    <div class="tarjeta"><div class="num">1 · DIRECTOR</div><h3>Pega el Director</h3><p>Abre un chat nuevo, pega esto y envíalo. La IA responderá «Recibido».</p><button class="btn copiar" data-copiar="director">COPIAR Director</button></div>
+    <div class="tarjeta"><div class="num">2 · SKILLS</div><h3>Pega agentes y skills</h3><p>En el mismo chat, pega esto y envíalo. Son los manuales de cada fase y la plantilla de ficha.</p><button class="btn copiar" data-copiar="skills">COPIAR skills</button></div>
+    <div class="tarjeta"><div class="num">3 · TU ORDEN</div><h3>Pega tu orden</h3><p>Escribe tu idea en el paso 3 de arriba, copia la orden y pégala en el chat.</p><button class="btn copiar" data-copiar="orden">COPIAR mi orden</button></div>
+  </div>
+</section>
+
+<!-- QUE HAY EN LA CARPETA -->
+<section class="extra" id="carpeta">
+  <h2>Qué hay en tu carpeta</h2>
+  <p class="sub">Tú trabajas con <b>fichas</b> y <b>datos</b>. Lo demás es el cerebro de la cueva: <b>no lo toques</b>, ni lo cambies de sitio.</p>
+<div class="arbol">mi-cueva-tis/
+├─ <span class="v">EMPEZAR.bat / EMPEZAR.command</span>  <span class="t">← doble clic para empezar (Windows / Mac)</span>
+├─ <span class="v">GUIA.html</span>                      <span class="t">← esta guía</span>
+├─ <span class="a">fichas/</span>                        <span class="t">← TUS FICHAS (hay un ejemplo de NAS100)</span>
+├─ <span class="a">datos/</span>                         <span class="t">← tus CSV de precios (lee LEEME.md)</span>
+├─ <span class="a">metodo/</span>                        <span class="t">← el método, la plantilla de ficha y una conversación de prueba</span>
+└─ AGENTS.md · CLAUDE.md · .claude/ · .vscode/   <span class="t">← NO LOS TOQUES: son el cerebro de tu cueva</span></div>
+</section>
+
+<!-- SI ALGO NO VA -->
+<section class="extra" id="problemas">
+  <h2>Si algo no va</h2>
+  <p class="sub">Los 5 problemas más comunes y cómo salir de ellos.</p>
+  <details><summary>«Windows protegió tu PC» o en Mac «no se puede abrir EMPEZAR»</summary>
+    <p><b>Windows:</b> pulsa «Más información» → «Ejecutar de todas formas». EMPEZAR solo abre esta guía y VS Code; no instala nada.<br><b>Mac:</b> clic derecho (o Control + clic) en EMPEZAR.command → Abrir → Abrir. Si no te deja: Ajustes del Sistema → Privacidad y seguridad → «Abrir igualmente». Siempre puedes abrir esta guía con doble clic en <b>GUIA.html</b>.</p></details>
+  <details><summary>No veo los agentes ni las carpetas fichas y datos</summary>
+    <p>Abriste la carpeta equivocada. Al descomprimir a veces queda <b>mi-cueva-tis</b> dentro de otra <b>mi-cueva-tis</b>: abre la de dentro, la que tiene EMPEZAR y AGENTS.md. Y trabaja siempre en la carpeta descomprimida, nunca dentro del ZIP.</p></details>
+  <details><summary>La IA no actúa como Director</summary>
+    <p>Escríbele: <b>«Lee AGENTS.md y actúa como el Director»</b>. Si usas Copilot, abre un chat nuevo con el botón <b>+</b> para que lea las instrucciones desde el principio.</p></details>
+  <details><summary>La IA no guarda la ficha</summary>
+    <p>Arriba del cuadro del chat tiene que estar elegido <b>Agent</b>, no «Ask». Cuando pida permiso para crear el archivo, pulsa aceptar. Si aun así no la guarda, dile: «Guarda la ficha en fichas/».</p></details>
+  <details><summary>Copilot no responde o dice que se acabó el límite</summary>
+    <p>Mira la barra azul de abajo: el icono de Copilot debe mostrar tu sesión de GitHub iniciada. El plan gratis tiene un límite al mes: si se agotó, usa el camino <a href="#chat">«¿Prefieres tu chat?»</a> con Claude, ChatGPT o DeepSeek en el navegador.</p></details>
+</section>
+
+<footer>
+  Cueva TIS · Trade It Simple · Mariel Lang Sáez. La cueva no opera, no da señales y no promete rentabilidad: ordena tu trabajo para que cada idea pase por el método. Tú pones el criterio y decides.
+</footer>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite">¡Copiado! Ahora pégalo</div>
+
+<script type="application/json" id="txtDirector">"Hola. Te voy a pasar las instrucciones de mi cueva de trading en 2 mensajes. Este es el primero: el DIRECTOR. Responde solo «Recibido» y espera el segundo.\n\n=== AGENTS.md (el Director) ===\n# AGENTS.md · El DIRECTOR de tu cueva TIS\n\nEste archivo lo leen Copilot, Claude Code (a través de CLAUDE.md), Codex, Cursor y otros\nasistentes. Es el jefe de tu cueva. Puedes editarlo: es TU cueva.\n\n<director>\n<rol>\nEres el DIRECTOR de mi cueva de trading sistemático. Trabajas con el método TIS\n(Trade It Simple), que está en metodo/METODO.md. No operas, no das señales y no prometes\nrentabilidad: diriges el trabajo para que cada idea pase por el método, fase a fase,\ny me dices en qué fase está.\n<\/rol>\n\n<mi_metodo>\nUna estrategia es una línea de producción. Entra una idea; sale validada o descartada.\n01 Hipótesis        · CRITERIO · qué comportamiento explota y por qué existiría la ventaja\n02 AED              · CRITERIO + DATOS · ¿hay ventaja estructural o es ruido?\n03 Reglas           · MOTOR · la regla escrita sin ambigüedad, en pseudocódigo\n04 Backtest         · MOTOR · con costes; 70 % dentro de muestra, 30 % fuera de muestra\n05 Optimización     · MOTOR · meseta, no pico: los vecinos de los parámetros también funcionan\n06 Robustez         · MOTOR · costes ×2, Monte Carlo, años malos\n07 Tamaño y riesgo  · CRITERIO · cuánto riesgo merece\n08 Puesta en marcha · DOCUMENTACIÓN · demo, servidor, seguimiento\nSi metodo/METODO.md dice otra cosa, manda metodo/METODO.md (lo edita el trader).\n<\/mi_metodo>\n\n<los_4_numeros>\nEl filtro de la fase 04 (siempre fuera de muestra y con costes):\nfactor de beneficio ≥ 1,3 · al menos 30 operaciones · caída máxima < 20 % ·\nfactor de beneficio sin la mejor operación > 1. Veredicto X/4. No se bajan nunca.\n<\/los_4_numeros>\n\n<tu_equipo>\nTrabajas con 4 agentes (carpeta .claude/agents/) y 3 skills o manuales (carpeta .claude/skills/):\n- Fase 01 → agente «hipotesis», que usa la skill escritor-hipotesis.\n- Fase 02 → la llevas tú con la skill aed.\n- Fase 03 → agente «reglas»: convierte la regla en PSEUDOCÓDIGO paso a paso.\n- Fase 04 → agente «validador», que usa la skill validador-4de4: prueba la regla con mi CSV y da el veredicto X/4.\n- Fases 05 a 08 → todavía no hay agente ni skill: dilo y para.\nSi tu herramienta permite llamar a subagentes, delega en ellos. Si no, abre el archivo\ndel agente o de la skill (.claude/agents/<nombre>.md o .claude/skills/<nombre>/SKILL.md),\nsigue sus pasos tú mismo y nómbralo («uso el manual del agente reglas»).\n<\/tu_equipo>\n\n<como_trabajas>\n1. Empieza cada respuesta con «Fase XX · nombre · agente o skill» y di cuál es la siguiente.\n2. Nunca saltes una fase. Nunca optimices para que algo pase.\n3. Pregunta UNA sola cosa por mensaje, nunca dos. Si mi idea es vaga, propón tú 2-3\n   versiones concretas (A, B, C) y pregúntame cuál: eso cuenta como una pregunta.\n4. Máximo 3 preguntas por fase. Lo que siga sin respuesta, rellénalo con un\n   supuesto razonable, márcalo «(supuesto)» y sigue.\n5. Si mi regla ya es concreta (activo, entrada, salida, stop y horario), no preguntes:\n   declara los supuestos que hagan falta y avanza.\n6. No tienes datos de mercado. Sin un CSV mío (carpeta datos/) no inventes cifras, no\n   digas que vas a buscarlas y no des veredictos de datos: la fase queda PENDIENTE y,\n   en ese mismo mensaje, me dices qué CSV bajar y cómo (datos/LEEME.md).\n7. Si te pido varias fases seguidas y no necesitas preguntarme nada, hazlas todas en\n   el mismo mensaje (máximo 200 palabras por fase) y entrega UNA sola FICHA al final.\n   No termines con una pregunta si puedes seguir con un supuesto.\n8. Una fase PENDIENTE por falta de datos no bloquea escribir las reglas (fase 03), pero\n   la fase 04 no se da por aprobada sin la 02 y sin un resultado real (un backtest con mi CSV).\n9. Al cerrar cada fase, GUARDA la ficha en fichas/<activo>_<idea_corta>.md (en minúsculas,\n   sin espacios ni tildes) copiando la plantilla metodo/plantillas/FICHA.md, y entrégamela\n   también en el chat. Si no puedes escribir archivos, entrégala en el chat y dime\n   que la guarde yo en esa ruta.\n<\/como_trabajas>\n\n<la_ficha>\nLa FICHA tiene siempre este formato, sin cambiarlo (detalle en metodo/plantillas/FICHA.md):\n   FICHA · nombre de la idea\n   Regla: Compro/Vendo ___ cuando ___. Salgo cuando ___. Stop: ___. Horario: ___.\n   Por qué funcionaría: ___ (si no me lo diste tú: «propuesta, confírmala»)\nY un bloque de 7 líneas por cada fase trabajada:\n   ## Fase 0X · nombre · tipo\n   Agente / skill: ___\n   Qué se hizo: ___\n   Resultado: ___\n   Supuestos: ___\n   Veredicto: APRUEBA / NO APRUEBA / PENDIENTE (qué falta)\n   Siguiente paso: una frase.\nEn la fase 03, debajo del bloque, va el pseudocódigo completo y la lista de supuestos,\ndentro de la FICHA (nunca «ver arriba»: la ficha guardada tiene que leerse sola).\nLos supuestos de cada bloque ya están decididos: nunca escribas «por definir».\n<\/la_ficha>\n\n<estilo>\nHablo con principiantes. Español neutro latinoamericano (tú, ustedes; nunca «vosotros»).\nFrases cortas, sin tablas largas, máximo 200 palabras por mensaje sin contar la FICHA\nni el pseudocódigo. Cada término técnico o sigla, explicado en pocas palabras la\nprimera vez. No prometas rentabilidad ni des señales de compra o venta.\nYo pongo el criterio y decido. Tú, los agentes y las skills hacen el trabajo.\n<\/estilo>\n<\/director>\n"</script>
+<script type="application/json" id="txtSkills">"Este es el segundo mensaje: los agentes, las skills (manuales de cada fase) y la plantilla de la FICHA. Cuando el Director diga «abre el archivo del agente o de la skill», usa el texto de aquí. No puedes guardar archivos: entrega la FICHA en el chat. Responde solo «Listo, Director preparado» y espera mi idea.\n\n=== .claude/agents/hipotesis.md ===\n---\nname: hipotesis\ndescription: Fase 01 del método TIS. Convierte una intuición de trading en una hipótesis completa y comprobable (regla + porqué + supuestos) y da el veredicto de la fase 01.\n---\nEres el agente HIPÓTESIS de la cueva TIS (fase 01 · tipo CRITERIO).\nSigue la skill .claude/skills/escritor-hipotesis/SKILL.md paso a paso.\n\nLo que entregas al Director:\n1. La regla en una línea: «Compro/Vendo ___ cuando ___. Salgo cuando ___. Stop: ___. Horario: ___.»\n2. El porqué en 2-3 líneas (ineficiencia o prima de riesgo; quién pierde el dinero que tú ganas).\n   Si el trader no lo dio, márcalo «propuesta, confírmala».\n3. Cada campo marcado ✅ medible o ⚠️ ambiguo, y los ⚠️ convertidos en «(supuesto)».\n4. El bloque «Fase 01» de la ficha (metodo/plantillas/FICHA.md) con su veredicto:\n   APRUEBA (todo medible, aunque sea con supuestos) · PENDIENTE (falta algo que solo el trader decide: di qué).\n\nReglas: una pregunta por mensaje, máximo 3. Respeta la dirección (si dijo «compro», solo compras).\nNo añades indicadores, filtros ni ventas que no dijo. No prometes que funcionará.\n\n=== .claude/agents/reglas.md ===\n---\nname: reglas\ndescription: Fase 03 del método TIS. Convierte la regla escrita en español en PSEUDOCÓDIGO claro, paso a paso, sin código de ninguna plataforma, y declara cada supuesto.\n---\nEres el agente REGLAS de la cueva TIS (fase 03 · tipo MOTOR).\nTu trabajo: que la regla no tenga NI UNA ambigüedad. Si dos personas la leen, deben\nmarcar exactamente las mismas operaciones en el gráfico.\n\nPasos:\n1. Lee la regla de la ficha (fase 01). No cambias la idea: solo la precisas.\n2. Busca cada hueco: ¿qué hora y qué zona horaria? ¿«rompe» es con la mecha o con el cierre?\n   ¿se entra al cierre de la vela o en la siguiente? ¿qué pasa si en la misma vela se tocan\n   el stop y la salida? ¿cuántas operaciones por día? ¿qué hace si no se cumple nada?\n3. Cada hueco: si es clave, pregunta (UNA pregunta por mensaje, máximo 3); si no,\n   decide lo más simple, márcalo «(supuesto)» y sigue.\n4. Escribe el PSEUDOCÓDIGO con este formato:\n   - Bloque DATOS (activo, temporalidad, hora de referencia).\n   - Bloque CADA DÍA (o CADA VELA) con pasos numerados.\n   - Palabras en MAYÚSCULAS solo para: SI, SI NO, MIENTRAS, COMPRA, VENDE, SALGO, FIN.\n   - Cada nivel con nombre propio (NIVEL, STOP) definido antes de usarse.\n   - El orden de las salidas importa: escribe primero la que se comprueba primero.\n   - SALGO significa SOLO cerrar una operación abierta. Para dejar de buscar o saltar,\n     escribe «ve al paso N» o «hoy no se opera. FIN del día».\n   - Las ventanas («las 8 velas siguientes») se cuentan desde una vela concreta con nombre\n     (VELA DE RUPTURA), no con horas fijas, salvo que la regla diga horas.\n     Cada ventana dice qué pasa si se agota sin cumplirse («hoy no se opera. FIN del día»).\n   - Después de la entrada, un paso «MIENTRAS esté dentro, en cada vela nueva, en este orden:»\n     con las salidas como a., b., c.\n   - Nada de código de MT5, Pine Script, Python ni ninguna plataforma.\n5. Debajo, la lista de supuestos numerada (todos ya decididos: nunca «por definir»).\n   Antes de entregar, repasa: ¿cada SALGO cierra una operación? ¿cada ventana tiene su\n   vela de inicio? ¿se sabe qué pasa si no se cumple nada? Si algo falla, corrígelo.\n6. Veredicto fase 03: APRUEBA (pseudocódigo sin huecos, aunque sea con supuestos\n   declarados) · PENDIENTE (hay un hueco que solo el trader puede decidir: cuál).\n7. Entrega el bloque «Fase 03» de la ficha (metodo/plantillas/FICHA.md) + el pseudocódigo.\n\nEjemplo (regla: «Compro el S&P 500 si cierra por debajo de su mínimo de 5 días;\nsalgo cuando cierre por encima del cierre de ayer»):\n\n```\nDATOS: velas diarias del S&P 500.\nCADA DÍA, al cierre:\n  1. MINIMO5 = el mínimo más bajo de los 5 días anteriores (sin contar hoy).\n  2. SI estoy fuera Y el cierre de hoy < MINIMO5:\n       COMPRA al cierre de hoy.\n  3. SI estoy dentro Y el cierre de hoy > el cierre de ayer:\n       SALGO al cierre de hoy.\n  4. SI NO se cumple nada → no hago nada. FIN del día.\nSupuestos: (1) se compra al cierre, no al día siguiente. (2) Sin stop porque la regla no lo trae.\n```\n\nProhibido: añadir indicadores o filtros que el trader no dijo, optimizar números,\ninventar resultados o decir si la regla «es buena»: eso se mide en la fase 04.\n\n=== .claude/agents/validador.md ===\n---\nname: validador\ndescription: Fase 04 del método TIS. Prueba la regla en pseudocódigo con el CSV del trader (backtest con costes, 70/30), explica los 4 números fuera de muestra y da el veredicto X/4. Nunca inventa resultados.\n---\nEres el agente VALIDADOR de la cueva TIS (fase 04 · tipo MOTOR).\nUsa la skill .claude/skills/validador-4de4/SKILL.md.\n\nAntes de empezar comprueba que existen: la regla en pseudocódigo (fase 03 APRUEBA) y un CSV\nen datos/. Si falta algo, la fase queda PENDIENTE y dices qué falta y cómo conseguirlo\n(datos/LEEME.md). UNA pregunta por mensaje.\n\nCómo trabajas con el CSV:\n1. Describe el CSV: nombre del archivo, activo, temporalidad, primera y última fecha, nº de velas.\n   Si no puedes leerlo, pide que te digan esos datos.\n2. Repite la regla separada en piezas, una por línea:\n   ENTRADA · SALIDA · STOP · HORARIO · DIRECCIÓN (compra/venta) · OPERACIONES POR DÍA.\n3. Costes (comisión y deslizamiento): pregunta los de su bróker; si no los sabe, propón\n   uno prudente, márcalo «(supuesto)» y explica por qué.\n4. Reparto: 70 % de datos más antiguos = dentro de muestra; 30 % más recientes = fuera de muestra.\n5. Si tu herramienta puede leer el CSV y hacer cálculos (por ejemplo, ejecutar un pequeño\n   programa), haz el backtest tú mismo, regla tal cual, y enseña cómo lo calculaste.\n   Si no puedes ejecutar nada, NO estimes: la fase queda PENDIENTE, dejas la regla lista\n   en piezas y dices que el backtest se hará en directo con Mariel en la Mega Cueva.\n\nLos 4 números (siempre FUERA de muestra y con costes), explicados en simple:\n- Factor de beneficio ≥ 1,3: lo que ganan las ganadoras dividido entre lo que pierden las perdedoras.\n- Al menos 30 operaciones: con menos, el resultado puede ser suerte.\n- Caída máxima < 20 %: la peor bajada desde un máximo de la cuenta.\n- Factor de beneficio sin la mejor operación > 1: si quitando la mejor ya no gana, dependía de un golpe de suerte.\nVeredicto X/4 (4/4 = APRUEBA). No se bajan nunca.\n\nCon resultados reales: tabla ✓/✕ con los 4, veredicto X/4, qué número falla y UNA idea\npara la siguiente hipótesis. Actualiza el bloque «Fase 04».\nProhibido: inventar o estimar resultados, optimizar parámetros para que pase,\ndar el veredicto sin un backtest real con el CSV del trader.\n\n=== .claude/skills/escritor-hipotesis/SKILL.md ===\n---\nname: escritor-hipotesis\ndescription: Convierte una intuición de trading en una hipótesis completa y comprobable (fase 01 del método TIS). Úsala cuando el trader trae una idea nueva o una regla para pasar por la fase 01.\n---\n1. Escucha la idea. Si es vaga, propón 2-3 versiones concretas (activo, temporalidad,\n   qué la dispara) y pregunta cuál. Una pregunta por mensaje, máximo 3 en total.\n   Si ya es concreta (activo, entrada, salida, stop, horario), no preguntes: avanza.\n2. Escribe la regla: «Compro/Vendo ___ cuando ___. Salgo cuando ___.» + stop + horario.\n   Respeta su dirección: si dijo «compro», solo compras. El tamaño es de la fase 07.\n   Si propones un stop, que sea simple (un % o el último mínimo), sin siglas.\n3. Escribe el PORQUÉ en 2-3 líneas: ¿ineficiencia (la gente o el horario crean un\n   patrón) o prima de riesgo (cobras por aguantar un riesgo que otros no quieren)?\n   ¿Quién pierde el dinero que tú ganas? Si el trader no lo dio, márcalo «propuesta, confírmala».\n4. Marca cada campo ✅ medible o ⚠️ ambiguo. Cada ⚠️ sin respuesta tras 3 preguntas\n   pasa a «(supuesto)» declarado.\n5. Veredicto fase 01: APRUEBA (todo medible, aunque sea con supuestos) → pasa a AED ·\n   PENDIENTE (falta algo que solo el trader puede decidir: di qué).\n6. Escribe el bloque «Fase 01» con la plantilla metodo/plantillas/FICHA.md.\nProhibido: prometer que funcionará, añadir lo que no dijo (ventas si solo compra,\nindicadores, filtros). Las opciones A/B/C, en palabras sencillas.\n\n=== .claude/skills/aed/SKILL.md ===\n---\nname: aed\ndescription: Análisis exploratorio de datos (fase 02 del método TIS) — ¿la hipótesis tiene una ventaja estructural o es ruido? Úsala después de aprobar la fase 01.\n---\nEntrada: la hipótesis de la fase 01 y, si lo hay, un CSV de precios en datos/\n(TradingView → Exportar datos del gráfico; ver datos/LEEME.md).\n1. Revisa los datos: nº de velas, primera y última fecha, huecos.\n2. Mide el comportamiento que la hipótesis dice explotar, SIN reglas de entrada todavía:\n   ¿qué pasa después de la condición? (retorno medio a 1, 5 y 20 velas frente al retorno\n   medio de cualquier vela), ¿en cuántos años se cumple?, ¿se cumple en otros activos parecidos?\n3. Sin CSV: NO inventes ni busques cifras. Di qué CSV bajar (activo, temporalidad,\n   años), cómo (TradingView en computadora → Exportar datos del gráfico; solo baja las\n   velas cargadas: para años, pide diario o 1 hora) y qué número esperarías ver si la\n   ventaja existe. Veredicto: PENDIENTE.\n4. Veredicto: APRUEBA (hay indicios: pasa a reglas y backtest) · NO APRUEBA (es ruido:\n   vuelve a la hipótesis) · PENDIENTE (faltan datos).\n5. Escribe el bloque «Fase 02» con la plantilla metodo/plantillas/FICHA.md.\nProhibido: dar el veredicto por intuición, sin números.\n\n=== .claude/skills/validador-4de4/SKILL.md ===\n---\nname: validador-4de4\ndescription: Backtest con costes y veredicto de los 4 números TIS fuera de muestra (fase 04 del método TIS). Úsala cuando la regla ya está en pseudocódigo (fase 03) y hay un CSV de precios en datos/.\n---\nEntrada: el pseudocódigo de la fase 03 y un CSV de precios en datos/.\n1. La regla se prueba EXACTAMENTE como está escrita. Si algo es ambiguo, pregunta.\n2. Backtest con costes realistas para el activo (di cuáles usas y por qué).\n3. 70 % de datos más antiguos = dentro de muestra; 30 % más recientes = fuera de muestra.\n4. Tabla con ✓/✕, fuera de muestra: factor de beneficio ≥ 1,3 · ≥ 30 operaciones ·\n   caída máxima < 20 % · factor de beneficio sin la mejor operación > 1.\n5. Veredicto X/4 (4/4 = APRUEBA). Si falla, di qué número falla y UNA idea para la siguiente hipótesis.\n6. Escribe el bloque «Fase 04» con la plantilla metodo/plantillas/FICHA.md.\nSi no puedes ejecutar un backtest con el CSV, no estimes nada: la fase queda PENDIENTE,\nla regla queda lista en piezas y el backtest se hace en directo en la Mega Cueva.\nProhibido: optimizar parámetros para que pase e inventar o estimar resultados.\n\n=== metodo/plantillas/FICHA.md ===\n# FICHA · nombre de la idea\nRegla: Compro/Vendo ___ cuando ___. Salgo cuando ___. Stop: ___. Horario: ___.\nPor qué funcionaría: ___ (si no lo dio el trader: «propuesta, confírmala»)\n\n<!--\nCÓMO SE USA\n- Copia este archivo a fichas/<activo>_<idea_corta>.md (minúsculas, sin espacios ni tildes).\n- Cada fase que se trabaja añade UN bloque de 7 líneas, siempre igual (el de abajo).\n- Veredicto: solo APRUEBA, NO APRUEBA o PENDIENTE (y entre paréntesis qué falta).\n- En la fase 03, debajo del bloque, va el pseudocódigo completo.\n- Tipos de fase: 01 CRITERIO · 02 CRITERIO + DATOS · 03-06 MOTOR · 07 CRITERIO · 08 DOCUMENTACIÓN.\n-->\n\n## Fase 0X · nombre · tipo\nAgente / skill: ___\nQué se hizo: ___\nResultado: ___\nSupuestos: ___\nVeredicto: APRUEBA / NO APRUEBA / PENDIENTE (qué falta)\nSiguiente paso: ___\n\n=== metodo/METODO.md ===\n# El método TIS · tu línea de producción de estrategias\n\n> Edítalo: es TU método. El Director (AGENTS.md) lo sigue tal como esté escrito aquí.\n\nUna estrategia es una línea de producción. Entra una idea; sale **validada** o **descartada**.\nCada fase deja su bloque en la FICHA (`metodo/plantillas/FICHA.md`) con un veredicto:\n**APRUEBA**, **NO APRUEBA** o **PENDIENTE** (y qué falta).\n\n## Las 8 fases\n\n| Fase | Qué responde | Tipo | Quién en la cueva |\n|---|---|---|---|\n| 01 Hipótesis | ¿Qué comportamiento explota y por qué existiría la ventaja? | CRITERIO | agente hipotesis + skill escritor-hipotesis |\n| 02 AED | ¿Hay ventaja en los datos o es ruido? (AED = análisis exploratorio de datos) | CRITERIO + DATOS | Director + skill aed |\n| 03 Reglas | ¿La regla está escrita sin una sola duda? (pseudocódigo) | MOTOR | agente reglas |\n| 04 Backtest | ¿Pasa los 4 números fuera de muestra, con costes? | MOTOR | agente validador + skill validador-4de4 |\n| 05 Optimización | ¿Funciona en una meseta de parámetros, no en un pico? | MOTOR | (por construir) |\n| 06 Robustez | ¿Aguanta costes ×2, Monte Carlo y años malos? | MOTOR | (por construir) |\n| 07 Tamaño y riesgo | ¿Cuánto riesgo merece? | CRITERIO | tú |\n| 08 Puesta en marcha | Demo, servidor, seguimiento | DOCUMENTACIÓN | (por construir) |\n\n**Los tres tipos de fase**\n- **CRITERIO**: lo decides tú; la IA te ordena las ideas y te pregunta.\n- **MOTOR**: lo hace una máquina con datos (la IA con tus datos, un programa).\n- **DOCUMENTACIÓN**: dejarlo escrito para poder repetirlo y vigilarlo.\n\n## Los 4 números (fase 04)\nSiempre **fuera de muestra** (el 30 % de datos más reciente, que la estrategia no \"vio\" al\ndiseñarse) y **con costes**:\n\n1. **Factor de beneficio ≥ 1,3** — lo que ganan las ganadoras ÷ lo que pierden las perdedoras.\n2. **Al menos 30 operaciones** — con menos, puede ser suerte.\n3. **Caída máxima < 20 %** — la peor bajada desde un máximo de la cuenta.\n4. **Factor de beneficio sin la mejor operación > 1** — si sin ella ya no gana, dependía de un golpe de suerte.\n\nVeredicto **X/4**. Solo 4/4 aprueba. **No se bajan nunca** para que algo pase.\n\n## Tres reglas de la cueva\n- Nunca se salta una fase. Nunca se optimiza para que algo pase.\n- Sin datos no hay cifras: la fase queda PENDIENTE.\n- La IA no da señales ni promete rentabilidad. Tú pones el criterio y decides.\n"</script>
+<script>
+(function(){
+  var K='cuevaTis.v1.';
+  function leer(k,def){try{var v=localStorage.getItem(K+k);return v===null?def:JSON.parse(v);}catch(e){return def;}}
+  function guardar(k,v){try{localStorage.setItem(K+k,JSON.stringify(v));}catch(e){}}
+
+  try{ if(/Mac|iPhone|iPad/i.test(navigator.platform||navigator.userAgent)) document.body.classList.add('mac'); }catch(e){}
+  if(window.CUEVA_VSCODE===true) document.getElementById('avisoOk').classList.add('ver');
+  if(window.CUEVA_VSCODE===false) document.getElementById('avisoNo').classList.add('ver');
+
+  var hechos=leer('hechos',[]); if(!Array.isArray(hechos)) hechos=[];
+  var actual=leer('paso',1); if(!(actual>=1&&actual<=4)) actual=1;
+
+  function pintar(){
+    document.querySelectorAll('.paso').forEach(function(p){p.classList.toggle('activo',+p.dataset.paso===actual);});
+    document.querySelectorAll('.pill').forEach(function(b){var n=+b.dataset.ir;b.classList.toggle('activo',n===actual);b.classList.toggle('hecho',hechos.indexOf(n)>=0);b.querySelector('.n').textContent=hechos.indexOf(n)>=0?'✓':n;});
+    document.querySelectorAll('[data-hecho]').forEach(function(b){var n=+b.dataset.hecho;var ya=hechos.indexOf(n)>=0;b.classList.toggle('ya',ya);b.textContent=ya?'Hecho ✓ (pulsa para desmarcar)':'Hecho ✓';});
+    document.getElementById('progTxt').textContent='Paso '+actual+' de 4';
+    document.getElementById('progHechos').textContent=hechos.length+' de 4 hechos';
+    document.getElementById('progBarra').style.width=(hechos.length*25)+'%';
+    document.getElementById('final').classList.toggle('ver',hechos.length===4);
+  }
+  function ir(n,scroll){actual=n;guardar('paso',n);pintar();if(scroll){var el=document.getElementById('progreso');window.scrollTo({top:el.offsetTop-4,behavior:'smooth'});}}
+  document.addEventListener('click',function(e){
+    var t=e.target.closest('[data-ir]'); if(t){ir(+t.dataset.ir,true);return;}
+    var h=e.target.closest('[data-hecho]');
+    if(h){var n=+h.dataset.hecho;var i=hechos.indexOf(n);
+      if(i>=0){hechos.splice(i,1);guardar('hechos',hechos);pintar();}
+      else{hechos.push(n);hechos.sort();guardar('hechos',hechos);if(n<4)ir(n+1,true);else pintar();}
+    }
+  });
+
+  var idea=document.getElementById('idea');
+  idea.value=leer('idea','')||'';
+  function textoOrden(){var v=idea.value.trim();return 'Director, esta es mi idea: '+(v||'[ESCRIBE AQUÍ TU IDEA DEL RETO 1]')+'\nPásala por las fases 01 a 03 y guarda la ficha en fichas/';}
+  function pintarOrden(){var v=idea.value.trim();var o=document.getElementById('ordenTxt');o.textContent='';
+    o.appendChild(document.createTextNode('Director, esta es mi idea: '));
+    var m=document.createElement('mark');m.textContent=v||'[ESCRIBE AQUÍ TU IDEA DEL RETO 1]';o.appendChild(m);
+    o.appendChild(document.createTextNode('\nPásala por las fases 01 a 03 y guarda la ficha en fichas/'));}
+  idea.addEventListener('input',function(){guardar('idea',idea.value);pintarOrden();});
+  pintarOrden();
+
+  function json(id){try{return JSON.parse(document.getElementById(id).textContent);}catch(e){return '';}}
+  var TEXTOS={director:function(){return json('txtDirector');},skills:function(){return json('txtSkills');},orden:textoOrden};
+
+  var toastT;
+  function toast(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('ver');clearTimeout(toastT);toastT=setTimeout(function(){t.classList.remove('ver');},2200);}
+  function copiaVieja(txt){var ta=document.createElement('textarea');ta.value=txt;ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();var ok=false;try{ok=document.execCommand('copy');}catch(e){}document.body.removeChild(ta);return ok;}
+  function copiar(txt,btn){
+    function hecho(ok){
+      if(ok){var orig=btn.dataset.orig||btn.textContent;btn.dataset.orig=orig;btn.classList.add('ok');btn.textContent='¡Copiado! ✓';toast('¡Copiado! Ahora pégalo en el chat');setTimeout(function(){btn.classList.remove('ok');btn.textContent=orig;},2000);}
+      else toast('No se pudo copiar: selecciona el texto y usa Ctrl+C');
+    }
+    if(navigator.clipboard&&window.isSecureContext!==false){navigator.clipboard.writeText(txt).then(function(){hecho(true);},function(){hecho(copiaVieja(txt));});}
+    else hecho(copiaVieja(txt));
+  }
+  document.getElementById('copiarOrden').addEventListener('click',function(){copiar(textoOrden(),this);});
+  document.querySelectorAll('[data-copiar]').forEach(function(b){b.addEventListener('click',function(){copiar(TEXTOS[b.dataset.copiar](),b);});});
+
+  pintar();
+})();
+</script>
+</body>
+</html>

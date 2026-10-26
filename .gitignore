@@ -1,0 +1,5 @@
+dist/
+datos/*.csv
+datos/*.xlsx
+.env
+metodo/estado.js
