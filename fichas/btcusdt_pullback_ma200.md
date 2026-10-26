@@ -18,6 +18,14 @@ Supuestos: (1) MA200 = media simple de los 200 cierres anteriores, sin incluir l
 Veredicto: APRUEBA
 Siguiente paso: Fase 04 · Backtest — CSV BTCUSDT_4h.csv disponible en datos/.
 
+## Fase 04 · Backtest · MOTOR
+Agente / skill: agente validador + skill validador-4de4 (Mega Cueva Tester)
+Qué se hizo: Backtest con costes sobre BTCUSDT 4H, 27-10-2023 → 26-10-2026. Reparto 70/30: fuera de muestra desde 02-12-2025.
+Resultado: Factor de beneficio 1,40 · 30 operaciones · caída máxima 13,2% · FB sin mejor operación 1,19. Ritmo ~29 operaciones/año.
+Supuestos: Costes reales Binance Futures taker. Fuera de muestra estricto (30% más reciente). Sin optimización de parámetros.
+Veredicto: APRUEBA (4/4)
+Siguiente paso: Fase 05 · Optimización — verificar que la estrategia funciona en una meseta de parámetros, no en un pico. Variar el N de la ventana (5, 7, 9 velas) y el período de la MA (150, 200, 250) y confirmar que los vecinos también pasan.
+
 ```
 DATOS: velas de BTCUSDT en 4H.
 Dirección: solo compras (largos). Máximo 1 operación abierta a la vez.
