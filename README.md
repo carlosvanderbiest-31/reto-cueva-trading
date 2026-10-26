@@ -23,8 +23,19 @@ Tu copia es **privada**: ahí van a estar tus estrategias.
 
 ## 2 · Ábrela en VS Code
 
+**Antes, instala Git** (una sola vez). GitHub es la web; Git es el programa que usa VS Code
+para bajar tu copia. Sin Git, no te aparece «Git: Clone».
+- **Windows:** git-scm.com/downloads → Windows → abre el archivo → **Next** en todo → **Install**.
+- **Mac:** abre la Terminal, escribe `git --version` y acepta instalar.
+- Cierra VS Code por completo y vuelve a abrirlo.
+- ¿Ya lo tienes? En VS Code, icono de las ramitas (Control de código fuente): si ves
+  «Download Git», te falta.
+
+Conecta tu cuenta: abajo a la izquierda, icono de la personita (Cuentas) → **Iniciar sesión con
+GitHub** → **Authorize** en el navegador → vuelve a VS Code.
+
 ```
-Ctrl+Shift+P (en Mac: Cmd+Shift+P) → escribe «Git: Clone» → Clone from GitHub
+Ctrl+Shift+P (en Mac: Cmd+Shift+P) → escribe «clon» → Git: Clone (o Git: Clonar) → Clone from GitHub
    └─ elige tu repositorio mi-cueva-tis → elige una carpeta (Documentos) → Open / Abrir
 ```
 Si VS Code pregunta «¿Confías en los autores de los archivos de esta carpeta?», responde **Sí, confío**.
