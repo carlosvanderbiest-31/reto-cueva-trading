@@ -24,7 +24,21 @@ Qué se hizo: Backtest con costes sobre BTCUSDT 4H, 27-10-2023 → 26-10-2026. R
 Resultado: Factor de beneficio 1,40 · 30 operaciones · caída máxima 13,2% · FB sin mejor operación 1,19. Ritmo ~29 operaciones/año.
 Supuestos: Costes reales Binance Futures taker. Fuera de muestra estricto (30% más reciente). Sin optimización de parámetros.
 Veredicto: APRUEBA (4/4)
-Siguiente paso: Fase 05 · Optimización — verificar que la estrategia funciona en una meseta de parámetros, no en un pico. Variar el N de la ventana (5, 7, 9 velas) y el período de la MA (150, 200, 250) y confirmar que los vecinos también pasan.
+Siguiente paso: Protocolo completo TIS (Fases 05-06 del Mega Cueva Tester).
+
+## Protocolo completo TIS · Mega Cueva Tester
+Agente / skill: Mega Cueva Tester (herramientas/auditor-tis.html)
+Qué se hizo: Protocolo de 5 fases sobre los resultados del backtest.
+Resultado:
+  F1 Diseño/Prueba:       1,40 PF  → PASA   (>= 1,30)
+  F2 Walk-Forward:        eficiencia baja → NO PASA  (< 0,50 conserva la mitad)
+  F3 Meseta de parámetros: -8% peor vecino → PASA   (< 30% anti-precipicio)
+  F4 Monte Carlo:         39,9% caída peor 5% → NO PASA  (< 25%)
+  F5 Stress:              1,09 PF costes x2 → NO PASA  (>= 1,10 sin 2 mejores años)
+  MT5 Paridad:            PENDIENTE
+Supuestos: N/A — protocolo automático del tester.
+Veredicto: NO APROBADA (2/5) — una sola falla basta para parar.
+Siguiente paso: Descartar esta configuración. El F2 indica que el edge es régimen-dependiente, no estable en el tiempo. Generar nueva hipótesis (H3).
 
 ```
 DATOS: velas de BTCUSDT en 4H.
