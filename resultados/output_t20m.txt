@@ -1,0 +1,84 @@
+Obteniendo tickers del S&P 500 desde Wikipedia...
+  503 tickers encontrados
+Cargando precios desde cache (sp500_prices.pkl)...
+
+Universo: 460 acciones · 2005-01-03 a 2026-10-29
+
+Calculando scores de momentum mensual...
+Meses con scores: 262
+Diseno : 2005-01-31 a 2020-03-31
+Examen : 2020-04-30 a 2026-10-31
+
+Version SIN filtro SPY:
+  Meses: 248
+Version CON filtro SPY MA200:
+  Meses: 213
+Version CON filtro SPY MA100:
+  Meses: 214
+
+=======================================================
+T20M - Top 20 Momentum S&P 500
+NOTA: sesgo de supervivencia (universo S&P 500 actual)
+=======================================================
+
+=======================================================
+  SIN filtro SPY
+=======================================================
+-- DISENO --
+  PF (mensual)     1.681  OK  (>=1.30)
+  Meses              170  OK  (>=30)
+  DD max.         51.8%  --  (<20%)
+  PF sin mejor     1.626  OK  (>1)
+  Acierto         61.2%  (meses positivos)
+  Retorno        +369.7%
+  VEREDICTO 3/4  NO APRUEBA
+-- EXAMEN --
+  PF (mensual)     2.260  OK  (>=1.30)
+  Meses               78  OK  (>=30)
+  DD max.         19.7%  OK  (<20%)
+  PF sin mejor     2.064  OK  (>1)
+  Acierto         64.1%  (meses positivos)
+  Retorno        +298.6%
+  VEREDICTO 4/4  APRUEBA
+
+=======================================================
+  CON filtro SPY MA200
+=======================================================
+-- DISENO --
+  PF (mensual)     2.502  OK  (>=1.30)
+  Meses              142  OK  (>=30)
+  DD max.         22.4%  --  (<20%)
+  PF sin mejor     2.412  OK  (>1)
+  Acierto         62.0%  (meses positivos)
+  Retorno        +586.9%
+  VEREDICTO 3/4  NO APRUEBA
+-- EXAMEN --
+  PF (mensual)     2.014  OK  (>=1.30)
+  Meses               71  OK  (>=30)
+  DD max.         19.9%  OK  (<20%)
+  PF sin mejor     1.868  OK  (>1)
+  Acierto         57.7%  (meses positivos)
+  Retorno        +143.5%
+  VEREDICTO 4/4  APRUEBA
+
+=======================================================
+  CON filtro SPY MA100
+=======================================================
+-- DISENO --
+  PF (mensual)     2.334  OK  (>=1.30)
+  Meses              143  OK  (>=30)
+  DD max.         14.4%  OK  (<20%)
+  PF sin mejor     2.241  OK  (>1)
+  Acierto         55.9%  (meses positivos)
+  Retorno        +430.9%
+  VEREDICTO 4/4  APRUEBA
+-- EXAMEN --
+  PF (mensual)     1.874  OK  (>=1.30)
+  Meses               71  OK  (>=30)
+  DD max.         24.7%  --  (<20%)
+  PF sin mejor     1.727  OK  (>1)
+  Acierto         54.9%  (meses positivos)
+  Retorno        +112.2%
+  VEREDICTO 3/4  NO APRUEBA
+
+Grafico: ../resultados/curva_t20m.png

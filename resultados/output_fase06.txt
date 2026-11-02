@@ -1,0 +1,139 @@
+C:\Users\carlo\Downloads\Mi trading\mi-cueva-tis\datos\backtest_ibb_qqq_fase06.py:86: FutureWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
+  joint.groupby('mes', group_keys=False).apply(lambda x: x.index[-1]).values
+Bajando SPY...
+  SPY: 6747 velas
+Diseno: 2001-11-30 a 2019-04-30
+Examen: 2019-05-31 a 2026-10-29
+
+==========================================================
+  BASE · mom20 · ETF MA200
+  ops total=252  dis=175  exa=77
+  -- DISENO --
+  PF          1.394  OK
+  Ops           175  OK
+  DD         40.4%  --
+  PF_nb       1.321  OK
+  Acierto    51.4%
+  Retorno   +126.3%
+  VEREDICTO 3/4  NO APRUEBA
+  -- EXAMEN --
+  PF          2.891  OK
+  Ops            77  OK
+  DD         11.4%  OK
+  PF_nb       2.740  OK
+  Acierto    59.7%
+  Retorno   +283.8%
+  VEREDICTO 4/4  APRUEBA
+
+==========================================================
+  A   · SPY MA200 + ETF MA200 · mom20
+  ops total=230  dis=159  exa=71
+  -- DISENO --
+  PF          1.664  OK
+  Ops           159  OK
+  DD         20.0%  OK
+  PF_nb       1.573  OK
+  Acierto    54.1%
+  Retorno   +231.5%
+  VEREDICTO 4/4  APRUEBA
+  -- EXAMEN --
+  PF          2.735  OK
+  Ops            71  OK
+  DD          9.4%  OK
+  PF_nb       2.572  OK
+  Acierto    59.2%
+  Retorno   +212.9%
+  VEREDICTO 4/4  APRUEBA
+
+==========================================================
+  B   · SPY MA200 + ETF MA100 · mom20
+  ops total=229  dis=156  exa=73
+  -- DISENO --
+  PF          1.738  OK
+  Ops           156  OK
+  DD         17.5%  OK
+  PF_nb       1.643  OK
+  Acierto    52.6%
+  Retorno   +262.0%
+  VEREDICTO 4/4  APRUEBA
+  -- EXAMEN --
+  PF          2.285  OK
+  Ops            73  OK
+  DD         17.7%  OK
+  PF_nb       2.135  OK
+  Acierto    54.8%
+  Retorno   +148.0%
+  VEREDICTO 4/4  APRUEBA
+
+==========================================================
+  C   · SPY MA100 + ETF MA200 · mom20
+  ops total=230  dis=159  exa=71
+  -- DISENO --
+  PF          1.540  OK
+  Ops           159  OK
+  DD         22.4%  --
+  PF_nb       1.448  OK
+  Acierto    49.7%
+  Retorno   +154.7%
+  VEREDICTO 3/4  NO APRUEBA
+  -- EXAMEN --
+  PF          2.453  OK
+  Ops            71  OK
+  DD         11.9%  OK
+  PF_nb       2.290  OK
+  Acierto    56.3%
+  Retorno   +160.0%
+  VEREDICTO 4/4  APRUEBA
+
+==========================================================
+  D   · SPY MA200 + ETF MA200 · mom60
+  ops total=236  dis=159  exa=77
+  -- DISENO --
+  PF          1.949  OK
+  Ops           159  OK
+  DD         21.0%  --
+  PF_nb       1.853  OK
+  Acierto    57.9%
+  Retorno   +435.6%
+  VEREDICTO 3/4  NO APRUEBA
+  -- EXAMEN --
+  PF          1.994  OK
+  Ops            77  OK
+  DD         16.6%  OK
+  PF_nb       1.867  OK
+  Acierto    57.1%
+  Retorno   +136.6%
+  VEREDICTO 4/4  APRUEBA
+
+==========================================================
+  E   · SPY MA200 · sin ETF MA · mom20
+  ops total=230  dis=159  exa=71
+  -- DISENO --
+  PF          1.664  OK
+  Ops           159  OK
+  DD         20.0%  OK
+  PF_nb       1.573  OK
+  Acierto    54.1%
+  Retorno   +231.5%
+  VEREDICTO 4/4  APRUEBA
+  -- EXAMEN --
+  PF          2.735  OK
+  Ops            71  OK
+  DD          9.4%  OK
+  PF_nb       2.572  OK
+  Acierto    59.2%
+  Retorno   +212.9%
+  VEREDICTO 4/4  APRUEBA
+
+========================================================================
+Variante                                    DIS      PF       DD   EXA      PF       DD
+------------------------------------------------------------------------
+  BASE · mom20 · ETF MA200                 3/4  1.394  40.4%  4/4  2.891  11.4%
+  A   · SPY MA200 + ETF MA200 · mom20      4/4  1.664  20.0%  4/4  2.735  9.4% <-- APRUEBA DISENO
+  B   · SPY MA200 + ETF MA100 · mom20      4/4  1.738  17.5%  4/4  2.285  17.7% <-- APRUEBA DISENO
+  C   · SPY MA100 + ETF MA200 · mom20      3/4  1.540  22.4%  4/4  2.453  11.9%
+  D   · SPY MA200 + ETF MA200 · mom60      3/4  1.949  21.0%  4/4  1.994  16.6%
+  E   · SPY MA200 · sin ETF MA · mom20     4/4  1.664  20.0%  4/4  2.735  9.4% <-- APRUEBA DISENO
+
+Mejor en diseno: A   · SPY MA200 + ETF MA200 · mom20
+Grafico: ../resultados/curva_ibb_qqq_fase06.png

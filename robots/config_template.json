@@ -1,0 +1,17 @@
+{
+  "_instrucciones": "Copia este archivo como robots/<activo>_<idea>_config.json. Elimina este campo antes de activar.",
+  "estrategia": "<nombre_estrategia>",
+  "activo": "<SYMBOL>",
+  "temporalidad": "<1h | 4h | 1d | otro>",
+  "direccion": "<LONG | SHORT | AMBAS>",
+  "entry_signal": "<descripción de la condición de entrada>",
+  "exit_signal": "<descripción de la condición de salida>",
+  "stop_loss_pct": null,
+  "tamano_usd": 0,
+  "apalancamiento": 1,
+  "capital_asignado": 0,
+  "exchange": "bitunix",
+  "tipo_contrato": "perpetuo",
+  "estado": "DEMO",
+  "aprobado_fecha": "<YYYY-MM-DD>"
+}

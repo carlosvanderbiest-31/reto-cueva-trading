@@ -1,0 +1,61 @@
+C:\Users\carlo\Downloads\Mi trading\mi-cueva-tis\datos\backtest_mtum_proxy.py:137: FutureWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
+  joint.groupby('mes', group_keys=False).apply(lambda x: x.index[-1]).values
+Bajando MTUM...
+  mtum_1d_yahoo.csv: 3405 velas  2013-04-18 -> 2026-10-29
+
+MTUM: 3405 velas  2013-04-18 a 2026-10-29
+SPY : 6747  velas  2000-01-03 a 2026-10-29
+
+==========================================================
+ESTRATEGIA 1: RSI2 MTUM (mismo sistema que RSI2 QQQ)
+==========================================================
+Total ops: 310  dis=214  exa=96
+Diseno: 2014-01-31 a 2022-12-29
+Examen: 2022-12-30 a 2026-10-29
+
+-- DISENO --
+  PF          1.909  OK
+  Ops           214  OK
+  DD         14.3%  OK
+  PF_nb       1.849  OK
+  Acierto    69.6%
+  Retorno   +136.3%
+  VEREDICTO 4/4  APRUEBA
+-- EXAMEN --
+  PF          1.770  OK
+  Ops            96  OK
+  DD         10.9%  OK
+  PF_nb       1.659  OK
+  Acierto    65.6%
+  Retorno   +56.5%
+  VEREDICTO 4/4  APRUEBA
+
+==========================================================
+ESTRATEGIA 2: Rotacion mensual MTUM vs SPY por momentum
+==========================================================
+Total ops: 140  dis=94  exa=46
+
+-- DISENO --
+  PF          1.781  OK
+  Ops            94  OK
+  DD         20.3%  --
+  PF_nb       1.670  OK
+  Acierto    57.4%
+  Retorno   +100.7%
+  VEREDICTO 3/4  NO APRUEBA
+-- EXAMEN --
+  PF          1.707  OK
+  Ops            46  OK
+  DD         16.4%  OK
+  PF_nb       1.528  OK
+  Acierto    52.2%
+  Retorno   +47.7%
+  VEREDICTO 4/4  APRUEBA
+
+=================================================================
+RESUMEN MTUM (proxy T20M)
+=================================================================
+  RSI2 MTUM                  Diseno: 4/4  Examen: 4/4
+  MTUM vs SPY rotacion       Diseno: 3/4  Examen: 4/4
+
+Grafico: ../resultados/curva_mtum_proxy.png

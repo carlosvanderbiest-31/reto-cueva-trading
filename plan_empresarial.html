@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan Empresarial · Cueva de Trading TIS</title>
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C96A;
+    --gold-dim: rgba(201,168,76,0.15);
+    --bg: #0A0A0C;
+    --bg2: #111114;
+    --bg3: #18181D;
+    --border: rgba(201,168,76,0.2);
+    --text: #E8E8EC;
+    --text-dim: #7A7A88;
+    --green: #2ECC71;
+    --yellow: #F1C40F;
+    --red: #E74C3C;
+    --blue: #3498DB;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'Segoe UI',system-ui,-apple-system,sans-serif; font-size:14px; line-height:1.6; }
+
+  /* NAV */
+  nav { position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(10,10,12,0.95); border-bottom:1px solid var(--border); backdrop-filter:blur(12px); display:flex; align-items:center; justify-content:space-between; padding:0 40px; height:56px; }
+  .nav-brand { display:flex; align-items:center; gap:10px; }
+  .nav-logo { width:28px; height:28px; background:var(--gold); border-radius:6px; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:13px; color:#000; }
+  .nav-title { font-size:13px; font-weight:600; color:var(--gold); letter-spacing:0.05em; text-transform:uppercase; }
+  .nav-links { display:flex; gap:24px; }
+  .nav-links a { color:var(--text-dim); text-decoration:none; font-size:12px; letter-spacing:0.03em; transition:color 0.2s; }
+  .nav-links a:hover { color:var(--gold); }
+  .nav-date { font-size:11px; color:var(--text-dim); }
+
+  /* LAYOUT */
+  main { padding-top:56px; }
+  section { padding:80px 40px; max-width:1100px; margin:0 auto; }
+  section + section { padding-top:0; }
+
+  /* COVER */
+  .cover { min-height:100vh; display:flex; flex-direction:column; justify-content:center; padding:80px 40px 60px; max-width:1100px; margin:0 auto; }
+  .cover-tag { display:inline-flex; align-items:center; gap:8px; background:var(--gold-dim); border:1px solid var(--border); border-radius:20px; padding:4px 14px; font-size:11px; color:var(--gold); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:32px; width:fit-content; }
+  .cover-tag::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--gold); animation:pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.3} }
+  .cover h1 { font-size:clamp(36px,5vw,64px); font-weight:800; line-height:1.1; margin-bottom:16px; }
+  .cover h1 span { color:var(--gold); }
+  .cover-sub { font-size:18px; color:var(--text-dim); max-width:560px; margin-bottom:48px; line-height:1.7; }
+  .cover-metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:48px; }
+  .metric-card { background:var(--bg3); border:1px solid var(--border); border-radius:12px; padding:20px; }
+  .metric-value { font-size:28px; font-weight:800; color:var(--gold); line-height:1; margin-bottom:4px; }
+  .metric-label { font-size:11px; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.06em; }
+  .cover-footer { display:flex; align-items:center; gap:16px; padding-top:32px; border-top:1px solid var(--border); }
+  .badge { background:var(--bg3); border:1px solid var(--border); border-radius:6px; padding:6px 12px; font-size:11px; color:var(--text-dim); }
+  .badge strong { color:var(--gold); }
+
+  /* SECTION HEADERS */
+  .section-tag { font-size:11px; color:var(--gold); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:12px; }
+  h2 { font-size:clamp(24px,3vw,36px); font-weight:800; margin-bottom:8px; }
+  h2 span { color:var(--gold); }
+  .section-desc { color:var(--text-dim); max-width:600px; margin-bottom:48px; line-height:1.7; }
+
+  /* DIVIDER */
+  .divider { border:none; border-top:1px solid var(--border); margin:0 40px; }
+
+  /* CARDS GRID */
+  .cards-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .cards-2 { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
+  .card { background:var(--bg3); border:1px solid var(--border); border-radius:16px; padding:28px; }
+  .card-icon { width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:16px; }
+  .card-icon.gold { background:var(--gold-dim); }
+  .card-icon.green { background:rgba(46,204,113,0.1); }
+  .card-icon.blue { background:rgba(52,152,219,0.1); }
+  .card h3 { font-size:16px; font-weight:700; margin-bottom:8px; }
+  .card p { font-size:13px; color:var(--text-dim); line-height:1.7; }
+  .card ul { list-style:none; margin-top:12px; }
+  .card ul li { font-size:13px; color:var(--text-dim); padding:4px 0; border-bottom:1px solid rgba(255,255,255,0.04); display:flex; align-items:flex-start; gap:8px; }
+  .card ul li:last-child { border-bottom:none; }
+  .card ul li::before { content:'→'; color:var(--gold); flex-shrink:0; margin-top:1px; }
+
+  /* TIMELINE */
+  .timeline { position:relative; }
+  .timeline-weeks { display:grid; grid-template-columns:repeat(4,1fr); gap:0; }
+  .week { border:1px solid var(--border); border-right:none; padding:28px 24px; background:var(--bg3); position:relative; }
+  .week:last-child { border-right:1px solid var(--border); }
+  .week-num { font-size:11px; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:6px; }
+  .week-title { font-size:15px; font-weight:700; color:var(--gold); margin-bottom:16px; }
+  .week-item { display:flex; align-items:flex-start; gap:8px; margin-bottom:10px; }
+  .week-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; margin-top:5px; }
+  .week-dot.active { background:var(--gold); }
+  .week-dot.agent { background:var(--blue); }
+  .week-dot.done { background:var(--green); }
+  .week-item span { font-size:12px; color:var(--text-dim); line-height:1.5; }
+  .week-deliverable { margin-top:20px; padding-top:16px; border-top:1px solid var(--border); }
+  .week-deliverable-label { font-size:10px; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-dim); margin-bottom:6px; }
+  .week-deliverable-text { font-size:12px; font-weight:600; color:var(--text); }
+  .legend { display:flex; gap:20px; margin-top:16px; }
+  .legend-item { display:flex; align-items:center; gap:6px; font-size:11px; color:var(--text-dim); }
+  .legend-dot { width:7px; height:7px; border-radius:50%; }
+
+  /* AGENTS FLOW */
+  .flow-container { background:var(--bg3); border:1px solid var(--border); border-radius:16px; padding:36px; overflow-x:auto; }
+  .flow { display:flex; align-items:center; gap:0; flex-wrap:wrap; row-gap:16px; }
+  .flow-node { background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:12px 16px; text-align:center; min-width:110px; flex-shrink:0; }
+  .flow-node.highlight { border-color:var(--gold); background:var(--gold-dim); }
+  .flow-node.new { border-color:var(--blue); background:rgba(52,152,219,0.08); }
+  .flow-node .node-label { font-size:11px; font-weight:700; color:var(--gold); text-transform:uppercase; letter-spacing:0.06em; }
+  .flow-node .node-desc { font-size:10px; color:var(--text-dim); margin-top:3px; }
+  .flow-node.new .node-label { color:var(--blue); }
+  .flow-arrow { font-size:18px; color:var(--border); padding:0 8px; flex-shrink:0; }
+  .flow-decision { background:rgba(201,168,76,0.1); border:1px solid var(--gold); border-radius:10px; padding:10px 16px; text-align:center; }
+  .flow-decision .node-label { font-size:10px; font-weight:700; color:var(--gold); }
+  .flow-decision .node-desc { font-size:9px; color:var(--gold-light); margin-top:2px; }
+  .flow-phases { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:28px; }
+  .flow-phase { border:1px solid var(--border); border-radius:10px; padding:16px; }
+  .flow-phase-num { font-size:10px; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.06em; }
+  .flow-phase-name { font-size:13px; font-weight:700; margin:4px 0; }
+  .flow-phase-who { font-size:11px; color:var(--text-dim); }
+  .flow-phase.trader { border-color:rgba(201,168,76,0.4); }
+  .flow-phase.trader .flow-phase-name { color:var(--gold); }
+  .flow-phase.agent { border-color:rgba(52,152,219,0.4); }
+  .flow-phase.agent .flow-phase-name { color:var(--blue); }
+
+  /* AGENTS TABLE */
+  .agents-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+  .agent-card { background:var(--bg3); border:1px solid var(--border); border-radius:12px; padding:20px; }
+  .agent-card.new { border-color:rgba(52,152,219,0.4); }
+  .agent-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+  .agent-name { font-size:14px; font-weight:700; font-family:monospace; color:var(--gold); }
+  .agent-card.new .agent-name { color:var(--blue); }
+  .agent-status { font-size:10px; padding:2px 8px; border-radius:4px; font-weight:600; }
+  .status-exists { background:rgba(46,204,113,0.1); color:var(--green); }
+  .status-build { background:rgba(52,152,219,0.1); color:var(--blue); }
+  .agent-trigger { font-size:11px; color:var(--text-dim); margin-bottom:6px; }
+  .agent-trigger strong { color:var(--text); }
+  .agent-desc { font-size:12px; color:var(--text-dim); line-height:1.6; }
+
+  /* GOVERNANCE */
+  .gov-flow { display:flex; align-items:stretch; gap:0; margin-bottom:32px; }
+  .gov-step { flex:1; padding:24px 20px; text-align:center; position:relative; }
+  .gov-step::after { content:'→'; position:absolute; right:-12px; top:50%; transform:translateY(-50%); color:var(--gold); font-size:20px; z-index:1; }
+  .gov-step:last-child::after { display:none; }
+  .gov-step:nth-child(1) { background:var(--bg3); border:1px solid var(--border); border-radius:12px 0 0 12px; }
+  .gov-step:nth-child(2) { background:var(--gold-dim); border:1px solid var(--gold); }
+  .gov-step:nth-child(3) { background:var(--bg3); border:1px solid var(--border); }
+  .gov-step:nth-child(4) { background:var(--bg3); border:1px solid var(--border); border-radius:0 12px 12px 0; }
+  .gov-step-num { font-size:11px; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:6px; }
+  .gov-step-title { font-size:15px; font-weight:800; margin-bottom:6px; }
+  .gov-step:nth-child(2) .gov-step-title { color:var(--gold); }
+  .gov-step-desc { font-size:11px; color:var(--text-dim); }
+  .card-template { background:var(--bg); border:1px solid var(--border); border-radius:10px; padding:20px; font-family:monospace; font-size:12px; line-height:1.8; }
+  .card-template .ct-header { color:var(--gold); font-weight:700; margin-bottom:8px; }
+  .card-template .ct-key { color:var(--text-dim); }
+  .card-template .ct-val { color:var(--text); }
+  .card-template .ct-action { color:var(--green); font-weight:700; margin-top:8px; }
+
+  /* INFRASTRUCTURE */
+  .infra-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  .infra-card { background:var(--bg3); border:1px solid var(--border); border-radius:12px; padding:24px; }
+  .infra-card h4 { font-size:13px; font-weight:700; color:var(--gold); margin-bottom:16px; text-transform:uppercase; letter-spacing:0.06em; }
+  .spec-row { display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.04); }
+  .spec-row:last-child { border-bottom:none; }
+  .spec-key { font-size:12px; color:var(--text-dim); }
+  .spec-val { font-size:12px; font-weight:600; }
+  .spec-val.gold { color:var(--gold); }
+  .spec-val.green { color:var(--green); }
+  .alerts-list { margin-top:12px; }
+  .alert-item { display:flex; align-items:flex-start; gap:10px; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.04); }
+  .alert-item:last-child { border-bottom:none; }
+  .alert-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; margin-top:4px; }
+  .alert-dot.red { background:var(--red); }
+  .alert-dot.yellow { background:var(--yellow); }
+  .alert-dot.green { background:var(--green); }
+  .alert-text { font-size:12px; color:var(--text-dim); }
+  .alert-text strong { color:var(--text); display:block; margin-bottom:2px; }
+
+  /* KPIs */
+  .kpi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .kpi-card { background:var(--bg3); border:1px solid var(--border); border-radius:12px; padding:24px; }
+  .kpi-label { font-size:11px; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:8px; }
+  .kpi-value { font-size:28px; font-weight:800; color:var(--gold); line-height:1; margin-bottom:4px; }
+  .kpi-desc { font-size:11px; color:var(--text-dim); }
+  .kpi-bar { height:3px; background:rgba(255,255,255,0.05); border-radius:2px; margin-top:12px; }
+  .kpi-bar-fill { height:100%; border-radius:2px; background:var(--gold); }
+
+  /* BEACH CHECK */
+  .beach-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; }
+  .beach-item { background:var(--bg3); border:1px solid var(--border); border-radius:12px; padding:20px; text-align:center; }
+  .beach-icon { font-size:28px; margin-bottom:10px; }
+  .beach-title { font-size:12px; font-weight:700; margin-bottom:4px; }
+  .beach-desc { font-size:11px; color:var(--text-dim); line-height:1.5; }
+
+  /* COSTS */
+  .costs-row { display:flex; justify-content:space-between; align-items:center; padding:14px 0; border-bottom:1px solid rgba(255,255,255,0.04); }
+  .costs-row:last-child { border-bottom:none; padding-bottom:0; }
+  .costs-item { font-size:13px; color:var(--text-dim); }
+  .costs-amount { font-size:13px; font-weight:600; }
+  .costs-total { display:flex; justify-content:space-between; align-items:center; padding-top:16px; margin-top:8px; border-top:1px solid var(--gold); }
+  .costs-total-label { font-size:15px; font-weight:700; }
+  .costs-total-amount { font-size:22px; font-weight:800; color:var(--gold); }
+
+  /* FOOTER */
+  footer { border-top:1px solid var(--border); padding:32px 40px; display:flex; align-items:center; justify-content:space-between; max-width:1100px; margin:0 auto; }
+  .footer-brand { display:flex; align-items:center; gap:10px; }
+  .footer-text { font-size:11px; color:var(--text-dim); }
+  .footer-conf { font-size:11px; color:var(--text-dim); background:var(--bg3); border:1px solid var(--border); border-radius:4px; padding:4px 10px; }
+
+  @media(max-width:768px){
+    .cover-metrics,.cards-3,.timeline-weeks,.flow-phases,.kpi-grid,.beach-grid,.agents-grid,.infra-grid{grid-template-columns:1fr;}
+    .gov-flow{flex-direction:column;}
+    .gov-step::after{display:none;}
+    .gov-step:nth-child(1),.gov-step:nth-child(4){border-radius:12px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo">TIS</div>
+    <div class="nav-title">Cueva de Trading</div>
+  </div>
+  <div class="nav-links">
+    <a href="#maquina">Máquina de Ideas</a>
+    <a href="#objetivos">Objetivos</a>
+    <a href="#plan">Plan 30 días</a>
+    <a href="#gobierno">Gobierno</a>
+    <a href="#kpis">KPIs</a>
+  </div>
+  <div class="nav-date">Oct 2026 · Confidencial</div>
+</nav>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-tag">Plan Empresarial · Versión 1.0</div>
+  <h1>Cueva de Trading<br><span>100% Autónoma</span></h1>
+  <p class="cover-sub">Un ecosistema agéntico que produce, valida y despliega estrategias sistemáticas sin intervención técnica — liberando al trader para hacer solo lo que importa: el criterio.</p>
+
+  <div class="cover-metrics">
+    <div class="metric-card">
+      <div class="metric-value">30</div>
+      <div class="metric-label">Días al objetivo</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value">5</div>
+      <div class="metric-label">Puntos de criterio</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value">$4.15</div>
+      <div class="metric-label">Costo/mes infraestructura</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value">0</div>
+      <div class="metric-label">Líneas de código por el trader</div>
+    </div>
+  </div>
+
+  <div class="cover-footer">
+    <div class="badge">Exchange: <strong>Bitunix</strong></div>
+    <div class="badge">Capital: <strong>&lt; $5,000 USD</strong></div>
+    <div class="badge">Método: <strong>TIS 8 fases</strong></div>
+    <div class="badge">Activos: <strong>BTC · ETH · SOL · XRP · BCH</strong></div>
+    <div class="badge">VPS: <strong>Hetzner CX22</strong></div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- MÁQUINA DE IDEAS -->
+<section id="maquina">
+  <div class="section-tag">01 · Máquina de Ideas</div>
+  <h2>De idea a robot<br><span>sin tocar código</span></h2>
+  <p class="section-desc">Una hipótesis escrita en lenguaje natural entra al pipeline. Al otro lado sale un robot corriendo en Bitunix con dinero real. El trader solo decide en 5 puntos. Los agentes hacen el resto.</p>
+
+  <div class="flow-container" style="margin-bottom:28px;">
+    <div style="font-size:11px;color:var(--text-dim);margin-bottom:20px;text-transform:uppercase;letter-spacing:0.08em;">El pipeline completo — idea a producción</div>
+    <div class="flow">
+      <div class="flow-node highlight"><div class="node-label">💡 Idea</div><div class="node-desc">texto natural</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node"><div class="node-label">hipotesis</div><div class="node-desc">Fase 01</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-decision"><div class="node-label">✓ Criterio 1</div><div class="node-desc">¿apruebas?</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node"><div class="node-label">datos</div><div class="node-desc">Fase 02</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-decision"><div class="node-label">✓ Criterio 2</div><div class="node-desc">¿apruebas?</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node"><div class="node-label">reglas</div><div class="node-desc">Fase 03</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node"><div class="node-label">validador</div><div class="node-desc">Fase 04 · 4/4</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-decision"><div class="node-label">✓ Criterio 3</div><div class="node-desc">¿apruebas?</div></div>
+    </div>
+    <div class="flow" style="margin-top:16px;">
+      <div class="flow-node"><div class="node-label">optimizar</div><div class="node-desc">Fase 05</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node"><div class="node-label">robustez</div><div class="node-desc">Fase 06</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-decision"><div class="node-label">✓ Criterio 4</div><div class="node-desc">¿apruebas?</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node new"><div class="node-label">sizing</div><div class="node-desc">Fase 07 · nuevo</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node new"><div class="node-label">deployer</div><div class="node-desc">Fase 08 · nuevo</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-decision"><div class="node-label">✓ Criterio 5</div><div class="node-desc">¿activas?</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node highlight"><div class="node-label">🤖 Robot</div><div class="node-desc">Bitunix live</div></div>
+    </div>
+  </div>
+
+  <div class="cards-3">
+    <div class="card">
+      <div class="card-icon gold">🧠</div>
+      <h3>El trader aporta criterio</h3>
+      <p>Solo decides en 5 momentos concretos. Nunca ves código, nunca ejecutas scripts, nunca descargas datos.</p>
+      <ul>
+        <li>¿Esta hipótesis tiene sentido?</li>
+        <li>¿Los datos son confiables?</li>
+        <li>¿El 4/4 justifica el riesgo?</li>
+        <li>¿Sobrevive un año malo?</li>
+        <li>¿Activo el robot en real?</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon blue">🤖</div>
+      <h3>Los agentes hacen el trabajo</h3>
+      <p>Nueve agentes especializados cubren las 8 fases del método TIS sin intervención técnica.</p>
+      <ul>
+        <li>Descarga y cura los datos automáticamente</li>
+        <li>Redacta la hipótesis formal en ficha</li>
+        <li>Corre el backtest con costes reales</li>
+        <li>Genera el config del robot listo para subir</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon green">📋</div>
+      <h3>El orquestador lleva el registro</h3>
+      <p>Cada mañana a las 06:30 recibes un briefing de 5 líneas con el estado de todo. Sin abrir nada, sin ejecutar nada.</p>
+      <ul>
+        <li>Qué robots están activos y su estado</li>
+        <li>Cuántas ideas están en el pipeline</li>
+        <li>Qué decisión necesita tu criterio hoy</li>
+        <li>Alertas si algo falló durante la noche</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- OBJETIVOS -->
+<section id="objetivos">
+  <div class="section-tag">02 · Misión</div>
+  <h2>Tres <span>verticales</span>,<br>un objetivo</h2>
+  <p class="section-desc">La cueva no es solo un backtest. Es una máquina de producción de alpha con un trader en el centro que solo pone criterio — nunca código.</p>
+
+  <div class="cards-3">
+    <div class="card">
+      <div class="card-icon gold">🧠</div>
+      <h3>Entendimiento del plan</h3>
+      <p>Saber exactamente en qué fase está cada idea, qué le falta, y qué decisión necesita el trader ahora.</p>
+      <ul>
+        <li>Dashboard de estado de la cueva actualizado diariamente</li>
+        <li>Cada ficha con fase actual y siguiente acción clara</li>
+        <li>Sin sorpresas: el orquestador reporta el estado cada mañana</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon gold">⚙️</div>
+      <h3>Desarrollo diario</h3>
+      <p>Un workflow que convierte ideas en texto a estrategias backtestadas sin que el trader toque Python.</p>
+      <ul>
+        <li>Hipótesis escrita en lenguaje natural → ficha completa</li>
+        <li>Agentes corren AED, backtest y robustez en automático</li>
+        <li>Trader solo decide en 5 puntos de criterio por estrategia</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon gold">🏭</div>
+      <h3>Pipeline dominada</h3>
+      <p>La máquina produce estrategias, las valida y las despliega. El trader vive de los resultados, no del trabajo.</p>
+      <ul>
+        <li>Cuenta propia corriendo 100% automatizada en Bitunix</li>
+        <li>Robot monitoreado con alertas Telegram en tiempo real</li>
+        <li>Briefing diario automático a las 06:30 sin ejecutar nada</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PLAN 30 DÍAS -->
+<section id="plan">
+  <div class="section-tag">03 · Ejecución</div>
+  <h2>Plan de <span>30 días</span></h2>
+  <p class="section-desc">Cuatro semanas con entregable concreto al final de cada una. Si la Semana 2 termina bien, la cuenta ya está corriendo en real.</p>
+
+  <div class="timeline">
+    <div class="timeline-weeks">
+      <div class="week">
+        <div class="week-num">Semana 1 · Días 1–7</div>
+        <div class="week-title">Fundación</div>
+        <div class="week-item"><div class="week-dot active"></div><span>Contratar VPS Hetzner CX22</span></div>
+        <div class="week-item"><div class="week-dot active"></div><span>Elegir estrategia 4/4 para producción</span></div>
+        <div class="week-item"><div class="week-dot agent"></div><span>Agente genera dashboard de estado de la cueva</span></div>
+        <div class="week-item"><div class="week-dot agent"></div><span>Configurar ambiente Python en VPS</span></div>
+        <div class="week-item"><div class="week-dot agent"></div><span>Robot en paper trading (testnet Bitunix)</span></div>
+        <div class="week-deliverable">
+          <div class="week-deliverable-label">Al final corre</div>
+          <div class="week-deliverable-text">Dashboard vivo + robot en staging</div>
+        </div>
+      </div>
+      <div class="week">
+        <div class="week-num">Semana 2 · Días 8–14</div>
+        <div class="week-title">Producción real</div>
+        <div class="week-item"><div class="week-dot active"></div><span>Aprobar paso a producción real</span></div>
+        <div class="week-item"><div class="week-dot active"></div><span>Leer reporte diario y validar operaciones</span></div>
+        <div class="week-item"><div class="week-dot agent"></div><span>Robot en Bitunix con sizing mínimo ($50–100/op)</span></div>
+        <div class="week-item"><div class="week-dot agent"></div><span>Telegram bot con 3 alertas críticas activas</span></div>
+        <div class="week-item"><div class="week-dot agent"></div><span>Briefing diario automático a las 06:30</span></div>
+        <div class="week-deliverable">
+          <div class="week-deliverable-label">Al final corre</div>
+          <div class="week-deliverable-text">Robot real + alertas + briefing automático</div>
+        </div>
+      </div>
+      <div class="week">
+        <div class="week-num">Semana 3 · Días 15–21</div>
+        <div class="week-title">Máquina de ideas</div>
+        <div class="week-item"><div class="week-dot active"></div><span>Escribir 1–2 hipótesis por día en lenguaje natural</span></div>
+        <div class="week-item"><div class="week-dot active"></div><span>Decidir sí/no en los 5 puntos de criterio</span></div>
+        <div class="week-item"><div class="week-dot agent"></div><span>Pipeline completo: hipótesis → backtest sin código</span></div>
+        <div class="week-item"><div class="week-dot agent"></div><span>Segunda estrategia entrando al pipeline</span></div>
+        <div class="week-item"><div class="week-dot agent"></div><span>datos_refresh corriendo diario en cron</span></div>
+        <div class="week-deliverable">
+          <div class="week-deliverable-label">Al final corre</div>
+          <div class="week-deliverable-text">Pipeline end-to-end + robot #2 en validación</div>
+        </div>
+      </div>
+      <div class="week">
+        <div class="week-num">Semana 4 · Días 22–30</div>
+        <div class="week-title">Check de playa</div>
+        <div class="week-item"><div class="week-dot active"></div><span>Simular 3 días de ausencia total</span></div>
+        <div class="week-item"><div class="week-dot active"></div><span>Solo leer alertas, no ejecutar nada</span></div>
+        <div class="week-item"><div class="week-dot active"></div><span>Definir las próximas 5 hipótesis del mes 2</span></div>
+        <div class="week-item"><div class="week-dot agent"></div><span>Monitor de salud pausa robots si hay error</span></div>
+        <div class="week-item"><div class="week-dot agent"></div><span>Reporte semanal automático del portfolio</span></div>
+        <div class="week-deliverable">
+          <div class="week-deliverable-label">Al final corre</div>
+          <div class="week-deliverable-text">Sistema sostenido 3 días sin el trader</div>
+        </div>
+      </div>
+    </div>
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--gold)"></div>Trader</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--blue)"></div>Agentes</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div>Completado</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- AGENTES -->
+<section id="ecosistema">
+  <div class="section-tag">04 · Agentes</div>
+  <h2>Los <span>9 agentes</span><br>del ecosistema</h2>
+  <p class="section-desc">Cada agente tiene una responsabilidad exacta. Los que ya existen funcionan. Los nuevos se construyeron en paralelo con este plan.</p>
+
+  <div class="agents-grid">
+    <div class="agent-card">
+      <div class="agent-header">
+        <div class="agent-name">orquestador</div>
+        <div class="agent-status status-build">Por construir</div>
+      </div>
+      <div class="agent-trigger">Dispara: <strong>A demanda o diario a las 06:00</strong></div>
+      <div class="agent-desc">Lee todas las fichas, detecta en qué fase está cada idea y genera las tarjetas de aprobación pendientes. Mantiene el registro de qué fue aprobado.</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-header">
+        <div class="agent-name">briefing</div>
+        <div class="agent-status status-build">Por construir</div>
+      </div>
+      <div class="agent-trigger">Dispara: <strong>Cron diario 06:30 UTC</strong></div>
+      <div class="agent-desc">Agrega el estado de robots, alertas de datos y banderas de vigía en un mensaje de 5 líneas. Llega al celular sin que el trader ejecute nada.</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-header">
+        <div class="agent-name">datos_refresh</div>
+        <div class="agent-status status-build">Por construir</div>
+      </div>
+      <div class="agent-trigger">Dispara: <strong>Cron diario 06:00 UTC</strong></div>
+      <div class="agent-desc">Descarga solo las velas nuevas para cada activo activo, hace append al CSV y corre curar.py. Si algo falla, escribe la alerta automáticamente.</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-header">
+        <div class="agent-name">vigia</div>
+        <div class="agent-status status-build">Por construir</div>
+      </div>
+      <div class="agent-trigger">Dispara: <strong>Cron diario 06:15 UTC</strong></div>
+      <div class="agent-desc">Compara el rendimiento de cada robot activo contra los límites del plan. Genera bandera VERDE / AMARILLO / ROJO con una línea de explicación.</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-header">
+        <div class="agent-name">sizing</div>
+        <div class="agent-status status-build">Por construir</div>
+      </div>
+      <div class="agent-trigger">Dispara: <strong>Cuando robustez aprueba (Fase 06)</strong></div>
+      <div class="agent-desc">Calcula contratos, riesgo por operación y apalancamiento con el capital real. Alerta si el sizing supera el 3x o el DD esperado es mayor al aceptado.</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-header">
+        <div class="agent-name">deployer</div>
+        <div class="agent-status status-build">Por construir</div>
+      </div>
+      <div class="agent-trigger">Dispara: <strong>Cuando trader aprueba sizing (Fase 07)</strong></div>
+      <div class="agent-desc">Genera el config.json del robot y la checklist de 5 puntos antes de activar en real. Cambia estado de DEMO a REAL solo con aprobación explícita.</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-header">
+        <div class="agent-name">datos · hipotesis · reglas</div>
+        <div class="agent-status status-exists">Existente</div>
+      </div>
+      <div class="agent-trigger">Dispara: <strong>Según fase del pipeline</strong></div>
+      <div class="agent-desc">Agentes de las fases 01–03 ya operativos. Descargan, curan, redactan hipótesis y convierten ideas en pseudocódigo.</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-header">
+        <div class="agent-name">validador · Director</div>
+        <div class="agent-status status-exists">Existente</div>
+      </div>
+      <div class="agent-trigger">Dispara: <strong>Según fase del pipeline</strong></div>
+      <div class="agent-desc">Validador corre el backtest 4/4 con costes reales. El Director orquesta todo y asegura que ningún agente corra sin tarjeta de aprobación.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- MODELO DE GOBIERNO -->
+<section id="gobierno">
+  <div class="section-tag">05 · Governance</div>
+  <h2>Modelo de <span>gobierno</span></h2>
+  <p class="section-desc">Ley universal de la cueva. Aplica a todos los activos, todas las estrategias, todas las fases. Sin excepción.</p>
+
+  <div class="gov-flow">
+    <div class="gov-step">
+      <div class="gov-step-num">01</div>
+      <div class="gov-step-title">Agente propone</div>
+      <div class="gov-step-desc">Genera la tarjeta con parámetros concretos</div>
+    </div>
+    <div class="gov-step">
+      <div class="gov-step-num">02</div>
+      <div class="gov-step-title">Trader aprueba</div>
+      <div class="gov-step-desc">SÍ o NO — solo criterio, nunca código</div>
+    </div>
+    <div class="gov-step">
+      <div class="gov-step-num">03</div>
+      <div class="gov-step-title">Orquestador ejecuta</div>
+      <div class="gov-step-desc">Solo lo que fue aprobado, nada más</div>
+    </div>
+    <div class="gov-step">
+      <div class="gov-step-num">04</div>
+      <div class="gov-step-title">Agente reporta</div>
+      <div class="gov-step-desc">Resultado para la siguiente decisión</div>
+    </div>
+  </div>
+
+  <div class="cards-2">
+    <div class="card">
+      <h3 style="margin-bottom:16px;">Formato de tarjeta de aprobación</h3>
+      <div class="card-template">
+        <div class="ct-header">PROPUESTA · sizing</div>
+        <span class="ct-key">Activo:      </span><span class="ct-val">BTCUSDT · 1h · Bitunix</span><br>
+        <span class="ct-key">Skill:       </span><span class="ct-val">sizing · Fase 07</span><br>
+        <span class="ct-key">Capital:     </span><span class="ct-val">$4,500 USD disponibles</span><br>
+        <span class="ct-key">Riesgo/op:   </span><span class="ct-val">$90 (2% del capital)</span><br>
+        <span class="ct-key">Tamaño:      </span><span class="ct-val">0.0015 BTC por operación</span><br>
+        <span class="ct-key">Apalancam.:  </span><span class="ct-val">2x (límite: 3x)</span><br>
+        <span class="ct-key">DD esperado: </span><span class="ct-val">$540 en peor racha</span><br>
+        <span class="ct-key">Archivos:    </span><span class="ct-val">fichas/btcusd_ewmac.md</span><br>
+        <div class="ct-action">¿Apruebas? SÍ / NO</div>
+      </div>
+    </div>
+    <div class="card">
+      <h3 style="margin-bottom:16px;">Los 5 únicos momentos de criterio</h3>
+      <ul>
+        <li>¿Esta hipótesis tiene sentido para ti? (Fase 01)</li>
+        <li>¿La calidad de los datos es suficiente? (Fase 02)</li>
+        <li>¿Los números del backtest 4/4 justifican el riesgo? (Fase 04)</li>
+        <li>¿La estrategia sobrevive un año malo? (Fase 06)</li>
+        <li>¿Activas el robot con dinero real? (Fase 08)</li>
+      </ul>
+      <p style="margin-top:16px;font-size:12px;color:var(--text-dim);">En ninguno de estos 5 momentos necesitas ver código. Solo leer un resumen de 5 líneas y decir sí o no.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- INFRAESTRUCTURA -->
+<section>
+  <div class="section-tag">06 · Infraestructura</div>
+  <h2>Stack <span>técnico</span></h2>
+  <p class="section-desc">Diseñado para costar menos de $5 al mes y correr solo. Si el trader se va de vacaciones, el sistema sigue.</p>
+
+  <div class="infra-grid">
+    <div class="infra-card">
+      <h4>VPS · Hetzner CX22</h4>
+      <div class="spec-row"><span class="spec-key">Precio</span><span class="spec-val gold">$4.15 / mes</span></div>
+      <div class="spec-row"><span class="spec-key">CPU</span><span class="spec-val">2 vCPU</span></div>
+      <div class="spec-row"><span class="spec-key">RAM</span><span class="spec-val">4 GB</span></div>
+      <div class="spec-row"><span class="spec-key">OS</span><span class="spec-val">Ubuntu 24.04 LTS</span></div>
+      <div class="spec-row"><span class="spec-key">Uptime garantizado</span><span class="spec-val green">99.9%</span></div>
+      <div class="spec-row"><span class="spec-key">Capacidad</span><span class="spec-val">3–5 robots simultáneos</span></div>
+    </div>
+    <div class="infra-card">
+      <h4>Monitoreo · Telegram Bot</h4>
+      <div class="alerts-list">
+        <div class="alert-item">
+          <div class="alert-dot red"></div>
+          <div class="alert-text"><strong>Robot offline</strong>Sin señal por más de 5 minutos → alerta inmediata</div>
+        </div>
+        <div class="alert-item">
+          <div class="alert-dot red"></div>
+          <div class="alert-text"><strong>Margin call</strong>Margen libre &lt; 20% → robot se pausa solo</div>
+        </div>
+        <div class="alert-item">
+          <div class="alert-dot yellow"></div>
+          <div class="alert-text"><strong>Pérdida diaria</strong>PnL diario &lt; -2% del capital → robot se pausa</div>
+        </div>
+        <div class="alert-item">
+          <div class="alert-dot green"></div>
+          <div class="alert-text"><strong>Briefing 06:30</strong>Estado diario: robots, pipeline, datos — 5 líneas</div>
+        </div>
+      </div>
+    </div>
+    <div class="infra-card">
+      <h4>Cron jobs (VPS)</h4>
+      <div style="font-family:monospace;font-size:11px;line-height:2;color:var(--text-dim);">
+        <span style="color:var(--gold)">0 6 * * *</span>   datos_refresh.py<br>
+        <span style="color:var(--gold)">15 6 * * *</span>  vigia.py<br>
+        <span style="color:var(--gold)">30 6 * * *</span>  briefing.py<br>
+        <span style="color:var(--gold)">*/5 * * * *</span> heartbeat.py
+      </div>
+    </div>
+    <div class="infra-card">
+      <h4>Sizing conservador (&lt;$5,000)</h4>
+      <div class="spec-row"><span class="spec-key">Apalancamiento máximo</span><span class="spec-val">3x</span></div>
+      <div class="spec-row"><span class="spec-key">Riesgo por operación</span><span class="spec-val">1–2% del capital</span></div>
+      <div class="spec-row"><span class="spec-key">Capital primera semana</span><span class="spec-val gold">$500 (micro-test)</span></div>
+      <div class="spec-row"><span class="spec-key">DD máximo aceptado</span><span class="spec-val">15% del capital</span></div>
+      <div class="spec-row"><span class="spec-key">Stop diario automático</span><span class="spec-val green">2% — pausa robot</span></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- KPIs -->
+<section id="kpis">
+  <div class="section-tag">07 · Métricas de éxito</div>
+  <h2>¿Cómo saber que <span>funcionó</span>?</h2>
+  <p class="section-desc">Tres entregables críticos del mes. Si los tres están verdes al día 30, el plan fue exitoso.</p>
+
+  <div class="kpi-grid" style="margin-bottom:32px;">
+    <div class="kpi-card">
+      <div class="kpi-label">Entregable 1</div>
+      <div class="kpi-value">1+</div>
+      <div class="kpi-desc">Robot en producción real operando en Bitunix con dinero real</div>
+      <div class="kpi-bar"><div class="kpi-bar-fill" style="width:0%"></div></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Entregable 2</div>
+      <div class="kpi-value">8</div>
+      <div class="kpi-desc">Fases del pipeline automatizadas end-to-end sin intervención técnica del trader</div>
+      <div class="kpi-bar"><div class="kpi-bar-fill" style="width:0%"></div></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Entregable 3</div>
+      <div class="kpi-value">0</div>
+      <div class="kpi-desc">Comandos manuales ejecutados para que el briefing llegue cada mañana</div>
+      <div class="kpi-bar"><div class="kpi-bar-fill" style="width:0%"></div></div>
+    </div>
+  </div>
+
+  <!-- BEACH CHECK -->
+  <div style="margin-top:40px;">
+    <div class="section-tag" style="margin-bottom:16px;">Check de playa — 5 condiciones para irse sin preocupaciones</div>
+    <div class="beach-grid">
+      <div class="beach-item">
+        <div class="beach-icon">🖥️</div>
+        <div class="beach-title">VPS activo</div>
+        <div class="beach-desc">Robots corriendo en Hetzner con uptime verificado</div>
+      </div>
+      <div class="beach-item">
+        <div class="beach-icon">📱</div>
+        <div class="beach-title">Alertas Telegram</div>
+        <div class="beach-desc">3 alertas críticas configuradas y probadas</div>
+      </div>
+      <div class="beach-item">
+        <div class="beach-icon">🛡️</div>
+        <div class="beach-title">Monitor de salud</div>
+        <div class="beach-desc">Robot se pausa solo si la conexión falla o hay margin call</div>
+      </div>
+      <div class="beach-item">
+        <div class="beach-icon">📋</div>
+        <div class="beach-title">Briefing automático</div>
+        <div class="beach-desc">Reporte diario llegando sin ejecutar nada manualmente</div>
+      </div>
+      <div class="beach-item">
+        <div class="beach-icon">🤖</div>
+        <div class="beach-title">Cero manual</div>
+        <div class="beach-desc">Ningún script requiere ejecución manual para que todo funcione</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- COSTOS -->
+<section>
+  <div class="section-tag">08 · Finanzas del proyecto</div>
+  <h2>Costo del <span>ecosistema</span></h2>
+  <p class="section-desc">El objetivo es que la infraestructura cueste menos que un café al mes.</p>
+
+  <div class="cards-2">
+    <div class="card">
+      <h3 style="margin-bottom:16px;">Costos mensuales</h3>
+      <div class="costs-row">
+        <span class="costs-item">VPS Hetzner CX22</span>
+        <span class="costs-amount" style="color:var(--gold);">$4.15</span>
+      </div>
+      <div class="costs-row">
+        <span class="costs-item">Telegram Bot</span>
+        <span class="costs-amount" style="color:var(--green);">Gratis</span>
+      </div>
+      <div class="costs-row">
+        <span class="costs-item">Yahoo Finance / Alpaca datos</span>
+        <span class="costs-amount" style="color:var(--green);">Gratis</span>
+      </div>
+      <div class="costs-row">
+        <span class="costs-item">Claude Code (desarrollo)</span>
+        <span class="costs-amount">Plan existente</span>
+      </div>
+      <div class="costs-total">
+        <span class="costs-total-label">Total infraestructura</span>
+        <span class="costs-total-amount">$4.15 / mes</span>
+      </div>
+    </div>
+    <div class="card">
+      <h3 style="margin-bottom:16px;">Capital en trading</h3>
+      <div class="costs-row">
+        <span class="costs-item">Capital total disponible</span>
+        <span class="costs-amount">&lt; $5,000</span>
+      </div>
+      <div class="costs-row">
+        <span class="costs-item">Semana 1 (micro-test)</span>
+        <span class="costs-amount" style="color:var(--gold);">$500</span>
+      </div>
+      <div class="costs-row">
+        <span class="costs-item">Riesgo por operación</span>
+        <span class="costs-amount">1–2% ($50–$100)</span>
+      </div>
+      <div class="costs-row">
+        <span class="costs-item">Apalancamiento máximo</span>
+        <span class="costs-amount">3x</span>
+      </div>
+      <div class="costs-row">
+        <span class="costs-item">DD máximo tolerado</span>
+        <span class="costs-amount" style="color:var(--red);">15% del capital</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <div class="nav-logo">TIS</div>
+    <div>
+      <div style="font-size:13px;font-weight:700;">Cueva de Trading TIS</div>
+      <div style="font-size:11px;color:var(--text-dim);">Plan Empresarial · Versión 1.0 · Oct 2026</div>
+    </div>
+  </div>
+  <div class="footer-text">Método TIS (Trade It Simple) · Bitunix · Hetzner · Claude Code</div>
+  <div class="footer-conf">Confidencial · Uso personal</div>
+</footer>
+
+</body>
+</html>

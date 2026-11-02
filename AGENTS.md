@@ -44,9 +44,12 @@ Trabajas con agentes (carpeta .claude/agents/) y skills o manuales (carpeta .cla
 - Fase 02 → la llevas tú con la skill aed.
 - Fase 03 → agente «reglas»: convierte la regla en PSEUDOCÓDIGO paso a paso.
 - Fase 04 → agente «validador», que usa la skill validador-4de4: prueba la regla con mi CSV y da el veredicto X/4.
-- Fase 05 → skill optimizar: meseta de parámetros, no pico (Día 3).
+- Fase 05 → skill optimizar: corre codigo/optimizar.py con vectorbt opcional. Barrido de parámetros
+  dentro de muestra (70%), busca meseta ≥3 combos que pasen 4/4. Veredicto: APRUEBA (meseta),
+  MARGINAL (1-2 combos), NO APRUEBA (ninguno pasa). Presenta tarjeta de aprobación antes de ejecutar.
 - Fase 06 → skill robustez: costes ×2, Monte Carlo y años malos (Día 3).
-- Fases 07 y 08 → todavía no hay agente ni skill: se construyen durante el Reto. Dilo y para.
+- Fase 07 → skill sizing: calcula tamaño de posición y riesgo con la fórmula Carver simplificada, adaptada a Bitunix (perpetuos, taker 0.05 %, maker 0.02 %, funding 0.01 %/8h, apalancamiento máximo 3×). Lee MI_PLAN.md si existe; presenta tarjeta de aprobación antes de guardar en la ficha.
+- Fase 08 → skill deployer: genera robots/<activo>_<idea>_config.json en estado DEMO, presenta checklist de 5 puntos y, solo tras aprobación explícita del trader, cambia el estado a REAL. Nunca activa dinero real sin tarjeta aprobada.
 - Cuando necesite datos de un activo → agente «datos», que usa la skill datos: yo elijo la
   fuente (Yahoo Finance, Alpaca, Dukascopy, HistData), él descarga con Python, cura los datos y
   deja en datos/ un CSV limpio con su informe de calidad en resultados/.
@@ -76,6 +79,27 @@ Cuando cierres una fase o termines un encargo que cambió archivos, propónme gu
 GitHub con un mensaje que diga qué se hizo. Hazlo solo si te digo que sí. Nunca subas
 datos/*.csv, .env, contraseñas ni claves, y nunca me pidas una contraseña.
 </mi_repositorio>
+
+<gobierno>
+ESTAS REGLAS APLICAN A TODA LA CUEVA — todos los activos, todas las estrategias, todas las fases.
+
+Modelo de gobierno: Agente propone → Trader aprueba → Orquestador ejecuta → Agente reporta.
+
+Antes de que cualquier agente o skill corra, presenta una TARJETA DE APROBACIÓN con este formato exacto:
+
+  PROPUESTA · <nombre del agente>
+  Activo:      <activo y temporalidad>
+  Skill:       <nombre de la skill>
+  Parámetros:  <los valores concretos que se van a usar>
+  Va a:        <qué va a hacer en una línea>
+  Archivos:    <qué archivos crea o modifica>
+  ¿Apruebas?  SÍ / NO
+
+Si el trader dice NO, propón una alternativa. Si dice SÍ, ejecuta exactamente lo aprobado.
+El Director es el orquestador: lleva registro de qué fue aprobado y qué está pendiente.
+Ningún agente toma decisiones de parámetros por su cuenta. Los parámetros los aprueba el trader.
+Los agentes tienen libertad para proponer cómo hacer el trabajo, pero no para ejecutarlo sin aprobación.
+</gobierno>
 
 <como_trabajas>
 1. Empieza cada respuesta con «Fase XX · nombre · agente o skill» y di cuál es la siguiente.

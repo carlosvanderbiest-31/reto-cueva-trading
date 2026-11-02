@@ -1,0 +1,175 @@
+fuente,grupo,simbolo,tf,barras,desde,hasta,mb,fichero
+norgate,Índices EE. UU.,SPY,D1,8492,1993-01-29,2026-10-23,0.31,norgate/D1/SPY.parquet
+norgate,Índices EE. UU.,QQQ,D1,6950,1999-03-10,2026-10-23,0.26,norgate/D1/QQQ.parquet
+norgate,Índices EE. UU.,DIA,D1,7236,1998-01-20,2026-10-23,0.28,norgate/D1/DIA.parquet
+norgate,Índices EE. UU.,IWM,D1,6642,2000-05-26,2026-10-23,0.26,norgate/D1/IWM.parquet
+norgate,Índices EE. UU.,MDY,D1,7921,1995-05-04,2026-10-23,0.29,norgate/D1/MDY.parquet
+norgate,Índices EE. UU.,RSP,D1,5899,2003-04-30,2026-10-08,0.22,norgate/D1/RSP.parquet
+norgate,Sectores,XLB,D1,7002,1998-12-22,2026-10-23,0.26,norgate/D1/XLB.parquet
+norgate,Sectores,XLC,D1,2088,2018-06-19,2026-10-08,0.08,norgate/D1/XLC.parquet
+norgate,Sectores,XLE,D1,7002,1998-12-22,2026-10-23,0.26,norgate/D1/XLE.parquet
+norgate,Sectores,XLF,D1,7002,1998-12-22,2026-10-23,0.25,norgate/D1/XLF.parquet
+norgate,Sectores,XLI,D1,7001,1998-12-22,2026-10-23,0.26,norgate/D1/XLI.parquet
+norgate,Sectores,XLK,D1,7002,1998-12-22,2026-10-23,0.25,norgate/D1/XLK.parquet
+norgate,Sectores,XLP,D1,7002,1998-12-22,2026-10-23,0.25,norgate/D1/XLP.parquet
+norgate,Sectores,XLU,D1,7002,1998-12-22,2026-10-23,0.25,norgate/D1/XLU.parquet
+norgate,Sectores,XLV,D1,7002,1998-12-22,2026-10-23,0.25,norgate/D1/XLV.parquet
+norgate,Sectores,XLY,D1,7002,1998-12-22,2026-10-23,0.26,norgate/D1/XLY.parquet
+norgate,Industrias,SMH,D1,3720,2011-12-21,2026-10-08,0.14,norgate/D1/SMH.parquet
+norgate,Industrias,XBI,D1,5212,2006-02-06,2026-10-23,0.2,norgate/D1/XBI.parquet
+norgate,Industrias,KRE,D1,5117,2006-06-22,2026-10-23,0.2,norgate/D1/KRE.parquet
+norgate,Industrias,XHB,D1,5212,2006-02-06,2026-10-23,0.2,norgate/D1/XHB.parquet
+norgate,Industrias,XME,D1,5116,2006-06-22,2026-10-23,0.2,norgate/D1/XME.parquet
+norgate,Industrias,XOP,D1,5116,2006-06-22,2026-10-23,0.2,norgate/D1/XOP.parquet
+norgate,Industrias,XRT,D1,5115,2006-06-22,2026-10-23,0.2,norgate/D1/XRT.parquet
+norgate,Industrias,IGV,D1,6340,2001-07-13,2026-10-08,0.23,norgate/D1/IGV.parquet
+norgate,Industrias,IBB,D1,6464,2001-02-09,2026-10-23,0.24,norgate/D1/IBB.parquet
+norgate,Industrias,GDX,D1,5139,2006-05-22,2026-10-23,0.19,norgate/D1/GDX.parquet
+norgate,Bonos,SHY,D1,6101,2002-07-26,2026-10-23,0.19,norgate/D1/SHY.parquet
+norgate,Bonos,IEF,D1,6101,2002-07-26,2026-10-23,0.23,norgate/D1/IEF.parquet
+norgate,Bonos,TLT,D1,6101,2002-07-26,2026-10-23,0.23,norgate/D1/TLT.parquet
+norgate,Bonos,TIP,D1,5757,2003-12-05,2026-10-23,0.21,norgate/D1/TIP.parquet
+norgate,Bonos,AGG,D1,5806,2003-09-26,2026-10-23,0.21,norgate/D1/AGG.parquet
+norgate,Bonos,LQD,D1,6101,2002-07-26,2026-10-23,0.23,norgate/D1/LQD.parquet
+norgate,Bonos,HYG,D1,4917,2007-04-11,2026-10-23,0.18,norgate/D1/HYG.parquet
+norgate,Bonos,JNK,D1,4751,2007-12-04,2026-10-23,0.17,norgate/D1/JNK.parquet
+norgate,Bonos,EMB,D1,4740,2007-12-19,2026-10-23,0.18,norgate/D1/EMB.parquet
+norgate,Materias primas,GLD,D1,5517,2004-11-18,2026-10-23,0.2,norgate/D1/GLD.parquet
+norgate,Materias primas,SLV,D1,5155,2006-04-28,2026-10-23,0.15,norgate/D1/SLV.parquet
+norgate,Materias primas,USO,D1,5168,2006-04-10,2026-10-23,0.17,norgate/D1/USO.parquet
+norgate,Materias primas,UNG,D1,4912,2007-04-18,2026-10-23,0.16,norgate/D1/UNG.parquet
+norgate,Materias primas,DBA,D1,4982,2007-01-05,2026-10-23,0.15,norgate/D1/DBA.parquet
+norgate,Materias primas,DBC,D1,5213,2006-02-03,2026-10-23,0.16,norgate/D1/DBC.parquet
+norgate,Materias primas,GSG,D1,5097,2006-07-21,2026-10-23,0.14,norgate/D1/GSG.parquet
+norgate,Divisas,UUP,D1,4951,2007-02-20,2026-10-23,0.13,norgate/D1/UUP.parquet
+norgate,Divisas,FXE,D1,5249,2005-12-12,2026-10-23,0.18,norgate/D1/FXE.parquet
+norgate,Divisas,FXY,D1,4956,2007-02-13,2026-10-23,0.15,norgate/D1/FXY.parquet
+norgate,Internacional,EFA,D1,6333,2001-08-17,2026-10-23,0.24,norgate/D1/EFA.parquet
+norgate,Internacional,EEM,D1,5922,2003-04-11,2026-10-23,0.22,norgate/D1/EEM.parquet
+norgate,Internacional,VGK,D1,5441,2005-03-10,2026-10-23,0.2,norgate/D1/VGK.parquet
+norgate,Internacional,EWJ,D1,7701,1996-03-18,2026-10-23,0.18,norgate/D1/EWJ.parquet
+norgate,Internacional,EWZ,D1,6576,2000-07-14,2026-10-23,0.25,norgate/D1/EWZ.parquet
+norgate,Internacional,FXI,D1,5546,2004-10-08,2026-10-23,0.21,norgate/D1/FXI.parquet
+norgate,Internacional,EWG,D1,7692,1996-03-18,2026-10-23,0.26,norgate/D1/EWG.parquet
+norgate,Internacional,EWU,D1,7642,1996-03-18,2026-10-23,0.18,norgate/D1/EWU.parquet
+norgate,Internacional,VWO,D1,5441,2005-03-10,2026-10-23,0.21,norgate/D1/VWO.parquet
+norgate,Inmobiliario,VNQ,D1,5553,2004-09-29,2026-10-23,0.21,norgate/D1/VNQ.parquet
+norgate,Acciones grandes,AAPL,D1,9271,1990-01-02,2026-10-23,0.33,norgate/D1/AAPL.parquet
+norgate,Acciones grandes,MSFT,D1,9271,1990-01-02,2026-10-23,0.33,norgate/D1/MSFT.parquet
+norgate,Acciones grandes,NVDA,D1,6982,1999-01-22,2026-10-23,0.25,norgate/D1/NVDA.parquet
+norgate,Acciones grandes,AMZN,D1,7407,1997-05-15,2026-10-23,0.27,norgate/D1/AMZN.parquet
+norgate,Acciones grandes,GOOGL,D1,5581,2004-08-19,2026-10-23,0.22,norgate/D1/GOOGL.parquet
+norgate,Acciones grandes,META,D1,3629,2012-05-18,2026-10-23,0.14,norgate/D1/META.parquet
+norgate,Acciones grandes,TSLA,D1,4106,2010-06-29,2026-10-23,0.16,norgate/D1/TSLA.parquet
+norgate,Acciones grandes,JPM,D1,9271,1990-01-02,2026-10-23,0.34,norgate/D1/JPM.parquet
+norgate,Acciones grandes,V,D1,4680,2008-03-19,2026-10-23,0.18,norgate/D1/V.parquet
+norgate,Acciones grandes,MA,D1,5136,2006-05-25,2026-10-23,0.2,norgate/D1/MA.parquet
+norgate,Acciones grandes,XOM,D1,9271,1990-01-02,2026-10-23,0.33,norgate/D1/XOM.parquet
+norgate,Acciones grandes,CVX,D1,9271,1990-01-02,2026-10-23,0.33,norgate/D1/CVX.parquet
+norgate,Acciones grandes,JNJ,D1,9271,1990-01-02,2026-10-23,0.34,norgate/D1/JNJ.parquet
+norgate,Acciones grandes,UNH,D1,9271,1990-01-02,2026-10-23,0.33,norgate/D1/UNH.parquet
+norgate,Acciones grandes,LLY,D1,9271,1990-01-02,2026-10-23,0.34,norgate/D1/LLY.parquet
+norgate,Acciones grandes,PG,D1,9271,1990-01-02,2026-10-23,0.33,norgate/D1/PG.parquet
+norgate,Acciones grandes,KO,D1,9271,1990-01-02,2026-10-23,0.33,norgate/D1/KO.parquet
+norgate,Acciones grandes,WMT,D1,9271,1990-01-02,2026-10-23,0.33,norgate/D1/WMT.parquet
+norgate,Acciones grandes,COST,D1,9271,1990-01-02,2026-10-23,0.31,norgate/D1/COST.parquet
+norgate,Acciones grandes,HD,D1,9271,1990-01-02,2026-10-23,0.34,norgate/D1/HD.parquet
+norgate,Acciones grandes,CAT,D1,9271,1990-01-02,2026-10-23,0.35,norgate/D1/CAT.parquet
+norgate,Acciones grandes,BA,D1,9271,1990-01-02,2026-10-23,0.33,norgate/D1/BA.parquet
+darwinex,Divisas,EURUSD,D1,9560,1990-01-02,2026-10-19,0.33,darwinex/D1/EURUSD.parquet
+darwinex,Divisas,EURUSD,H1,100000,2010-06-28,2026-07-31,3.01,darwinex/H1/EURUSD.parquet
+darwinex,Divisas,GBPUSD,D1,8691,1993-05-12,2026-10-19,0.35,darwinex/D1/GBPUSD.parquet
+darwinex,Divisas,GBPUSD,H1,100000,2010-06-25,2026-07-31,3.16,darwinex/H1/GBPUSD.parquet
+darwinex,Divisas,USDJPY,D1,9579,1990-01-02,2026-10-19,0.32,darwinex/D1/USDJPY.parquet
+darwinex,Divisas,USDJPY,H1,100000,2010-06-28,2026-07-31,2.78,darwinex/H1/USDJPY.parquet
+darwinex,Divisas,USDCHF,D1,9575,1990-01-02,2026-10-19,0.36,darwinex/D1/USDCHF.parquet
+darwinex,Divisas,USDCHF,H1,100000,2010-06-28,2026-07-31,2.58,darwinex/H1/USDCHF.parquet
+darwinex,Divisas,USDCAD,D1,8702,1993-04-28,2026-10-19,0.34,darwinex/D1/USDCAD.parquet
+darwinex,Divisas,USDCAD,H1,100000,2010-06-25,2026-07-31,2.97,darwinex/H1/USDCAD.parquet
+darwinex,Divisas,AUDUSD,D1,8702,1993-04-27,2026-10-19,0.33,darwinex/D1/AUDUSD.parquet
+darwinex,Divisas,AUDUSD,H1,100000,2010-06-28,2026-07-31,2.91,darwinex/H1/AUDUSD.parquet
+darwinex,Divisas,NZDUSD,D1,8507,1994-02-01,2026-10-19,0.32,darwinex/D1/NZDUSD.parquet
+darwinex,Divisas,NZDUSD,H1,100000,2010-06-25,2026-07-31,2.8,darwinex/H1/NZDUSD.parquet
+darwinex,Divisas,EURGBP,D1,8699,1993-05-03,2026-10-19,0.32,darwinex/D1/EURGBP.parquet
+darwinex,Divisas,EURGBP,H1,100298,2010-08-26,2026-10-20,2.41,darwinex/H1/EURGBP.parquet
+darwinex,Divisas,EURJPY,D1,8573,1993-04-27,2026-10-19,0.3,darwinex/D1/EURJPY.parquet
+darwinex,Divisas,EURJPY,H1,100298,2010-08-26,2026-10-20,2.8,darwinex/H1/EURJPY.parquet
+darwinex,Divisas,GBPJPY,D1,8700,1993-04-19,2026-10-19,0.32,darwinex/D1/GBPJPY.parquet
+darwinex,Divisas,GBPJPY,H1,100298,2010-08-26,2026-10-20,2.95,darwinex/H1/GBPJPY.parquet
+darwinex,Divisas,EURCHF,D1,8703,1993-04-28,2026-10-19,0.33,darwinex/D1/EURCHF.parquet
+darwinex,Divisas,EURCHF,H1,99997,2010-08-30,2026-10-20,2.82,darwinex/H1/EURCHF.parquet
+darwinex,Divisas,AUDJPY,D1,8688,1993-05-17,2026-10-19,0.3,darwinex/D1/AUDJPY.parquet
+darwinex,Divisas,AUDJPY,H1,100298,2010-08-27,2026-10-20,2.5,darwinex/H1/AUDJPY.parquet
+darwinex,Divisas,EURAUD,D1,6434,2002-01-14,2026-10-19,0.28,darwinex/D1/EURAUD.parquet
+darwinex,Divisas,EURAUD,H1,99997,2010-09-14,2026-10-20,3.22,darwinex/H1/EURAUD.parquet
+darwinex,Divisas,USDMXN,D1,5016,2007-07-23,2026-10-19,0.24,darwinex/D1/USDMXN.parquet
+darwinex,Divisas,USDMXN,H1,99848,2010-01-04,2026-10-20,4.38,darwinex/H1/USDMXN.parquet
+darwinex,Índices,SP500,D1,4860,2008-08-07,2026-10-19,0.17,darwinex/D1/SP500.parquet
+darwinex,Índices,SP500,H1,57164,2008-08-07,2026-07-31,1.55,darwinex/H1/SP500.parquet
+darwinex,Índices,SP500,M5,100000,2025-03-04,2026-07-31,2.03,darwinex/M5/SP500.parquet
+darwinex,Índices,NDX,D1,4865,2008-08-06,2026-10-23,0.18,darwinex/D1/NDX.parquet
+darwinex,Índices,NDX,H1,57165,2008-08-06,2026-07-31,1.99,darwinex/H1/NDX.parquet
+darwinex,Índices,NDX,M5,100000,2025-03-04,2026-07-31,2.76,darwinex/M5/NDX.parquet
+darwinex,Índices,WS30,D1,4860,2008-08-07,2026-10-19,0.18,darwinex/D1/WS30.parquet
+darwinex,Índices,WS30,H1,57164,2008-08-07,2026-07-31,1.5,darwinex/H1/WS30.parquet
+darwinex,Índices,WS30,M5,100000,2025-03-04,2026-07-31,1.91,darwinex/M5/WS30.parquet
+darwinex,Índices,GDAXI,D1,3643,2012-01-23,2026-10-19,0.14,darwinex/D1/GDAXI.parquet
+darwinex,Índices,GDAXI,H1,46826,2012-01-23,2026-07-31,1.54,darwinex/H1/GDAXI.parquet
+darwinex,Índices,GDAXI,M5,100000,2024-11-18,2026-07-31,2.33,darwinex/M5/GDAXI.parquet
+darwinex,Índices,STOXX50E,D1,3597,2012-08-30,2026-10-19,0.13,darwinex/D1/STOXX50E.parquet
+darwinex,Índices,STOXX50E,H1,55319,2012-08-30,2026-07-31,1.36,darwinex/H1/STOXX50E.parquet
+darwinex,Índices,STOXX50E,M5,100000,2025-02-14,2026-07-31,1.83,darwinex/M5/STOXX50E.parquet
+darwinex,Índices,UK100,D1,4751,2008-03-06,2026-10-19,0.17,darwinex/D1/UK100.parquet
+darwinex,Índices,UK100,H1,63455,2008-03-06,2026-07-31,1.65,darwinex/H1/UK100.parquet
+darwinex,Índices,UK100,M5,100000,2025-02-19,2026-07-31,2.06,darwinex/M5/UK100.parquet
+darwinex,Índices,FCHI40,D1,4766,2008-04-01,2026-10-19,0.17,darwinex/D1/FCHI40.parquet
+darwinex,Índices,FCHI40,H1,56612,2008-04-01,2026-07-31,1.55,darwinex/H1/FCHI40.parquet
+darwinex,Índices,FCHI40,M5,100000,2025-02-20,2026-07-31,1.86,darwinex/M5/FCHI40.parquet
+darwinex,Índices,SPA35,D1,4768,2008-03-11,2026-10-19,0.17,darwinex/D1/SPA35.parquet
+darwinex,Índices,SPA35,H1,34542,2008-03-11,2026-07-31,1.07,darwinex/H1/SPA35.parquet
+darwinex,Índices,SPA35,M5,100000,2023-12-12,2026-07-31,2.42,darwinex/M5/SPA35.parquet
+darwinex,Índices,NI225,D1,5075,2007-03-15,2026-10-19,0.18,darwinex/D1/NI225.parquet
+darwinex,Índices,NI225,H1,57409,2007-03-15,2026-07-31,1.45,darwinex/H1/NI225.parquet
+darwinex,Índices,NI225,M5,100000,2025-03-04,2026-07-31,2.22,darwinex/M5/NI225.parquet
+darwinex,Índices,AUS200,D1,4824,2008-05-09,2026-10-19,0.17,darwinex/D1/AUS200.parquet
+darwinex,Índices,AUS200,H1,63820,2008-05-09,2026-07-31,1.6,darwinex/H1/AUS200.parquet
+darwinex,Índices,AUS200,M5,100000,2025-02-21,2026-07-31,1.84,darwinex/M5/AUS200.parquet
+darwinex,Metales,XAUUSD,D1,7531,1998-04-22,2026-10-21,0.27,darwinex/D1/XAUUSD.parquet
+darwinex,Metales,XAUUSD,H1,68886,1998-04-22,2026-10-22,2.25,darwinex/H1/XAUUSD.parquet
+darwinex,Metales,XAUUSD,M5,100000,2025-03-04,2026-07-31,3.11,darwinex/M5/XAUUSD.parquet
+darwinex,Metales,XAGUSD,D1,6385,2002-09-15,2026-10-19,0.22,darwinex/D1/XAGUSD.parquet
+darwinex,Metales,XAGUSD,H1,66369,2002-09-15,2026-07-31,1.71,darwinex/H1/XAGUSD.parquet
+darwinex,Metales,XAGUSD,M5,100000,2025-03-04,2026-07-31,2.57,darwinex/M5/XAGUSD.parquet
+darwinex,Energía,XTIUSD,D1,4405,2010-05-02,2026-10-19,0.15,darwinex/D1/XTIUSD.parquet
+darwinex,Energía,XTIUSD,H1,56809,2010-05-02,2026-07-31,1.18,darwinex/H1/XTIUSD.parquet
+darwinex,Energía,XTIUSD,M5,100000,2025-03-03,2026-07-31,1.65,darwinex/M5/XTIUSD.parquet
+darwinex,Energía,XNGUSD,D1,5075,2007-01-02,2026-10-19,0.15,darwinex/D1/XNGUSD.parquet
+darwinex,Energía,XNGUSD,H1,57435,2007-01-02,2026-07-31,1.14,darwinex/H1/XNGUSD.parquet
+darwinex,Energía,XNGUSD,M5,100000,2025-02-20,2026-07-31,1.58,darwinex/M5/XNGUSD.parquet
+darwinex,ETF,SPY,D1,4224,2010-01-11,2026-10-23,0.15,darwinex/D1/SPY.parquet
+darwinex,ETF,SPY,H1,29068,2010-01-11,2026-07-30,0.88,darwinex/H1/SPY.parquet
+darwinex,ETF,QQQ,D1,4221,2010-01-11,2026-10-23,0.15,darwinex/D1/QQQ.parquet
+darwinex,ETF,QQQ,H1,29051,2010-01-11,2026-07-30,0.86,darwinex/H1/QQQ.parquet
+darwinex,ETF,IWM,D1,4223,2010-01-11,2026-10-23,0.15,darwinex/D1/IWM.parquet
+darwinex,ETF,IWM,H1,29066,2010-01-11,2026-07-30,0.77,darwinex/H1/IWM.parquet
+darwinex,ETF,GLD,D1,4223,2010-01-11,2026-10-23,0.14,darwinex/D1/GLD.parquet
+darwinex,ETF,GLD,H1,29065,2010-01-11,2026-07-30,0.7,darwinex/H1/GLD.parquet
+darwinex,ETF,SLV,D1,4216,2010-01-11,2026-10-19,0.11,darwinex/D1/SLV.parquet
+darwinex,ETF,SLV,H1,29064,2010-01-11,2026-07-30,0.55,darwinex/H1/SLV.parquet
+darwinex,ETF,XLE,D1,4212,2010-01-11,2026-10-19,0.12,darwinex/D1/XLE.parquet
+darwinex,ETF,XLE,H1,29039,2010-01-11,2026-07-30,0.56,darwinex/H1/XLE.parquet
+dukascopy,Índices (S&P 500),USA500IDXUSD,M5,773568,2016-01-04,2026-10-03,16.01,dukascopy/M5/USA500IDXUSD.parquet
+dukascopy,Índices (S&P 500),USA500IDXUSD,M15,257856,2016-01-04,2026-10-03,6.47,dukascopy/M15/USA500IDXUSD.parquet
+dukascopy,Índices (S&P 500),USA500IDXUSD,H1,64464,2016-01-04,2026-10-03,1.95,dukascopy/H1/USA500IDXUSD.parquet
+dukascopy,Índices (Nasdaq 100),USATECHIDXUSD,M5,1073664,2011-09-19,2026-10-03,23.57,dukascopy/M5/USATECHIDXUSD.parquet
+dukascopy,Índices (Nasdaq 100),USATECHIDXUSD,M15,357888,2011-09-19,2026-10-03,8.79,dukascopy/M15/USATECHIDXUSD.parquet
+dukascopy,Índices (Nasdaq 100),USATECHIDXUSD,H1,89472,2011-09-19,2026-10-03,2.77,dukascopy/H1/USATECHIDXUSD.parquet
+dukascopy,Índices (Dow Jones),USA30IDXUSD,M5,764640,2016-01-04,2026-10-03,16.79,dukascopy/M5/USA30IDXUSD.parquet
+dukascopy,Índices (Dow Jones),USA30IDXUSD,M15,254880,2016-01-04,2026-10-03,6.73,dukascopy/M15/USA30IDXUSD.parquet
+dukascopy,Índices (Dow Jones),USA30IDXUSD,H1,63720,2016-01-04,2026-10-03,2.04,dukascopy/H1/USA30IDXUSD.parquet
+dukascopy,Índices (Russell 2000),USSC2000IDXUSD,M5,574272,2018-08-08,2026-09-08,11.79,dukascopy/M5/USSC2000IDXUSD.parquet
+dukascopy,Índices (Russell 2000),USSC2000IDXUSD,M15,191424,2018-08-08,2026-09-08,4.66,dukascopy/M15/USSC2000IDXUSD.parquet
+dukascopy,Índices (Russell 2000),USSC2000IDXUSD,H1,47856,2018-08-08,2026-09-08,1.39,dukascopy/H1/USSC2000IDXUSD.parquet
+dukascopy,Metales,XAUUSD,H1,142313,2003-05-05,2026-10-22,5.79,dukascopy/H1/XAUUSD.parquet
+dukascopy,Metales,XAUUSD,H4,36457,2003-05-05,2026-10-22,1.58,dukascopy/H4/XAUUSD.parquet
+dukascopy,Metales,XAUUSD,D1,6087,2003-05-05,2026-10-22,0.27,dukascopy/D1/XAUUSD.parquet

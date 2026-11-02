@@ -1,0 +1,438 @@
+{
+  "csv": "datos/btcusdt_1d_binance.csv",
+  "fast_values": [
+    16,
+    24,
+    32,
+    40,
+    48,
+    56,
+    64
+  ],
+  "slow_values": [
+    64,
+    96,
+    128,
+    160,
+    192,
+    224,
+    256
+  ],
+  "combos_tested": 40,
+  "combos_skipped": 9,
+  "results": [
+    {
+      "pf": 1.1145,
+      "pf_no_best": 1.1006,
+      "max_dd": 77.52,
+      "ops": 41,
+      "ops_yr": 6.37,
+      "passes": false,
+      "fast": 16,
+      "slow": 64
+    },
+    {
+      "pf": 1.1137,
+      "pf_no_best": 1.0998,
+      "max_dd": 82.55,
+      "ops": 25,
+      "ops_yr": 3.89,
+      "passes": false,
+      "fast": 16,
+      "slow": 96
+    },
+    {
+      "pf": 1.0826,
+      "pf_no_best": 1.0689,
+      "max_dd": 85.91,
+      "ops": 23,
+      "ops_yr": 3.57,
+      "passes": false,
+      "fast": 16,
+      "slow": 128
+    },
+    {
+      "pf": 1.0569,
+      "pf_no_best": 1.0435,
+      "max_dd": 90.46,
+      "ops": 25,
+      "ops_yr": 3.89,
+      "passes": false,
+      "fast": 16,
+      "slow": 160
+    },
+    {
+      "pf": 1.0538,
+      "pf_no_best": 1.0461,
+      "max_dd": 94.09,
+      "ops": 23,
+      "ops_yr": 3.57,
+      "passes": false,
+      "fast": 16,
+      "slow": 192
+    },
+    {
+      "pf": 1.0436,
+      "pf_no_best": 1.036,
+      "max_dd": 92.61,
+      "ops": 25,
+      "ops_yr": 3.89,
+      "passes": false,
+      "fast": 16,
+      "slow": 224
+    },
+    {
+      "pf": 1.0272,
+      "pf_no_best": 1.0196,
+      "max_dd": 93.76,
+      "ops": 27,
+      "ops_yr": 4.2,
+      "passes": false,
+      "fast": 16,
+      "slow": 256
+    },
+    {
+      "pf": 1.1299,
+      "pf_no_best": 1.1159,
+      "max_dd": 70.99,
+      "ops": 27,
+      "ops_yr": 4.2,
+      "passes": false,
+      "fast": 24,
+      "slow": 64
+    },
+    {
+      "pf": 1.0588,
+      "pf_no_best": 1.0511,
+      "max_dd": 88.29,
+      "ops": 21,
+      "ops_yr": 3.26,
+      "passes": false,
+      "fast": 24,
+      "slow": 96
+    },
+    {
+      "pf": 1.0364,
+      "pf_no_best": 1.0288,
+      "max_dd": 92.93,
+      "ops": 19,
+      "ops_yr": 2.95,
+      "passes": false,
+      "fast": 24,
+      "slow": 128
+    },
+    {
+      "pf": 1.0468,
+      "pf_no_best": 1.0392,
+      "max_dd": 91.91,
+      "ops": 19,
+      "ops_yr": 2.95,
+      "passes": false,
+      "fast": 24,
+      "slow": 160
+    },
+    {
+      "pf": 1.0504,
+      "pf_no_best": 1.0428,
+      "max_dd": 91.07,
+      "ops": 19,
+      "ops_yr": 2.95,
+      "passes": false,
+      "fast": 24,
+      "slow": 192
+    },
+    {
+      "pf": 1.0285,
+      "pf_no_best": 1.021,
+      "max_dd": 94.72,
+      "ops": 19,
+      "ops_yr": 2.95,
+      "passes": false,
+      "fast": 24,
+      "slow": 224
+    },
+    {
+      "pf": 1.0168,
+      "pf_no_best": 1.0092,
+      "max_dd": 94.83,
+      "ops": 21,
+      "ops_yr": 3.26,
+      "passes": false,
+      "fast": 24,
+      "slow": 256
+    },
+    {
+      "pf": 1.0631,
+      "pf_no_best": 1.0554,
+      "max_dd": 87.15,
+      "ops": 17,
+      "ops_yr": 2.64,
+      "passes": false,
+      "fast": 32,
+      "slow": 96
+    },
+    {
+      "pf": 1.0446,
+      "pf_no_best": 1.037,
+      "max_dd": 92.43,
+      "ops": 19,
+      "ops_yr": 2.95,
+      "passes": false,
+      "fast": 32,
+      "slow": 128
+    },
+    {
+      "pf": 1.068,
+      "pf_no_best": 1.0603,
+      "max_dd": 87.94,
+      "ops": 15,
+      "ops_yr": 2.33,
+      "passes": false,
+      "fast": 32,
+      "slow": 160
+    },
+    {
+      "pf": 1.0597,
+      "pf_no_best": 1.052,
+      "max_dd": 90.15,
+      "ops": 17,
+      "ops_yr": 2.64,
+      "passes": false,
+      "fast": 32,
+      "slow": 192
+    },
+    {
+      "pf": 1.0173,
+      "pf_no_best": 1.0098,
+      "max_dd": 95.96,
+      "ops": 19,
+      "ops_yr": 2.95,
+      "passes": false,
+      "fast": 32,
+      "slow": 224
+    },
+    {
+      "pf": 1.0173,
+      "pf_no_best": 1.0097,
+      "max_dd": 94.54,
+      "ops": 19,
+      "ops_yr": 2.95,
+      "passes": false,
+      "fast": 32,
+      "slow": 256
+    },
+    {
+      "pf": 1.0785,
+      "pf_no_best": 1.0707,
+      "max_dd": 84.37,
+      "ops": 15,
+      "ops_yr": 2.33,
+      "passes": false,
+      "fast": 40,
+      "slow": 96
+    },
+    {
+      "pf": 1.0664,
+      "pf_no_best": 1.0587,
+      "max_dd": 88.24,
+      "ops": 15,
+      "ops_yr": 2.33,
+      "passes": false,
+      "fast": 40,
+      "slow": 128
+    },
+    {
+      "pf": 1.07,
+      "pf_no_best": 1.0623,
+      "max_dd": 87.29,
+      "ops": 15,
+      "ops_yr": 2.33,
+      "passes": false,
+      "fast": 40,
+      "slow": 160
+    },
+    {
+      "pf": 1.0342,
+      "pf_no_best": 1.0266,
+      "max_dd": 92.73,
+      "ops": 17,
+      "ops_yr": 2.64,
+      "passes": false,
+      "fast": 40,
+      "slow": 192
+    },
+    {
+      "pf": 1.0182,
+      "pf_no_best": 1.0106,
+      "max_dd": 94.43,
+      "ops": 17,
+      "ops_yr": 2.64,
+      "passes": false,
+      "fast": 40,
+      "slow": 224
+    },
+    {
+      "pf": 1.0128,
+      "pf_no_best": 1.0053,
+      "max_dd": 95.08,
+      "ops": 17,
+      "ops_yr": 2.64,
+      "passes": false,
+      "fast": 40,
+      "slow": 256
+    },
+    {
+      "pf": 1.0671,
+      "pf_no_best": 1.0594,
+      "max_dd": 87.39,
+      "ops": 15,
+      "ops_yr": 2.33,
+      "passes": false,
+      "fast": 48,
+      "slow": 128
+    },
+    {
+      "pf": 1.0608,
+      "pf_no_best": 1.0531,
+      "max_dd": 90.47,
+      "ops": 17,
+      "ops_yr": 2.64,
+      "passes": false,
+      "fast": 48,
+      "slow": 160
+    },
+    {
+      "pf": 1.0215,
+      "pf_no_best": 1.0139,
+      "max_dd": 91.83,
+      "ops": 15,
+      "ops_yr": 2.33,
+      "passes": false,
+      "fast": 48,
+      "slow": 192
+    },
+    {
+      "pf": 1.012,
+      "pf_no_best": 1.0045,
+      "max_dd": 93.71,
+      "ops": 17,
+      "ops_yr": 2.64,
+      "passes": false,
+      "fast": 48,
+      "slow": 224
+    },
+    {
+      "pf": 1.0037,
+      "pf_no_best": 0.9963,
+      "max_dd": 94.83,
+      "ops": 15,
+      "ops_yr": 2.33,
+      "passes": false,
+      "fast": 48,
+      "slow": 256
+    },
+    {
+      "pf": 1.0595,
+      "pf_no_best": 1.0518,
+      "max_dd": 87.69,
+      "ops": 15,
+      "ops_yr": 2.33,
+      "passes": false,
+      "fast": 56,
+      "slow": 128
+    },
+    {
+      "pf": 1.0283,
+      "pf_no_best": 1.0207,
+      "max_dd": 92.14,
+      "ops": 17,
+      "ops_yr": 2.64,
+      "passes": false,
+      "fast": 56,
+      "slow": 160
+    },
+    {
+      "pf": 1.0126,
+      "pf_no_best": 1.005,
+      "max_dd": 92.78,
+      "ops": 15,
+      "ops_yr": 2.33,
+      "passes": false,
+      "fast": 56,
+      "slow": 192
+    },
+    {
+      "pf": 1.0109,
+      "pf_no_best": 1.0033,
+      "max_dd": 95.51,
+      "ops": 15,
+      "ops_yr": 2.33,
+      "passes": false,
+      "fast": 56,
+      "slow": 224
+    },
+    {
+      "pf": 0.9818,
+      "pf_no_best": 0.9744,
+      "max_dd": 96.53,
+      "ops": 15,
+      "ops_yr": 2.33,
+      "passes": false,
+      "fast": 56,
+      "slow": 256
+    },
+    {
+      "pf": 1.0197,
+      "pf_no_best": 1.0122,
+      "max_dd": 90.86,
+      "ops": 17,
+      "ops_yr": 2.64,
+      "passes": false,
+      "fast": 64,
+      "slow": 160
+    },
+    {
+      "pf": 1.0228,
+      "pf_no_best": 1.0152,
+      "max_dd": 93.34,
+      "ops": 13,
+      "ops_yr": 2.02,
+      "passes": false,
+      "fast": 64,
+      "slow": 192
+    },
+    {
+      "pf": 0.9927,
+      "pf_no_best": 0.9852,
+      "max_dd": 96.01,
+      "ops": 15,
+      "ops_yr": 2.33,
+      "passes": false,
+      "fast": 64,
+      "slow": 224
+    },
+    {
+      "pf": 0.9914,
+      "pf_no_best": 0.9839,
+      "max_dd": 94.85,
+      "ops": 13,
+      "ops_yr": 2.02,
+      "passes": false,
+      "fast": 64,
+      "slow": 256
+    }
+  ],
+  "plateau_combos": [],
+  "plateau_size": 0,
+  "is_robust": false,
+  "best_pf_combo": {
+    "pf": 1.1299,
+    "pf_no_best": 1.1159,
+    "max_dd": 70.99,
+    "ops": 27,
+    "ops_yr": 4.2,
+    "passes": false,
+    "fast": 24,
+    "slow": 64
+  }
+}
