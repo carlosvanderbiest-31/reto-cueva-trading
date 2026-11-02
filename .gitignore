@@ -21,3 +21,12 @@ Thumbs.db
 dist/
 *.eld
 *.pla
+datos/**
+!datos/
+!datos/LEEME.md
+*.env
+**/.env*
+/*.csv
+codigo/**/*.csv
+.mcp.json
+mcp-guardado.json
