@@ -95,39 +95,51 @@ Supuestos de la fase 03:
 
 ## Fase 04 · Backtest · MOTOR
 
-Agente / skill: Director con backtest_ibb_qqq_v2.py (Python/pandas, datos Yahoo Finance)
-Qué se hizo: Backtest sobre datos diarios IBB y QQQ. Split 70/30: diseno hasta 2019-04-30, examen desde 2019-05-31.
-Variante evaluada: momentum 20 dias con filtro MA200 (cash si ganador bajo MA200).
-Resultado:
+Agente / skill: Director con backtest_ibb_qqq_mct.py (Python/pandas, datos Yahoo Finance)
+Qué se hizo: Backtest sobre datos diarios IBB, QQQ y SPY. Particion MCT 3 tramos por fechas
+fijas: diseno hasta 2017-12-31, examen 2018-01-01 → 2022-12-31, validacion 2023-01-01 → fin.
+Variante B (ganadora de Fase 06): SPY MA200 + ETF MA100 + mom20.
+Un "trade" = un mes calendario sosteniendo un ETF; entrada y salida al open del primer dia
+habil del mes siguiente. Rehecha el 2026-11-03: antes usaba split 70/30 y solo la variante
+BASE (sin filtro SPY); ahora usa particion MCT 3 tramos y Variante B alineada con MCT.
+Resultado (backtest_ibb_qqq_mct.py, Variante B):
 
-  DISENO (in-sample · 2001-11-30 a 2019-04-30 · ~17 anos):
-    PF              1.394  OK  (>=1.30)
-    Operaciones       175  OK  (>=30)
-    Caida max.      40.4%  --  (<20%)   ← FALLA
-    PF sin mejor    1.321  OK  (>1)
-    Acierto         51.4%
-    Retorno        +126.3%
-    VEREDICTO       3/4  NO APRUEBA
+  DISENO (inicio -> 2017-12-31 · ~16 anos):
+    PF              1.85   OK  (>=1.30)
+    Operaciones      128   OK  (>=30)
+    Caida max.      18.4%  OK  (<20%)
+    PF sin mejor    1.71   OK  (>1)
+    Retorno        +279.0%
+    VEREDICTO       4/4
 
-  EXAMEN (out-of-sample · 2019-05-31 a 2026-10-29 · ~7 anos):
-    PF              2.891  OK  (>=1.30)
-    Operaciones        77  OK  (>=30)
-    Caida max.      11.4%  OK  (<20%)
-    PF sin mejor    2.740  OK  (>1)
-    Acierto         59.7%
-    Retorno        +283.8%
-    VEREDICTO       4/4  APRUEBA
+  EXAMEN (2018-01-01 -> 2022-12-31 · 5 anos):
+    PF              1.26   FALLA  (<1.30)
+    Operaciones       37   OK  (>=30)
+    Caida max.      20.8%  FALLA  (>=20%)
+    PF sin mejor    1.12   OK  (>1)
+    Retorno         +15.8%
+    VEREDICTO       2/4  NO APRUEBA
 
-  POR QUE FALLA EL DISENO:
-  El periodo 2001-2019 incluye dos crisis extremas donde IBB y QQQ caen simultaneamente
-  antes de que el filtro MA200 reaccione:
-    · Crash dotcom 2001-2002: ambos ETFs caen >50% en meses — el MA200 tarda 2-3 meses en cruzar
-    · Crisis financiera 2008: caida brusca de 40% en pocas semanas — el MA200 no puede proteger
-  En el examen (2019-2026) el filtro funcionó bien: evitó el COVID (2020) y el crash de 2022.
+  VALIDACION (2023-01-01 -> fin · ~4 anos) — no rescata examen fallido:
+    PF              5.51   OK
+    Operaciones       34   OK
+    Caida max.       5.1%  OK
+    PF sin mejor    4.87   OK
+    Retorno        +100.1%
+    VEREDICTO       4/4
 
-Supuestos: datos Yahoo Finance ajustados · coste 15pb/RT · sin swap · rebalanceo en cierre de mes
-Veredicto: NO APRUEBA (3/4 en diseno — falla DD por crashes sistemicos historicos)
-Siguiente paso: Fase 06 ya ejecutada — ver resultado abajo.
+  POR QUE FALLA EL EXAMEN 2018-2022:
+  · 2022: crash rapido por inflacion y subida de tasas — IBB cayo >40% y QQQ >35%.
+    El rebalanceo mensual no pudo salir a tiempo: en un mes el filtro SPY MA200 reacciona
+    pero la caida ya habia ocurrido antes del cierre mensual.
+  · PF 1.26 y DD 20.8% son MARGINALMENTE inferiores a los umbrales (0.04 y 0.8%
+    respectivamente) — la estrategia esta en la frontera, no es un fallo rotundo.
+  · La validacion 2023-2026 (PF 5.51, DD 5.1%) confirma que el edge sigue vivo.
+
+Supuestos: datos Yahoo Finance ajustados · coste 15pb/RT · sin swap · Variante B
+  (SPY MA200 + ETF MA100 + mom20) · entrada al open del primer dia habil del mes siguiente
+Veredicto: NO APRUEBA (examen 2/4 bajo particion MCT — PF 1.26 y DD 20.8%)
+Siguiente paso: estrategia DESCARTADA bajo particion MCT. Ver opciones MCT abajo.
 
 ---
 
@@ -169,9 +181,12 @@ Resultado:
   se fue a cash antes de los peores meses. La MA100 del ETF ganador detecta caidas mas rapido
   que la MA200, reduciendo el DD adicional durante correcciones menores.
 
-Supuestos: mismos que Fase 04 mas filtro SPY MA200 y ETF MA100 aplicados en el mismo cierre mensual
-Veredicto: APRUEBA (4/4 en diseno Y examen con Variante B)
-Siguiente paso: Fase 07 — tamanio de posicion y riesgo.
+Supuestos: mismos que Fase 04 (vieja, 70/30) mas filtro SPY MA200 y ETF MA100 aplicados en el
+  mismo cierre mensual. NOTA: estos resultados usan el split 70/30, no la particion MCT 3 tramos.
+  La re-evaluacion con particion MCT (Fase 04 rehecha) da NO APRUEBA en el examen.
+Veredicto: APRUEBA con split 70/30 (4/4 en diseno Y examen con Variante B). Anulado por Fase 04
+  rehecha: la particion MCT muestra examen 2/4.
+Siguiente paso: ANULADA (la Fase 04 rehecha con particion MCT dio NO APRUEBA).
 
 ---
 
@@ -190,5 +205,37 @@ Opciones a evaluar en Fase 06:
 3. Frecuencia semanal en vez de mensual: detecta el cambio de tendencia antes
 
 ### Compatibilidad con el portafolio
-Activos distintos a BTC y QQQ → diversificacion real.
-En el examen (periodo mas reciente) pasa 4/4 con PF casi 3 y DD bajo 12%.
+Activos distintos a BTC y QQQ → diversificacion real. PERO: estrategia descartada bajo MCT.
+
+---
+
+## Opciones MCT (2026-11-03)
+
+El MCT solo acepta un CSV por activo; IBB/QQQ es una estrategia de 2 activos. Se probaron
+dos aproximaciones para validarla en el MCT:
+
+### Opcion 2 · CSV sintetico (backtest_ibb_qqq_mct.py)
+Genera ibb_qqq_sintetico.csv: una serie de precios diarios donde cada dia el precio sigue
+al ETF que sostiene la estrategia (IBB, QQQ, o plano en CASH). La curva parte de 100 y
+llega a 1097 al final del periodo (~25 anos). Se puede cargar en el MCT con:
+  ENTRA: close > MA200 AND cambio 20 velas > 0
+  SALE:  close < MA100
+Nota: el MCT evaluara si la curva equity tiene momentum, no la estrategia en si. Los
+resultados de la rotacion bajo particion MCT ya estan en Fase 04 rehecha (NO APRUEBA).
+
+### Opcion 3 · IBB Momentum Puro (backtest_ibb_momentum_mct.py)
+Reformulacion sin comparacion con QQQ: entra en IBB cuando close_IBB > MA200,
+SPY > MA200 y ret20_IBB > 0. Resultado con particion MCT:
+
+  DISENO    (inicio -> 2017-12-31):  79 ops  PF 1.53  DD 27.7%  PF_nb 1.33  Ret +73.6%  3/4
+  EXAMEN    (2018-01 -> 2022-12):    22 ops  PF 1.33  DD 10.9%  PF_nb 1.04  Ret +10.3%  3/4
+  VALIDACION (2023-01 -> fin):       20 ops  PF 1.63  DD 16.5%  PF_nb 1.26  Ret +18.3%  3/4
+  VEREDICTO: NO APRUEBA (examen <30 ops → MCT usa validacion: 3/4)
+
+Conclusion: la version de un solo activo es peor que la rotacion. Pierde los periodos donde
+QQQ supera a IBB (2017-2018, 2023-2024) y tiene DD mayor en diseno (incluye 2008 en IBB solo).
+
+### Veredicto final IBB/QQQ
+Ambas opciones NO APRUEBA bajo particion MCT. Descartar como estrategia individual.
+Puede mantenerse como referencia de portafolio (el edge en validacion 2023-2026 es real),
+pero sin pasar el examen MCT no se opera en produccion.
