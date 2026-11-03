@@ -98,34 +98,48 @@ Supuestos de la fase 03:
 
 ## Fase 04 · Backtest · MOTOR
 
-Agente / skill: Director con backtest_etf_portfolio.py (Python/pandas, datos Yahoo Finance)
-Qué se hizo: Backtest sobre QQQ diario 2000-2026. Split 70/30: diseño hasta 2018-11-05, examen desde 2018-11-06.
-Resultado:
+Agente / skill: Director con backtest_qqq_rsi2_mct.py (Python/pandas, datos Yahoo Finance)
+Qué se hizo: Backtest sobre QQQ diario 2000-2026. Partición MCT de 3 tramos por fechas fijas (no 70/30): diseño hasta 2015-01-07, examen 2015-01-08 → 2021-06-15, validación 2021-06-16 → fin. Rehecha el 2026-11-03: antes usaba split 70/30 (diseño hasta 2018-11, examen desde 2018-11) y daba 4/4 APRUEBA; con la partición MCT el examen queda en 3/4 NO PASA.
+Resultado (verificado contra Mega Cueva Tester, cueva de Mariel, mismo CSV):
 
-  DISEÑO (in-sample · 2000-10-17 a 2018-11-05 · ~18 años):
-    PF              1.518  OK  (>=1.30)
-    Operaciones       377  OK  (>=30)
-    Caida max.      17.4%  OK  (<20%)
-    PF sin mejor    1.470  OK  (>1)
-    Acierto         61.8%
-    Retorno        +182.1%
-    VEREDICTO       4/4  APRUEBA
+  DISEÑO (2000-01-03 → 2015-01-07 · 15 años):
+    PF              1.70
+    Operaciones      104  OK  (>=30)
+    Caida max.      14.1%  OK  (<20%)
+    PF sin mejor    1.61  OK  (>1)
+    Acierto         64%
+    Retorno        +45.1%
+    VEREDICTO       4/4
 
-  EXAMEN (out-of-sample · 2018-11-06 a 2026-10-29 · ~8 años):
-    PF              2.223  OK  (>=1.30)
-    Operaciones       178  OK  (>=30)
-    Caida max.      12.2%  OK  (<20%)
-    PF sin mejor    2.150  OK  (>1)
-    Acierto         71.3%
-    Retorno        +210.7%
-    VEREDICTO       4/4  APRUEBA
+  EXAMEN (2015-01-08 → 2021-06-15 · 6.5 años):
+    PF              1.25  FALLA  (<1.30)
+    Operaciones       53  OK  (>=30)
+    Caida max.      11.8%  OK  (<20%)
+    PF sin mejor    1.49  OK  (>1)
+    Acierto         60%
+    Retorno         +9.5%
+    VEREDICTO       3/4  NO PASA
 
-  NOTA: el examen supera al diseño en todos los criterios. Señal de robustez real,
-  no de sobreajuste. El edge se mantuvo e incluyó el crash COVID (2020) y la caída 2022.
+  VALIDACION (2021-06-16 → 2026-10-29 · 5 años):
+    PF              2.35
+    Operaciones       50
+    Caida max.       7.9%
+    PF sin mejor    1.65
+    Acierto         76%
+    Retorno        +29.3%
+    VEREDICTO       4/4  (no rescata: el examen ya suspendió)
+
+  NOTA: el período 2015-2021 (examen MCT) fue estructuralmente difícil para esta
+  estrategia: 2017 tuvo volatilidad históricamente baja (pocas señales) y 2018
+  produjo múltiples trampas alcistas. PF 1.25 está en la frontera pero no llega
+  a 1.30. La validación 2021-2026 (PF 2.35) confirma que el edge sigue vivo en
+  el período más reciente.
 
 Supuestos: datos Yahoo Finance ajustados por splits y dividendos · coste 15pb/RT · sin swap
-Veredicto: APRUEBA (4/4 en diseño Y en examen — caso poco frecuente)
-Siguiente paso: Fase 05 — meseta de parámetros: testear RSI(2) umbral 5/10/15 y MA5 umbral 3/5/7 para confirmar que no es un pico aislado.
+Veredicto: NO APRUEBA (3/4 en examen bajo partición MCT — PF 1.25 < 1.30)
+Siguiente paso: estrategia DESCARTADA como individual. Puede mantenerse como
+componente de portafolio (donde fue validada con otra partición) o revisarse
+con una variante de regla nueva desde Fase 01.
 
 ---
 

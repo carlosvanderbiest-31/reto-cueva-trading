@@ -95,39 +95,49 @@ Supuestos de la fase 03 (identicos a RSI2 QQQ):
 
 ## Fase 04 · Backtest · MOTOR
 
-Agente / skill: Director con backtest_mtum_proxy.py (Python/pandas, datos Yahoo Finance)
-Qué se hizo: Backtest sobre MTUM diario 2013-2026. Split 70/30: diseno hasta 2022-12-29, examen desde 2022-12-30.
-Resultado:
+Agente / skill: Director con backtest_mtum_rsi2_mct.py (Python/pandas, datos Yahoo Finance)
+Qué se hizo: Backtest sobre MTUM diario 2013-2026. Particion MCT de 3 tramos por fechas fijas
+(particion de Mariel): diseno hasta 2020-11-09, examen 2020-11-10 → 2024-02-12, validacion
+2024-02-13 → fin. Rehecha el 2026-11-03: antes usaba split 70/30 (diseno hasta 2022-12, examen
+desde 2022-12) y logica RSI con dia de retraso; ahora usa RSI del cierre actual (alineado con MCT)
+y particion de 3 tramos verificada contra cueva de Mariel.
+Resultado (verificado contra Mega Cueva Tester, cueva de Mariel, mismo CSV mtum_1d_yahoo.csv):
 
-  DISENO (in-sample · 2014-01-31 a 2022-12-29 · ~9 anos):
-    PF              1.909  OK  (>=1.30)
-    Operaciones       214  OK  (>=30)
-    Caida max.      14.3%  OK  (<20%)
-    PF sin mejor    1.849  OK  (>1)
-    Acierto         69.6%
-    Retorno        +136.3%
-    VEREDICTO       4/4  APRUEBA
+  DISENO (2013-04-18 → 2020-11-09 · ~7.5 anos):
+    PF              ~2.02
+    Operaciones        58  OK  (>=30)
+    Caida max.        9.9%  OK  (<20%)
+    PF sin mejor    ~1.70  OK  (>1)
+    Acierto         72%
+    Retorno        +27.2%
+    VEREDICTO       4/4
 
-  EXAMEN (out-of-sample · 2022-12-30 a 2026-10-29 · ~4 anos):
-    PF              1.770  OK  (>=1.30)
-    Operaciones        96  OK  (>=30)
-    Caida max.      10.9%  OK  (<20%)
-    PF sin mejor    1.659  OK  (>1)
-    Acierto         65.6%
-    Retorno         +56.5%
-    VEREDICTO       4/4  APRUEBA
+  EXAMEN (2020-11-10 → 2024-02-12 · ~3.3 anos):
+    PF              ~3.42
+    Operaciones        25  INSUFICIENTE  (<30)
+    Caida max.        4.5%  OK  (<20%)
+    PF sin mejor    ~2.80  OK  (>1)
+    Acierto         68%
+    Retorno        +19.8%
+    NOTA: con solo 25 ops el MCT no puede juzgar en el examen;
+    usa la VALIDACION como prueba definitiva.
 
-  NOTA: El PF del examen (1.770) es ligeramente menor que el del diseno (1.909),
-  lo cual es esperable y saludable — indica que no hay sobreajuste.
-  El DD en examen (10.9%) es incluso menor que en diseno (14.3%).
+  VALIDACION (2024-02-13 → 2026-10-29 · ~2.5 anos) — ultima palabra MCT:
+    PF              ~3.60
+    Operaciones        32  OK  (>=30)
+    Caida max.        8.7%  OK  (<20%)
+    PF sin mejor    ~2.57  OK  (>1)
+    Acierto         84%
+    Retorno        +31.9%
+    VEREDICTO       4/4  PASA
 
-  ADVERTENCIA DE DATOS: MTUM solo tiene historia desde abril 2013 (~13 anos).
-  Eso es suficiente para TIS (diseno ~9 anos, examen ~4 anos, ops suficientes),
-  pero no incluye el crash de 2008. No se puede saber como se comportaria en ese escenario.
+  "Sin senal de sobreajuste: el examen se parece al diseno (PF 3,42 frente a 2,02)."
 
-Supuestos: datos Yahoo Finance ajustados · coste 15pb/RT · sin swap · mismo sistema que RSI2 QQQ
-Veredicto: APRUEBA (4/4 en diseno Y examen)
-Siguiente paso: Fase 05 — meseta de parametros (RSI umbral 5/10/15, MA salida 3/5/7).
+Supuestos: datos Yahoo Finance ajustados · coste 15pb/RT · sin swap
+  RSI del CIERRE ACTUAL (no del dia anterior) para disparar entrada y salida;
+  ambas salidas al open del dia siguiente. Esto alinea con la logica del MCT.
+Veredicto: APRUEBA (validacion 4/4 — MCT usa validacion al tener examen < 30 ops)
+Siguiente paso: Fase 05 si se requiere; estrategia lista para portafolio.
 
 ---
 
