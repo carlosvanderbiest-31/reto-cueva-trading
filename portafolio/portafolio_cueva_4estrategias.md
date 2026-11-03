@@ -168,7 +168,123 @@ Capital minimo recomendado para el portafolio: 30,000-50,000 USD
 3. IBB vs QQQ + SPY MA200 + ETF MA100 — ficha: fichas/ibb_qqq_rotacion.md
 4. EWMAC BTC 4H + MA200 diaria + stop 3% — pendiente de ficha individual
 
-### Lo que falta (Fases 07 y 08)
+---
 
-- Fase 07: calculo de tamano de posicion real segun capital y tolerancia al riesgo
-- Fase 08: puesta en marcha, demo, automatizacion y seguimiento en vivo
+## Fase 07 · Tamano y riesgo · CRITERIO
+
+Agente / skill: Director (manual con Contrato.pdf)
+Que se hizo: Aplicar los limites del Contrato firmado al portafolio de 4 estrategias.
+Resultado:
+  Capital: $1,000 · Riesgo aceptado: 1% = $10/op · Caida tolerable: 20% = $200
+  Interruptor: 15% desde maximo = $150
+
+  Asignacion peso igual: $250 por estrategia
+  | Estrategia | Asignacion | Stop/referencia | Riesgo/op |
+  | BTC EWMAC  | $250       | Stop 3%         | $7.50     |
+  | RSI2 QQQ   | $250       | Sin stop (~2%)  | ~$5       |
+  | IBB_QQQ    | $250       | Sin stop (mes)  | ~$5-8     |
+  | RSI2 MTUM  | $250       | Sin stop (~2%)  | ~$5       |
+
+  DD historico portafolio (risk parity, diseno): 8.9% = $89 < limite $200
+  DD historico portafolio (risk parity, examen): 3.9% = $39 < limite $200
+  Interruptor ($150) nunca se toco en el backtest.
+
+  Restriccion practica: QQQ cotiza ~$500 (> $250 asignado). Requiere
+  fractional shares (Interactive Brokers, Alpaca) o CFDs.
+
+Supuestos: capital $1,000 segun Contrato firmado 29-oct-2026.
+Veredicto: APRUEBA (DD 8.9% < caida tolerable 20%)
+Siguiente paso: Fase 08 — puesta en marcha.
+
+---
+
+## Fase 08 · Puesta en marcha · DOCUMENTACION
+
+Agente / skill: Director (manual)
+Que se hizo: Definir plataformas, checklist operativo, robot, diario y reglas de apagado.
+
+### Plataformas
+
+| Estrategia   | Broker/Exchange       | API disponible | Notas |
+|--------------|-----------------------|----------------|-------|
+| BTC EWMAC    | Binance / Bybit       | Si (REST+WS)   | Para robot 4H |
+| RSI2 QQQ     | Alpaca / IB           | Si             | Fractional shares |
+| IBB vs QQQ   | Alpaca / IB           | Si             | Fractional shares |
+| RSI2 MTUM    | Alpaca / IB           | Si             | MTUM ~$200, operable |
+
+Dos relaciones de brokerage necesarias: exchange cripto (BTC) + broker US ETFs.
+
+### Checklist operativo
+
+DIARIO (5 min, antes de la apertura US o al cierre):
+  [ ] BTC: revisar si EMA8 cruzo EMA32 en algun bloque 4H reciente (robot lo hace)
+  [ ] QQQ: calcular RSI(2) y comparar con MA200
+  [ ] MTUM: calcular RSI(2) y comparar con MA200
+  [ ] Anotar en diario si hubo senal (entrada/salida) y si la segui
+
+MENSUAL (ultimo dia del mes, 10 min):
+  [ ] IBB vs QQQ: comparar retorno 20 dias de IBB y QQQ
+  [ ] Verificar SPY vs MA200 y ganador vs MA100
+  [ ] Ejecutar rotacion si cambia el ganador (o ir a cash si ambos filtros fallan)
+  [ ] Revisar P&L mensual de cada estrategia vs backtest
+
+CADA 20 OPERACIONES (revision formal):
+  [ ] Comparar acierto real vs backtest por estrategia
+  [ ] Comparar perdida media real vs backtest
+  [ ] Comparar DD real vs backtest
+  [ ] Si todo dentro de banda: continuar igual. Si no: revisar reglas (nunca en caliente)
+
+### Robot: que automatizar ahora
+
+FASE 1 · ALERTAS (0 codigo, hoy mismo):
+  - TradingView: alerta cuando RSI(2) de QQQ < 10 y precio > MA200
+  - TradingView: alerta cuando RSI(2) de MTUM < 10 y precio > MA200
+  - TradingView: alerta cuando EMA8 cruza EMA32 en BTC 4H (arriba y abajo)
+  Resultado: el sistema avisa; tu ejecutas manualmente en el broker.
+
+FASE 2 · SEMI-ROBOT (Python, 1-2 semanas):
+  - Script Python que descarga datos al cierre del dia (yfinance) y calcula:
+    * RSI(2) QQQ y MTUM → imprime "COMPRA / MANTENER / VENDE"
+    * IBB vs QQQ fin de mes → imprime ganador y filtros
+  - Lo corres manualmente cada noche; te dice que hacer.
+
+FASE 3 · ROBOT COMPLETO (Python + API, mes 3-4 de demo):
+  - BTC EWMAC: bot en Binance con CCXT (Python), corre cada 4H automaticamente
+  - RSI2 QQQ/MTUM: bot en Alpaca con alpaca-trade-api, ejecuta al open del dia
+  - IBB/QQQ: semi-automatico (senial automatica, ejecucion manual por ser mensual)
+
+### Diario de operaciones
+
+Por cada operacion anotar (tabla en Excel o Notion):
+  Fecha · Estrategia · Activo · Senal (entrada/salida) · Precio entrada · Precio salida
+  Precio stop (si aplica) · Tamano $ · Resultado R · Segui la regla (S/N + por que)
+  Estado animo 1-5 · Notas
+
+### Reglas de apagado (del Contrato + portafolio)
+
+Limite semanal  : perdida acumulada > -4% ($40) → pauso hasta el lunes
+Limite mensual  : perdida acumulada > -9% ($90) → pauso hasta el mes siguiente
+Interruptor     : caida desde maximo > -15% ($150) → apago todo y reviso entero
+Apagado por estrategia: si una estrategia individual cae > -20% desde su maximo
+  en su propio slice de capital ($250) = -$50, la pauso y reviso en 20 ops.
+
+### Plan demo (6 meses)
+
+Mes 1-2: Fase 1 (alertas TradingView) + ejecucion manual. Rellenar diario.
+Mes 3-4: Fase 2 (script Python seniales). Verificar que los precios reales
+  coinciden con lo esperado del backtest (slippage, costes).
+Mes 5-6: Fase 3 (robot BTC + semi-auto RSI2). Comprobar que el robot ejecuta
+  al mismo precio que el script manual.
+
+Pase a real pequeno (0.5% riesgo = $5/op) si tras 6 meses:
+  - Segui el 100% de las seniales
+  - Mis precios reales se parecen a los del backtest
+  - El resultado esta dentro de la banda del Monte Carlo
+
+Supuestos:
+  - (supuesto) Plataforma Alpaca para ETFs (fractional shares, API gratis)
+  - (supuesto) Binance para BTC (mayor liquidez, API REST + WebSocket)
+  - (supuesto) Python 3.11+ con yfinance, ccxt, alpaca-trade-api
+  - Robot completo se construye durante la demo; no es requisito para empezar
+Veredicto: APRUEBA (plan completo: demo, plataformas, robot, diario y apagados definidos)
+Siguiente paso: empezar demo Fase 1 (alertas TradingView) esta semana.
