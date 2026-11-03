@@ -235,7 +235,30 @@ SPY > MA200 y ret20_IBB > 0. Resultado con particion MCT:
 Conclusion: la version de un solo activo es peor que la rotacion. Pierde los periodos donde
 QQQ supera a IBB (2017-2018, 2023-2024) y tiene DD mayor en diseno (incluye 2008 en IBB solo).
 
+### Analisis de stops (backtest_ibb_qqq_stops.py)
+Se probaron 7 stops intra-mes sobre el ETF sostenido para ver si alguno reduce el DD
+del examen (20.8%) por debajo del 20% sin romper el diseno. Resultado:
+
+  Stop   Diseno Ops PF    DD       S    Examen Ops PF    DD       S    Valid
+  NONE   128    1.85  18.4%  4/4   37     1.26  20.8%  2/4   34  5.51   4/4
+  MA50    96    1.32  36.7%  3/4   28     1.58  11.1%  3/4   29  3.30   3/4
+  MA20    75    1.60  20.4%  3/4   22     0.76  21.6%  0/4   21  2.30   3/4
+  P7     120    1.72  22.0%  3/4   34     1.29  14.8%  3/4   34  4.28   4/4
+  P10    124    1.67  17.0%  4/4   36     1.20  22.4%  2/4   34  5.51   4/4
+  P15    128    1.85  18.4%  4/4   37     1.24  22.1%  2/4   34  5.51   4/4
+  MA50S   96    1.35  39.4%  3/4   28     1.00  17.4%  1/4   27  3.05   3/4
+
+Conclusion: ningun stop hace pasar diseno Y examen simultaneamente.
+  · P7 (7% desde entrada) reduce examen DD a 14.8% pero sube diseno DD a 22%.
+  · P10 mantiene diseno 4/4 pero empeora examen DD a 22.4%.
+  · MA50 mejora examen pero destroza diseno (DD 36.7%).
+El rebalanceo mensual reacciona demasiado lento para crashes rapidos (2022). Cualquier
+stop intra-mes lo suficientemente rapido para proteger en 2022 tambien saca prematuramente
+en 2008/2015, reduciendo trades en diseno y subiendo DD.
+
 ### Veredicto final IBB/QQQ
-Ambas opciones NO APRUEBA bajo particion MCT. Descartar como estrategia individual.
-Puede mantenerse como referencia de portafolio (el edge en validacion 2023-2026 es real),
-pero sin pasar el examen MCT no se opera en produccion.
+DESCARTADA. Ninguna combinacion stop + regla pasa examen MCT manteniendo diseno 4/4.
+El edge es real (validacion PF 5.51) pero la particion MCT 2018-2022 incluye el crash
+de 2022 que un rebalanceo mensual no puede esquivar con un stop simple.
+Para rescatar esta idea habria que cambiar la frecuencia de rebalanceo (semanal) o
+redisenarar la regla desde Fase 01 — eso es una idea nueva, no una variante del stop.
